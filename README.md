@@ -17,4 +17,4 @@ Nous avons décidé de nous orienter sur les flux migratoires humains causés pa
 Nous partons notamment de cet article : [143 millions de "migrants climatiques" potentiels d'ici 2050](https://www.europe1.fr/international/143-millions-de-migrants-climatiques-potentiels-dici-2050-3603704).
 
 ## Documents
-- [Document de Cadrage du projet](https://m2ia72.github.io/m2ia72/docadrage)
+- [Document de Cadrage du projet](https://m2ia72.github.io/docadrage)
