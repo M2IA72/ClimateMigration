@@ -7,11 +7,13 @@ Tâches à réaliser, et à reporter sur la feuille de suivi de projet:
 
 
 ## Quel est le problème abordé / à quel besoin répondez vous ?
-*Expliquer en un paragraphe le problème que vous abordez, et le besoin auquel vous souhaitez répondre.*  
+*Expliquer en un paragraphe le problème que vous abordez, et le besoin auquel vous souhaitez répondre.*    
+  
 D'ici 2050 on prévoit 143 millions de migrants climatiques. Les causes sont nombreuses et vont de la montée de la température à l'augmentation des incencies, en passant par la raréfication des ressources vitales et la montée des océans. Notre objectif est donc de montrer qui sont ces migrants, où vont-ils et pourquoi partent-ils. 
 
 ## À qui s’adresse la visualisation, quelles tâches seront effectuées au travers de votre projet ?
-*Clarifier le public principal de votre projet. Lister 3 tâches que votre projet permettra d’effectuer. Par ex. : “identifier le pays ayant émis le plus de CO2 depuis une date donnée”. Expliquer pourquoi ces tâches vous semblent les plus importantes.*
+*Clarifier le public principal de votre projet. Lister 3 tâches que votre projet permettra d’effectuer. Par ex. : “identifier le pays ayant émis le plus de CO2 depuis une date donnée”. Expliquer pourquoi ces tâches vous semblent les plus importantes.*  
+
 Le but de la visualisation est de sensibiliser le monde aux conséquences de leurs actes et de leur agissement envers le climat.
 
 Les réponses que nous essayerons d'apporter à travers notre projet sont :
@@ -31,15 +33,15 @@ Pour chaque travail, expliquer en quoi il vous semble intéressant par rapport �
 
 
 ## Organisation
-*Quels moyens de communications avez vous mis en place (email, tracking github, slack...) ?*
+*Quels moyens de communications avez vous mis en place (email, tracking github, slack...) ?*  
 
 Nous avons mis en place le groupe GitHub M2IA72 ainsi qu'un channel slack. Nous disposons également d'un Discord pour les périodes de télétravail.
 
-*Quelles sessions de travail avez vous prévu hors du cours d’ici au 17 janvier ?*
+*Quelles sessions de travail avez vous prévu hors du cours d’ici au 17 janvier ?*  
 
 Nous avons prévues de travailler ensemble régulièrement entre 12h et 14h au cours des semaines à venir et également des sessions de télétravail au besoin.
 
-*Quels rôles avez vous identifiés au sein du groupe (design, développement D3, pré-traitement des données, suivi, etc.) ? Ces rôles ne sont pas exclusifs, et il est attendu que tout le monde contribue à la conception et au code des visualisations. Nous utilisons les fonctions de suivi de projet de github pour évaluer en partie la contribution de chacun au projet.*
+*Quels rôles avez vous identifiés au sein du groupe (design, développement D3, pré-traitement des données, suivi, etc.) ? Ces rôles ne sont pas exclusifs, et il est attendu que tout le monde contribue à la conception et au code des visualisations. Nous utilisons les fonctions de suivi de projet de github pour évaluer en partie la contribution de chacun au projet.*  
 
 Nous nous arrangerons pour que chacun touche au différentes parties du projet mais avons tout de même répartie différents rôles :
 - Gestion Projet :
