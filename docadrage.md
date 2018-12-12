@@ -24,8 +24,9 @@ Les réponses que nous essayerons d'apporter à travers notre projet sont :
 ## Sources de données pressenties
 *Lister les sources de données identifiées, pour chacune identifier leur intérêt principal et leurs limites potentielles. Clarifier si vous souhaitez en fusionner plusieurs ou pensez privilégier une en particulier. En cas de surprise/problème imprévu lié aux données, quel est votre plan de secours ?*
 
-
-
+Notre principale source de données provient du rapport ![Groundswell : Preparing for Internal Climate Migration](https://openknowledge.worldbank.org/handle/10986/29461)  
+Ce rapport présente des prévisions de l'évolution du nombre de migrant jusqu'en 2050 dans les différentes régions du monde et selon 3 scénarios (pessimiste, eco-responsable et intermédaire). L'intérêt principal de cette source de données est d'obtenir des données détaillées selon la provenence des migrants, en revanche le rapport ne détaille pas l'endroit du globe où ces populations vont migrer. Le fait d'avoir 3 scnéarios est très intéressant car nos visualisations pourront intégrer ces différents cas.  
+En revanche nous n'avons pas encore trouvé de source de données présentant les destinations des migrants. Dans le cas où ces sources de données seraient inexistantes, nous devrions revoir nos visualisations pour ne présenter que le nombre de migrants de chaque zone de départ et non plus le flux correspondant.
 
 ## Travaux important liés au projet
 *Lister 4 travaux liés au projet, par exemple : des projets avec des jeux de données similaires, des projets proposant des techniques de visualisation que vous trouvez intéressantes, des articles scientifiques présentant une technique ou une description du problème qui vous sera utile...
