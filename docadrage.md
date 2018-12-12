@@ -49,7 +49,7 @@ Nous avons prévues de travailler ensemble régulièrement entre 12h et 14h au c
 Nous nous arrangerons pour que chacun touche au différentes parties du projet mais avons tout de même répartie différents rôles :
 - Gestion Projet : Gwenaël
 - Gestion Données : Tz'ayik
-- Dev. D3 : Sébastion
+- Dev. D3 : Sébastien
 - Design : Gregory
 
 
