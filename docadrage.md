@@ -54,8 +54,8 @@ Nous nous arrangerons pour que chacun touche au différentes parties du projet m
 
 
 ## Design-Sheets
-![DS1](https://m2ia72.github.io/designsheets/DS1.png)
-![DS2](https://m2ia72.github.io/designsheets/DS2.png)
-![DS3](https://m2ia72.github.io/designsheets/DS3.png)
-![DS4](https://m2ia72.github.io/designsheets/DS4.png)
-![DS5](https://m2ia72.github.io/designsheets/DS5.png)
+![DS1](https://m2ia72.github.io/designsheets/DS1.jpg)
+![DS2](https://m2ia72.github.io/designsheets/DS2.jpg)
+![DS3](https://m2ia72.github.io/designsheets/DS3.jpg)
+![DS4](https://m2ia72.github.io/designsheets/DS4.jpg)
+![DS5](https://m2ia72.github.io/designsheets/DS5.jpg)
