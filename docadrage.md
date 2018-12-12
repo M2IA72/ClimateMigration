@@ -32,6 +32,8 @@ En revanche nous n'avons pas encore trouvé de source de données présentant le
 *Lister 4 travaux liés au projet, par exemple : des projets avec des jeux de données similaires, des projets proposant des techniques de visualisation que vous trouvez intéressantes, des articles scientifiques présentant une technique ou une description du problème qui vous sera utile...
 Pour chaque travail, expliquer en quoi il vous semble intéressant par rapport à votre projet, et en quoi il pourrait être amélioré.*
 
+Une visualisation des ![migrations passés](http://data.unhcr.org/dataviz/) selon l'année et le pays. Cette visualisation est très sympatique et pourrait servir de source d'inspiration que nous pourrions adapter à notre projet avec des données prévisionelles et centrées uniquement sur les migrations climatiques.  
+Les ![flux migratoires](http://cafe-geo.net/impact-migratoire-du-changement-climatique-au-burkina-faso/) liés au climat. Cette visalisation est intéressante mais pourrait être largement améliorée, on ne peut par exemple pas se rendre compte du nombre de migrants sur chaque flux migratoire.
 
 ## Organisation
 *Quels moyens de communications avez vous mis en place (email, tracking github, slack...) ?*  
@@ -45,10 +47,10 @@ Nous avons prévues de travailler ensemble régulièrement entre 12h et 14h au c
 *Quels rôles avez vous identifiés au sein du groupe (design, développement D3, pré-traitement des données, suivi, etc.) ? Ces rôles ne sont pas exclusifs, et il est attendu que tout le monde contribue à la conception et au code des visualisations. Nous utilisons les fonctions de suivi de projet de github pour évaluer en partie la contribution de chacun au projet.*  
 
 Nous nous arrangerons pour que chacun touche au différentes parties du projet mais avons tout de même répartie différents rôles :
-- Gestion Projet :
-- Gestion Données :
-- Dev. D3 :
-- Design : 
+- Gestion Projet : Gwenaël
+- Gestion Données : Tz'ayik
+- Dev. D3 : Sébastion
+- Design : Gregory
 
 
 ## Design-Sheets
