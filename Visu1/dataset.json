@@ -1,0 +1,8 @@
+[{"name": "A", "value": 10, "date": "2016-01"},
+ {"name": "B", "value": 30, "date": "2016-02"},
+ {"name": "C", "value": 20, "date": "2016-03"},
+ {"name": "D", "value": 40, "date": "2016-04"},
+ {"name": "E", "value": 50, "date": "2016-05"},
+ {"name": "F", "value": 20, "date": "2016-06"},
+ {"name": "G", "value": 10, "date": "2016-07"}
+]

@@ -1,0 +1,33 @@
+body {
+  padding-top: 50px;
+  margin:0;
+  position:fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+}
+
+.line {
+      fill: none;
+      stroke: black;
+      stroke-width: 1.5px;
+}
+
+.axis .domain {
+  display: none;
+}
+
+h1, h2, h4 {
+  font-family: SansationBold, 'trebuchet ms', helvetica, arial, sans-serif;
+  font-variant: small-caps;
+  text-shadow: 1px 1px 1px #A9A9A9;
+}
+
+h1{
+  border-bottom:1px dashed green;
+}
+
+h1,h2{
+  text-align: center;
+}

@@ -1,0 +1,28 @@
+Country,Scenario,Type,Percentage
+East Africa,Pessimistic reference,Average,1.28
+East Africa,More inclusive development,Average,1.37
+East Africa,More climate friendly,Average,0.87
+West Africa,Pessimistic reference,Average,6.87
+West Africa,More inclusive development,Average,5.67
+West Africa,More climate friendly,Average,2.27
+Central Africa,Pessimistic reference,Average,1.31
+Central Africa,More inclusive development,Average,1.31
+Central Africa,More climate friendly,Average,0.66
+Southern Africa,Pessimistic reference,Average,2.31
+Southern Africa,More inclusive development,Average,1.98
+Southern Africa,More climate friendly,Average,1.40
+Mexico and Central America,Pessimistic reference,Average,01.03
+Mexico and Central America,More inclusive development,Average,0.68
+Mexico and Central America,More climate friendly,Average,0.85
+South America,Pessimistic reference,Average,1.86
+South America,More inclusive development,Average,1.86
+South America,More climate friendly,Average,0.89
+Sub-Saharan Africa,Pessimistic reference,Average,3.49
+Sub-Saharan Africa,More inclusive development,Average,03.01
+Sub-Saharan Africa,More climate friendly,Average,1.39
+South Asia,Pessimistic reference,Average,1.56
+South Asia,More inclusive development,Average,0.89
+South Asia,More climate friendly,Average,0.74
+Latin America,Pessimistic reference,Average,1.61
+Latin America,More inclusive development,Average,1.50
+Latin America,More climate friendly,Average,0.88
