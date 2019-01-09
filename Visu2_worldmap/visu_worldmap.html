@@ -79,7 +79,7 @@
 <body>
   <div class="slidecontainer">
       <h4>Date : <span id="week">All</span> </h4>
-      <input id="slider" type="range" min="1" max="3" value="2" class="slider" id="myRange">
+      <input id="slider" type="range" min="1" max="6" value="2" class="slider" id="myRange">
     </div>
   
 <script src="http://d3js.org/d3.v4.min.js"></script>
@@ -282,6 +282,7 @@ function ready(error, geography, data) {
           .style('fill-opacity', 1)
           .style('stroke-opacity', 1)
           .style('stroke-width', 2)
+	  .style('fill', "yellow")
       })
       .on('mouseout', function(d){
         tip.hide(d);
@@ -289,6 +290,12 @@ function ready(error, geography, data) {
           .style('fill-opacity', 0.8)
           .style('stroke-opacity', 0.5)
           .style('stroke-width', 1)
+	  .style('fill', d => {
+        if (typeof colorVariableValueByID[d.id] !== 'undefined') {
+          return color(colorVariableValueByID[d.id])
+        } 
+        return 'white'
+      })
       });
 
   svg.append('path')
@@ -312,6 +319,12 @@ function ready(error, geography, data) {
 	    		colorVariable = 'inclusive';
         if (scenario == 3)
 	    		colorVariable = 'friendly';
+	if (scenario == 4)
+	    		colorVariable = 'pess_percent';
+        if (scenario == 5)
+	    		colorVariable = 'inc_percent';
+        if (scenario == 6)
+	    		colorVariable = 'friend_percent';
     		queue()
   .defer(d3.json, 'world_countries.json')
   .defer(d3.tsv, 'world_population.tsv')

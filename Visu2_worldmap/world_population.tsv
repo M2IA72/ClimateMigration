@@ -1,243 +1,243 @@
-id	name	pessimistic	inclusive	friendly		
-TZA	Tanzania	"10.1"	"9.2"	"6.9"		
-ZMB	Zambia	"10.1"	"9.2"	"6.9"		
-160	Comoros	"10.1"	"9.2"	"6.9"	not listed	
-KEN	Kenya	"10.1"	"9.2"	"6.9"		
-MWI	Malawi	"10.1"	"9.2"	"6.9"		
-RWA	Rwanda	"10.1"	"9.2"	"6.9"		
-BDI	Burundi	"10.1"	"9.2"	"6.9"		
-ETH	Ethiopia	"10.1"	"9.2"	"6.9"		
-UGA	Uganda	"10.1"	"9.2"	"6.9"		
-DJI	Djibouti	"10.1"	"9.2"	"6.9"		
-196	Seychelles	"10.1"	"9.2"	"6.9"	not listed	
-153	Mauritius	"10.1"	"9.2"	"6.9"	not listed	
-SOM	Somalia	"10.1"	"9.2"	"6.9"		
-ERI	Eritrea	"10.1"	"9.2"	"6.9"		
-ZWE	Zimbabwe	"10.1"	"9.2"	"6.9"		
-MDG	Madagascar	"10.1"	"9.2"	"6.9"		
-MOZ	Mozambique	"10.1"	"9.2"	"6.9"		
-IND	India	"35.7"	"21.1"	"16.9"		
-PAK	Pakistan	"35.7"	"21.1"	"16.9"		
-LKA	Sri Lanka	"35.7"	"21.1"	"16.9"		
-NPL	Nepal	"35.7"	"21.1"	"16.9"		
-BTN	Bhutan	"35.7"	"21.1"	"16.9"		
-BGD	Bangladesh	"35.7"	"21.1"	"16.9"		
-AFG	Afghanistan	"35.7"	"21.1"	"16.9"		
-MEX	Mexico	"2.1"	"1.4"	"1.7"		
-CRI	Costa Rica	"2.1"	"1.4"	"1.7"		
-PAN	Panama	"2.1"	"1.4"	"1.7"		
-HND	Honduras	"2.1"	"1.4"	"1.7"		
-NIC	Nicaragua	"2.1"	"1.4"	"1.7"		
-SLV	El Salvador	"2.1"	"1.4"	"1.7"		
-GTM	Guatemala	"2.1"	"1.4"	"1.7"		
-BLZ	Belize	"2.1"	"1.4"	"1.7"		
-PER	Peru	"10.6"	"10.5"	"5.8"		
-URY	Uruguay	"10.6"	"10.5"	"5.8"		
-GUY	Guyana	"10.6"	"10.5"	"5.8"		
-ECU	Ecuador	"10.6"	"10.5"	"5.8"		
-COL	Colombia	"10.6"	"10.5"	"5.8"		
-BOL	Bolivia	"10.6"	"10.5"	"5.8"		
-SUR	Suriname	"10.6"	"10.5"	"5.8"		
-CHL	Chile	"10.6"	"10.5"	"5.8"		
-BRA	Brazil	"10.6"	"10.5"	"5.8"		
-PRY	Paraguay	"10.6"	"10.5"	"5.8"		
-ARG	Argentina	"10.6"	"10.5"	"5.8"		
-VEN	Venezuela	"10.6"	"10.5"	"5.8"		
-USA	United States	"0"	"0"	"0"		
-CHN	China	"0"	"0"	"0"		
-IDN	Indonesia	"0"	"0"	"0"		
-RUS	Russia	"0"	"0"	"0"		
-JPN	Japan	"0"	"0"	"0"		
-PHL	Philippines	"0"	"0"	"0"		
-VNM	Vietnam	"0"	"0"	"0"		
-DEU	Germany	"0"	"0"	"0"		
-EGY	Egypt	"0"	"0"	"0"		
-TUR	Turkey	"0"	"0"	"0"		
-IRN	Iran	"0"	"0"	"0"		
-THA	Thailand	"0"	"0"	"0"		
-FRA	France	"0"	"0"	"0"		
-GBR	United Kingdom	"0"	"0"	"0"		
-ITA	Italy	"0"	"0"	"0"		
-MMR	Burma	"0"	"0"	"0"		
-KOR	Korea, South	"0"	"0"	"0"		
-UKR	Ukraine	"0"	"0"	"0"		
-ESP	Spain	"0"	"0"	"0"		
-POL	Poland	"0"	"0"	"0"		
-DZA	Algeria	"0"	"0"	"0"		
-CAN	Canada	"0"	"0"	"0"		
-MAR	Morocco	"0"	"0"	"0"		
-IRQ	Iraq	"0"	"0"	"0"		
-SAU	Saudi Arabia	"0"	"0"	"0"		
-UZB	Uzbekistan	"0"	"0"	"0"		
-MYS	Malaysia	"0"	"0"	"0"		
-YEM	Yemen	"0"	"0"	"0"		
-TWN	Taiwan	"0"	"0"	"0"		
-PRK	Korea, North	"0"	"0"	"0"		
-SYR	Syria	"0"	"0"	"0"		
-ROU	Romania	"0"	"0"	"0"		
-AUS	Australia	"0"	"0"	"0"		
-CIV	Cote d'Ivoire	"0"	"0"	"0"		
-NLD	Netherlands	"0"	"0"	"0"		
-KAZ	Kazakhstan	"0"	"0"	"0"		
-KHM	Cambodia	"0"	"0"	"0"		
-CUB	Cuba	"0"	"0"	"0"		
-GRC	Greece	"0"	"0"	"0"		
-PRT	Portugal	"0"	"0"	"0"		
-TUN	Tunisia	"0"	"0"	"0"		
-BEL	Belgium	"0"	"0"	"0"		
-CZE	Czech Republic	"0"	"0"	"0"		
-HUN	Hungary	"0"	"0"	"0"		
-DOM	Dominican Republic	"0"	"0"	"0"		
-BLR	Belarus	"0"	"0"	"0"		
-HTI	Haiti	"0"	"0"	"0"		
-SWE	Sweden	"0"	"0"	"0"		
-AZE	Azerbaijan	"0"	"0"	"0"		
-AUT	Austria	"0"	"0"	"0"		
-CHE	Switzerland	"0"	"0"	"0"		
-TJK	Tajikistan	"0"	"0"	"0"		
-ISR	Israel	"0"	"0"	"0"		
-SRB	Serbia	"0"	"0"	"0"		
-BGR	Bulgaria	"0"	"0"	"0"		
-HKG	Hong Kong	"0"	"0"	"0"		
-LAO	Laos	"0"	"0"	"0"		
-LBY	Libya	"0"	"0"	"0"		
-JOR	Jordan	"0"	"0"	"0"		
-PNG	Papua New Guinea	"0"	"0"	"0"		
-DNK	Denmark	"0"	"0"	"0"		
-KGZ	Kyrgyzstan	"0"	"0"	"0"		
-SVK	Slovakia	"0"	"0"	"0"		
-FIN	Finland	"0"	"0"	"0"		
-ARE	United Arab Emirates	"0"	"0"	"0"		
-TKM	Turkmenistan	"0"	"0"	"0"		
-SGP	Singapore	"0"	"0"	"0"	not listed	
-NOR	Norway	"0"	"0"	"0"		
-BIH	Bosnia and Herzegovina	"0"	"0"	"0"		
-GEO	Georgia	"0"	"0"	"0"		
-HRV	Croatia	"0"	"0"	"0"		
-MDA	Moldova	"0"	"0"	"0"		
-NZL	New Zealand	"0"	"0"	"0"		
-IRL	Ireland	"0"	"0"	"0"		
-LBN	Lebanon	"0"	"0"	"0"		
-PRI	Puerto Rico	"0"	"0"	"0"		
-ALB	Albania	"0"	"0"	"0"		
-LTU	Lithuania	"0"	"0"	"0"		
-MNG	Mongolia	"0"	"0"	"0"		
-OMN	Oman	"0"	"0"	"0"		
-ARM	Armenia	"0"	"0"	"0"		
-JAM	Jamaica	"0"	"0"	"0"		
-KWT	Kuwait	"0"	"0"	"0"		
-PSE	West Bank	"0"	"0"	"0"		
-LVA	Latvia	"0"	"0"	"0"		
-MKD	Macedonia	"0"	"0"	"0"		
-SVN	Slovenia	"0"	"0"	"0"		
-GMB	Gambia, The	"0"	"0"	"0"		
-KWT	Kosovo	"0"	"0"	"0"		
-149	Gaza Strip	"0"	"0"	"0"	not listed	
-SWZ	Swaziland	"0"	"0"	"0"		
-EST	Estonia	"0"	"0"	"0"		
-TTO	Trinidad and Tobago	"0"	"0"	"0"		
-TLS	Timor-Leste	"0"	"0"	"0"		
-CYP	Cyprus	"0"	"0"	"0"		
-FJI	Fiji	"0"	"0"	"0"		
-QAT	Qatar	"0"	"0"	"0"		
-163	Bahrain	"0"	"0"	"0"	not listed	
-MNE	Montenegro	"0"	"0"	"0"		
-SLB	Solomon Islands	"0"	"0"	"0"		
-168	Macau	"0"	"0"	"0"	not listed	
-169	Cape Verde	"0"	"0"	"0"	not listed	
-LUX	Luxembourg	"0"	"0"	"0"		
-ESH	Western Sahara	"0"	"0"	"0"		
-173	Malta	"0"	"0"	"0"	not listed	
-174	Maldives	"0"	"0"	"0"	not listed	
-BRN	Brunei	"0"	"0"	"0"		
-BHS	Bahamas, The	"0"	"0"	"0"		
-ISL	Iceland	"0"	"0"	"0"		
-179	French Polynesia	"0"	"0"	"0"	not listed	
-180	Barbados	"0"	"0"	"0"	not listed	
-181	Mayotte	"0"	"0"	"0"	not listed	
-NCL	New Caledonia	"0"	"0"	"0"		
-183	Netherlands Antilles	"0"	"0"	"0"	not listed	
-VUT	Vanuatu	"0"	"0"	"0"		
-185	Samoa	"0"	"0"	"0"	not listed	
-186	Sao Tome and Principe	"0"	"0"	"0"	not listed	
-187	Saint Lucia	"0"	"0"	"0"	not listed	
-188	Tonga	"0"	"0"	"0"	not listed	
-189	Virgin Islands	"0"	"0"	"0"	not listed	
-190	Grenada	"0"	"0"	"0"	not listed	
-191	Micronesia, Federated States of	"0"	"0"	"0"	not listed	
-192	Aruba	"0"	"0"	"0"	not listed	
-193	Saint Vincent and the Grenadines	"0"	"0"	"0"	not listed	
-194	Kiribati	"0"	"0"	"0"	not listed	
-195	Jersey	"0"	"0"	"0"	not listed	
-197	Antigua and Barbuda	"0"	"0"	"0"	not listed	
-198	Andorra	"0"	"0"	"0"	not listed	
-199	Isle of Man	"0"	"0"	"0"	not listed	
-DOM	Dominica	"0"	"0"	"0"		
-201	Bermuda	"0"	"0"	"0"	not listed	
-202	American Samoa	"0"	"0"	"0"	not listed	
-203	Marshall Islands	"0"	"0"	"0"	not listed	
-204	Guernsey	"0"	"0"	"0"	not listed	
-GRL	Greenland	"0"	"0"	"0"		
-206	Cayman Islands	"0"	"0"	"0"	not listed	
-207	Saint Kitts and Nevis	"0"	"0"	"0"	not listed	
-208	Faroe Islands	"0"	"0"	"0"	not listed	
-209	Northern Mariana Islands	"0"	"0"	"0"	not listed	
-210	Liechtenstein	"0"	"0"	"0"	not listed	
-211	San Marino	"0"	"0"	"0"	not listed	
-212	Monaco	"0"	"0"	"0"	not listed	
-213	Saint Martin	"0"	"0"	"0"	not listed	
-214	Gibraltar	"0"	"0"	"0"	not listed	
-215	British Virgin Islands	"0"	"0"	"0"	not listed	
-216	Turks and Caicos Islands	"0"	"0"	"0"	not listed	
-217	Palau	"0"	"0"	"0"	not listed	
-218	Akrotiri	"0"	"0"	"0"	not listed	
-219	Dhekelia	"0"	"0"	"0"	not listed	
-220	Wallis and Futuna	"0"	"0"	"0"	not listed	
-221	Anguilla	"0"	"0"	"0"	not listed	
-222	Nauru	"0"	"0"	"0"	not listed	
-223	Cook Islands	"0"	"0"	"0"	not listed	
-224	Tuvalu	"0"	"0"	"0"	not listed	
-225	Saint Helena, Ascension, and Tristan da Cunha	"0"	"0"	"0"	not listed	
-226	Saint Barthelemy	"0"	"0"	"0"	not listed	
-227	Saint Pierre and Miquelon	"0"	"0"	"0"	not listed	
-228	Montserrat	"0"	"0"	"0"	not listed	
-FLK	Falkland Islands (Islas Malvinas)	"0"	"0"	"0"		
-230	Norfolk Island	"0"	"0"	"0"	not listed	
-231	Svalbard	"0"	"0"	"0"	not listed	
-232	Christmas Island	"0"	"0"	"0"	not listed	
-233	Tokelau	"0"	"0"	"0"	not listed	
-234	Niue	"0"	"0"	"0"	not listed	
-235	Holy See (Vatican City)	"0"	"0"	"0"	not listed	
-236	Cocos (Keeling) Islands	"0"	"0"	"0"	not listed	
-237	Pitcairn Islands	"0"	"0"	"0"	not listed	
-ATA	Antarctica	"0"	"0"	"0"		
-ATF	French Southern and Antarctic Lands	"0"	"0"	"0"		
-ABV	Somaliland	"0"	"0"	"0"		
-OSA	Kosovo	"0"	"0"	"0"		
-SDN	Sudan	"71.1"	"53.3"	"28.3"		sub_saha
-TCD	Chad	"71.1"	"53.3"	"28.3"		
-NER	Niger	"71.1"	"53.3"	"28.3"		
-MLI	Mali	"71.1"	"53.3"	"28.3"		
-MRT	Mauritania	"71.1"	"53.3"	"28.3"		
-BFA	Burkina Faso	"71.1"	"53.3"	"28.3"		
-SEN	Senegal	"54.4"	"38.5"	"17.9"		west
-GNB	Guinea-Bissau	"54.4"	"38.5"	"17.9"		
-GIN	Guinea	"54.4"	"38.5"	"17.9"		
-SLE	Sierra Leone	"54.4"	"38.5"	"17.9"		
-LBR	Liberia	"54.4"	"38.5"	"17.9"		
-GHA	Ghana	"54.4"	"38.5"	"17.9"		
-TGO	Togo	"54.4"	"38.5"	"17.9"		
-BEN	Benin	"54.4"	"38.5"	"17.9"		
-NGA	Nigeria	"54.4"	"38.5"	"17.9"		
-CMR	Cameroon	"5.1"	"4.3"	"2.6"		central
-CAF	Central African Republic	"5.1"	"4.3"	"2.6"		
-SDS	South Sudan	"5.1"	"4.3"	"2.6"		
-GNQ	Equatorial Guinea	"5.1"	"4.3"	"2.6"		
-GAB	Gabon	"5.1"	"4.3"	"2.6"		
-COG	Congo, Republic of the	"5.1"	"4.3"	"2.6"		
-COD	Congo, Democratic Republic of the	"5.1"	"4.3"	"2.6"		
-AGO	Angola	"5.1"	"4.3"	"2.6"		
-NAM	Namibia	"1.5"	"1.5"	"0.9"		south
-BWA	Botswana	"1.5"	"1.5"	"0.9"		
-ZAF	South Africa	"1.5"	"1.5"	"0.9"		
-LSO	Lesotho	"1.5"	"1.5"	"0.9"		
+id	name	pessimistic	inclusive	friendly	pess_percent	inc_percent	friend_percent		
+TZA	Tanzania	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"		
+ZMB	Zambia	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"		
+160	Comoros	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"	not listed	
+KEN	Kenya	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"		
+MWI	Malawi	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"		
+RWA	Rwanda	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"		
+BDI	Burundi	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"		
+ETH	Ethiopia	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"		
+UGA	Uganda	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"		
+DJI	Djibouti	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"		
+196	Seychelles	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"	not listed	
+153	Mauritius	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"	not listed	
+SOM	Somalia	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"		
+ERI	Eritrea	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"		
+ZWE	Zimbabwe	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"		
+MDG	Madagascar	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"		
+MOZ	Mozambique	"10.1"	"9.2"	"6.9"	"1.28"	"1.37"	"0.87"		
+IND	India	"35.7"	"21.1"	"16.9"	"1.56"	"0.89"	"0.74"		
+PAK	Pakistan	"35.7"	"21.1"	"16.9"	"1.56"	"0.89"	"0.74"		
+LKA	Sri Lanka	"35.7"	"21.1"	"16.9"	"1.56"	"0.89"	"0.74"		
+NPL	Nepal	"35.7"	"21.1"	"16.9"	"1.56"	"0.89"	"0.74"		
+BTN	Bhutan	"35.7"	"21.1"	"16.9"	"1.56"	"0.89"	"0.74"		
+BGD	Bangladesh	"35.7"	"21.1"	"16.9"	"1.56"	"0.89"	"0.74"		
+AFG	Afghanistan	"35.7"	"21.1"	"16.9"	"1.56"	"0.89"	"0.74"		
+MEX	Mexico	"2.1"	"1.4"	"1.7"	"1.03"	"0.68"	"0.85"		
+CRI	Costa Rica	"2.1"	"1.4"	"1.7"	"1.03"	"0.68"	"0.85"		
+PAN	Panama	"2.1"	"1.4"	"1.7"	"1.03"	"0.68"	"0.85"		
+HND	Honduras	"2.1"	"1.4"	"1.7"	"1.03"	"0.68"	"0.85"		
+NIC	Nicaragua	"2.1"	"1.4"	"1.7"	"1.03"	"0.68"	"0.85"		
+SLV	El Salvador	"2.1"	"1.4"	"1.7"	"1.03"	"0.68"	"0.85"		
+GTM	Guatemala	"2.1"	"1.4"	"1.7"	"1.03"	"0.68"	"0.85"		
+BLZ	Belize	"2.1"	"1.4"	"1.7"	"1.03"	"0.68"	"0.85"		
+PER	Peru	"10.6"	"10.5"	"5.8"	"1.61"	"1.50"	"0.88"		
+URY	Uruguay	"10.6"	"10.5"	"5.8"	"1.61"	"1.50"	"0.88"		
+GUY	Guyana	"10.6"	"10.5"	"5.8"	"1.61"	"1.50"	"0.88"		
+ECU	Ecuador	"10.6"	"10.5"	"5.8"	"1.61"	"1.50"	"0.88"		
+COL	Colombia	"10.6"	"10.5"	"5.8"	"1.61"	"1.50"	"0.88"		
+BOL	Bolivia	"10.6"	"10.5"	"5.8"	"1.61"	"1.50"	"0.88"		
+SUR	Suriname	"10.6"	"10.5"	"5.8"	"1.61"	"1.50"	"0.88"		
+CHL	Chile	"10.6"	"10.5"	"5.8"	"1.61"	"1.50"	"0.88"		
+BRA	Brazil	"10.6"	"10.5"	"5.8"	"1.61"	"1.50"	"0.88"		
+PRY	Paraguay	"10.6"	"10.5"	"5.8"	"1.61"	"1.50"	"0.88"		
+ARG	Argentina	"10.6"	"10.5"	"5.8"	"1.61"	"1.50"	"0.88"		
+VEN	Venezuela	"10.6"	"10.5"	"5.8"	"1.61"	"1.50"	"0.88"		
+USA	United States	"0"	"0"	"0"	"0"	"0"	"0"		
+CHN	China	"0"	"0"	"0"	"0"	"0"	"0"		
+IDN	Indonesia	"0"	"0"	"0"	"0"	"0"	"0"		
+RUS	Russia	"0"	"0"	"0"	"0"	"0"	"0"		
+JPN	Japan	"0"	"0"	"0"	"0"	"0"	"0"		
+PHL	Philippines	"0"	"0"	"0"	"0"	"0"	"0"		
+VNM	Vietnam	"0"	"0"	"0"	"0"	"0"	"0"		
+DEU	Germany	"0"	"0"	"0"	"0"	"0"	"0"		
+EGY	Egypt	"0"	"0"	"0"	"0"	"0"	"0"		
+TUR	Turkey	"0"	"0"	"0"	"0"	"0"	"0"		
+IRN	Iran	"0"	"0"	"0"	"0"	"0"	"0"		
+THA	Thailand	"0"	"0"	"0"	"0"	"0"	"0"		
+FRA	France	"0"	"0"	"0"	"0"	"0"	"0"		
+GBR	United Kingdom	"0"	"0"	"0"	"0"	"0"	"0"		
+ITA	Italy	"0"	"0"	"0"	"0"	"0"	"0"		
+MMR	Burma	"0"	"0"	"0"	"0"	"0"	"0"		
+KOR	Korea, South	"0"	"0"	"0"	"0"	"0"	"0"		
+UKR	Ukraine	"0"	"0"	"0"	"0"	"0"	"0"		
+ESP	Spain	"0"	"0"	"0"	"0"	"0"	"0"		
+POL	Poland	"0"	"0"	"0"	"0"	"0"	"0"		
+DZA	Algeria	"0"	"0"	"0"	"0"	"0"	"0"		
+CAN	Canada	"0"	"0"	"0"	"0"	"0"	"0"		
+MAR	Morocco	"0"	"0"	"0"	"0"	"0"	"0"		
+IRQ	Iraq	"0"	"0"	"0"	"0"	"0"	"0"		
+SAU	Saudi Arabia	"0"	"0"	"0"	"0"	"0"	"0"		
+UZB	Uzbekistan	"0"	"0"	"0"	"0"	"0"	"0"		
+MYS	Malaysia	"0"	"0"	"0"	"0"	"0"	"0"		
+YEM	Yemen	"0"	"0"	"0"	"0"	"0"	"0"		
+TWN	Taiwan	"0"	"0"	"0"	"0"	"0"	"0"		
+PRK	Korea, North	"0"	"0"	"0"	"0"	"0"	"0"		
+SYR	Syria	"0"	"0"	"0"	"0"	"0"	"0"		
+ROU	Romania	"0"	"0"	"0"	"0"	"0"	"0"		
+AUS	Australia	"0"	"0"	"0"	"0"	"0"	"0"		
+CIV	Cote d'Ivoire	"0"	"0"	"0"	"0"	"0"	"0"		
+NLD	Netherlands	"0"	"0"	"0"	"0"	"0"	"0"		
+KAZ	Kazakhstan	"0"	"0"	"0"	"0"	"0"	"0"		
+KHM	Cambodia	"0"	"0"	"0"	"0"	"0"	"0"		
+CUB	Cuba	"0"	"0"	"0"	"0"	"0"	"0"		
+GRC	Greece	"0"	"0"	"0"	"0"	"0"	"0"		
+PRT	Portugal	"0"	"0"	"0"	"0"	"0"	"0"		
+TUN	Tunisia	"0"	"0"	"0"	"0"	"0"	"0"		
+BEL	Belgium	"0"	"0"	"0"	"0"	"0"	"0"		
+CZE	Czech Republic	"0"	"0"	"0"	"0"	"0"	"0"		
+HUN	Hungary	"0"	"0"	"0"	"0"	"0"	"0"		
+DOM	Dominican Republic	"0"	"0"	"0"	"0"	"0"	"0"		
+BLR	Belarus	"0"	"0"	"0"	"0"	"0"	"0"		
+HTI	Haiti	"0"	"0"	"0"	"0"	"0"	"0"		
+SWE	Sweden	"0"	"0"	"0"	"0"	"0"	"0"		
+AZE	Azerbaijan	"0"	"0"	"0"	"0"	"0"	"0"		
+AUT	Austria	"0"	"0"	"0"	"0"	"0"	"0"		
+CHE	Switzerland	"0"	"0"	"0"	"0"	"0"	"0"		
+TJK	Tajikistan	"0"	"0"	"0"	"0"	"0"	"0"		
+ISR	Israel	"0"	"0"	"0"	"0"	"0"	"0"		
+SRB	Serbia	"0"	"0"	"0"	"0"	"0"	"0"		
+BGR	Bulgaria	"0"	"0"	"0"	"0"	"0"	"0"		
+HKG	Hong Kong	"0"	"0"	"0"	"0"	"0"	"0"		
+LAO	Laos	"0"	"0"	"0"	"0"	"0"	"0"		
+LBY	Libya	"0"	"0"	"0"	"0"	"0"	"0"		
+JOR	Jordan	"0"	"0"	"0"	"0"	"0"	"0"		
+PNG	Papua New Guinea	"0"	"0"	"0"	"0"	"0"	"0"		
+DNK	Denmark	"0"	"0"	"0"	"0"	"0"	"0"		
+KGZ	Kyrgyzstan	"0"	"0"	"0"	"0"	"0"	"0"		
+SVK	Slovakia	"0"	"0"	"0"	"0"	"0"	"0"		
+FIN	Finland	"0"	"0"	"0"	"0"	"0"	"0"		
+ARE	United Arab Emirates	"0"	"0"	"0"	"0"	"0"	"0"		
+TKM	Turkmenistan	"0"	"0"	"0"	"0"	"0"	"0"		
+SGP	Singapore	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+NOR	Norway	"0"	"0"	"0"	"0"	"0"	"0"		
+BIH	Bosnia and Herzegovina	"0"	"0"	"0"	"0"	"0"	"0"		
+GEO	Georgia	"0"	"0"	"0"	"0"	"0"	"0"		
+HRV	Croatia	"0"	"0"	"0"	"0"	"0"	"0"		
+MDA	Moldova	"0"	"0"	"0"	"0"	"0"	"0"		
+NZL	New Zealand	"0"	"0"	"0"	"0"	"0"	"0"		
+IRL	Ireland	"0"	"0"	"0"	"0"	"0"	"0"		
+LBN	Lebanon	"0"	"0"	"0"	"0"	"0"	"0"		
+PRI	Puerto Rico	"0"	"0"	"0"	"0"	"0"	"0"		
+ALB	Albania	"0"	"0"	"0"	"0"	"0"	"0"		
+LTU	Lithuania	"0"	"0"	"0"	"0"	"0"	"0"		
+MNG	Mongolia	"0"	"0"	"0"	"0"	"0"	"0"		
+OMN	Oman	"0"	"0"	"0"	"0"	"0"	"0"		
+ARM	Armenia	"0"	"0"	"0"	"0"	"0"	"0"		
+JAM	Jamaica	"0"	"0"	"0"	"0"	"0"	"0"		
+KWT	Kuwait	"0"	"0"	"0"	"0"	"0"	"0"		
+PSE	West Bank	"0"	"0"	"0"	"0"	"0"	"0"		
+LVA	Latvia	"0"	"0"	"0"	"0"	"0"	"0"		
+MKD	Macedonia	"0"	"0"	"0"	"0"	"0"	"0"		
+SVN	Slovenia	"0"	"0"	"0"	"0"	"0"	"0"		
+GMB	Gambia, The	"0"	"0"	"0"	"0"	"0"	"0"		
+KWT	Kosovo	"0"	"0"	"0"	"0"	"0"	"0"		
+149	Gaza Strip	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+SWZ	Swaziland	"0"	"0"	"0"	"0"	"0"	"0"		
+EST	Estonia	"0"	"0"	"0"	"0"	"0"	"0"		
+TTO	Trinidad and Tobago	"0"	"0"	"0"	"0"	"0"	"0"		
+TLS	Timor-Leste	"0"	"0"	"0"	"0"	"0"	"0"		
+CYP	Cyprus	"0"	"0"	"0"	"0"	"0"	"0"		
+FJI	Fiji	"0"	"0"	"0"	"0"	"0"	"0"		
+QAT	Qatar	"0"	"0"	"0"	"0"	"0"	"0"		
+163	Bahrain	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+MNE	Montenegro	"0"	"0"	"0"	"0"	"0"	"0"		
+SLB	Solomon Islands	"0"	"0"	"0"	"0"	"0"	"0"		
+168	Macau	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+169	Cape Verde	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+LUX	Luxembourg	"0"	"0"	"0"	"0"	"0"	"0"		
+ESH	Western Sahara	"0"	"0"	"0"	"0"	"0"	"0"		
+173	Malta	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+174	Maldives	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+BRN	Brunei	"0"	"0"	"0"	"0"	"0"	"0"		
+BHS	Bahamas, The	"0"	"0"	"0"	"0"	"0"	"0"		
+ISL	Iceland	"0"	"0"	"0"	"0"	"0"	"0"		
+179	French Polynesia	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+180	Barbados	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+181	Mayotte	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+NCL	New Caledonia	"0"	"0"	"0"	"0"	"0"	"0"		
+183	Netherlands Antilles	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+VUT	Vanuatu	"0"	"0"	"0"	"0"	"0"	"0"		
+185	Samoa	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+186	Sao Tome and Principe	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+187	Saint Lucia	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+188	Tonga	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+189	Virgin Islands	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+190	Grenada	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+191	Micronesia, Federated States of	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+192	Aruba	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+193	Saint Vincent and the Grenadines	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+194	Kiribati	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+195	Jersey	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+197	Antigua and Barbuda	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+198	Andorra	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+199	Isle of Man	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+DOM	Dominica	"0"	"0"	"0"	"0"	"0"	"0"		
+201	Bermuda	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+202	American Samoa	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+203	Marshall Islands	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+204	Guernsey	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+GRL	Greenland	"0"	"0"	"0"	"0"	"0"	"0"		
+206	Cayman Islands	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+207	Saint Kitts and Nevis	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+208	Faroe Islands	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+209	Northern Mariana Islands	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+210	Liechtenstein	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+211	San Marino	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+212	Monaco	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+213	Saint Martin	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+214	Gibraltar	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+215	British Virgin Islands	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+216	Turks and Caicos Islands	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+217	Palau	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+218	Akrotiri	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+219	Dhekelia	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+220	Wallis and Futuna	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+221	Anguilla	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+222	Nauru	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+223	Cook Islands	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+224	Tuvalu	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+225	Saint Helena, Ascension, and Tristan da Cunha	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+226	Saint Barthelemy	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+227	Saint Pierre and Miquelon	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+228	Montserrat	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+FLK	Falkland Islands (Islas Malvinas)	"0"	"0"	"0"	"0"	"0"	"0"		
+230	Norfolk Island	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+231	Svalbard	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+232	Christmas Island	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+233	Tokelau	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+234	Niue	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+235	Holy See (Vatican City)	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+236	Cocos (Keeling) Islands	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+237	Pitcairn Islands	"0"	"0"	"0"	"0"	"0"	"0"	not listed	
+ATA	Antarctica	"0"	"0"	"0"	"0"	"0"	"0"		
+ATF	French Southern and Antarctic Lands	"0"	"0"	"0"	"0"	"0"	"0"		
+ABV	Somaliland	"0"	"0"	"0"	"0"	"0"	"0"		
+OSA	Kosovo	"0"	"0"	"0"	"0"	"0"	"0"		
+SDN	Sudan	"71.1"	"53.3"	"28.3"	"3.49"	"3.01"	"1.39"		sub_saha
+TCD	Chad	"71.1"	"53.3"	"28.3"	"3.49"	"3.01"	"1.39"		
+NER	Niger	"71.1"	"53.3"	"28.3"	"3.49"	"3.01"	"1.39"		
+MLI	Mali	"71.1"	"53.3"	"28.3"	"3.49"	"3.01"	"1.39"		
+MRT	Mauritania	"71.1"	"53.3"	"28.3"	"3.49"	"3.01"	"1.39"		
+BFA	Burkina Faso	"71.1"	"53.3"	"28.3"	"3.49"	"3.01"	"1.39"		
+SEN	Senegal	"54.4"	"38.5"	"17.9"	"6.87"	"5.67"	"2.27"		west
+GNB	Guinea-Bissau	"54.4"	"38.5"	"17.9"	"6.87"	"5.67"	"2.27"		
+GIN	Guinea	"54.4"	"38.5"	"17.9"	"6.87"	"5.67"	"2.27"		
+SLE	Sierra Leone	"54.4"	"38.5"	"17.9"	"6.87"	"5.67"	"2.27"		
+LBR	Liberia	"54.4"	"38.5"	"17.9"	"6.87"	"5.67"	"2.27"		
+GHA	Ghana	"54.4"	"38.5"	"17.9"	"6.87"	"5.67"	"2.27"		
+TGO	Togo	"54.4"	"38.5"	"17.9"	"6.87"	"5.67"	"2.27"		
+BEN	Benin	"54.4"	"38.5"	"17.9"	"6.87"	"5.67"	"2.27"		
+NGA	Nigeria	"54.4"	"38.5"	"17.9"	"6.87"	"5.67"	"2.27"		
+CMR	Cameroon	"5.1"	"4.3"	"2.6"	"1.31"	"1.31"	"0.66"		central
+CAF	Central African Republic	"5.1"	"4.3"	"2.6"	"1.31"	"1.31"	"0.66"		
+SDS	South Sudan	"5.1"	"4.3"	"2.6"	"1.31"	"1.31"	"0.66"		
+GNQ	Equatorial Guinea	"5.1"	"4.3"	"2.6"	"1.31"	"1.31"	"0.66"		
+GAB	Gabon	"5.1"	"4.3"	"2.6"	"1.31"	"1.31"	"0.66"		
+COG	Congo, Republic of the	"5.1"	"4.3"	"2.6"	"1.31"	"1.31"	"0.66"		
+COD	Congo, Democratic Republic of the	"5.1"	"4.3"	"2.6"	"1.31"	"1.31"	"0.66"		
+AGO	Angola	"5.1"	"4.3"	"2.6"	"1.31"	"1.31"	"0.66"		
+NAM	Namibia	"1.5"	"1.5"	"0.9"	"2.31"	"1.98"	"1.40"		south
+BWA	Botswana	"1.5"	"1.5"	"0.9"	"2.31"	"1.98"	"1.40"		
+ZAF	South Africa	"1.5"	"1.5"	"0.9"	"2.31"	"1.98"	"1.40"		
+LSO	Lesotho	"1.5"	"1.5"	"0.9"	"2.31"	"1.98"	"1.40"		
