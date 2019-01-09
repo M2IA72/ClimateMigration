@@ -209,12 +209,22 @@ function ready(error, geography, data) {
         .style('stroke-width', 1)
         .style('stroke-opacity', 0.5)
         // tooltips
-	.on('mouseclick', function (d) {
-            //barchart('chart', dmin, dmax, davg);
-        })
+	.on("click", function (d) {
+	      data.forEach(function(e) {
+
+		    if (e.id == d.id){
+
+			var pess_min = e.pess_min
+			var pess_max = e.pess_max
+			var pessimistic = e.pessimistic
+			
+			barChart("#chart", d, pess_min, pess_max, pessimistic);
+		}
+		  	
+            
+        })})
         .on('mouseover', function (d) {
             tip.show(d);
-	    console.log(this)
             d3.select(this)
                 .style('fill-opacity', 1)
                 .style('stroke-opacity', 1)
@@ -282,10 +292,14 @@ function updateMap(evt, scenario) {
         .await(ready);
 }
 
-function barChart(div, dmin, dmax, davg) {
 
-	var widthSVG = 400;
-	var heightSVG = 100; 
+//
+function barChart(div, dataset, pess_min, pess_max, pessimistic) {
+	
+
+	var margin = {top: 20, right: 30, bottom: 30, left: 40}
+	var widthSVG = 200 - margin.left - margin.right;
+	var heightSVG = 200 - margin.top - margin.bottom; 
 	var widthAxeX = widthSVG;
 	var heightAxeX = 20;  
 	var widthAxeY = 30;
@@ -295,13 +309,17 @@ function barChart(div, dmin, dmax, davg) {
 	var heightBar = heightSVG; 
 
 //AXIS
-var svgAxeY = d3.select(div)
+		var data = [pess_min, pess_max, pessimistic]
+		var svgAxeY = d3.select(div)
 		.append("svg")
 		.attr("width", widthAxeY)
 		.attr("height", heightAxeY);
+		//.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+		
 
 		var yScale = d3.scaleLinear()
-				     .domain([0, d3.max(dataset, function(d) { return d.count; })])
+				     .domain([0, d3.max(data, function(d) { return d; })])
 				     .range([ heightSVG,0]);
 
 		var yAxis = d3.axisRight()
@@ -315,38 +333,31 @@ var svgAxeY = d3.select(div)
 
 
 // CHART
+
 		var svg = d3.select(div)
 			.append("svg")
 			.attr("width", widthSVG)
 			.attr("height", heightSVG);
 
 		var heightScale = d3.scaleLinear()
-                     .domain([0, d3.max(dataset, function(d) { return d.count; })])
+                     .domain([0, d3.max(data)])
                      .range([0, heightSVG]);
 
-		var color = d3.scaleLinear().domain([1,dataset.length])
+		var color = d3.scaleLinear().domain([1,3])
 		      .interpolate(d3.interpolateHcl)
 		      .range([d3.rgb("#007AFF"), d3.rgb('#FFF500')]);
 
 
-		var graph = svg.selectAll("rect")
-			    .data(dataset)
-			    .enter()
-			    .append("rect")
-				.attr("x",function(d, i){return i*(widthSVG/dataset.length);})
-			       	//.attr("y", function(d){return heightBar - d*3;})
-				.attr("y", function(d){return heightBar - heightScale(d.count);})
-				.attr("width", widthBar)
-   				.attr("height", heightBar)
-				.attr('stroke-width',	function(d){ 
-					if(d.count == d3.max(dataset, function(d) { return d.count; }))
-						return 10;})
-  				.attr('stroke',function(d){ 
-					if(d.count == d3.max(dataset, function(d) { return d.count; }))
-						return "gold";})	
-				.attr('fill', function(d) {
-  					return color(d.id);})
-				.on("mouseover", function(d, i) {
+		svg.selectAll("rect").data(data).enter()
+    			.append("rect")
+    			.attr("width", 20)
+   			.attr("height", heightBar - margin.top + margin.bottom)
+    			.attr("x",function(d, i){return i*(widthSVG/data.length);})
+			.attr("y", function(d){return heightBar - d*3;})
+			//.attr("y", function(d){return heightBar - heightScale(d);})
+			.attr('fill', function(d) {
+  					return 'red';})
+			.on("mouseover", function(d, i) {
 				      	d3.select(this).style("fill", "yellow");
 
 					// Using Ids instead of values
@@ -357,7 +368,7 @@ var svgAxeY = d3.select(div)
 				      
 				    	})
 				    	.on("mouseout", function(d, i) {
-				      	d3.select(this).transition().duration(500).style("fill", color(d.id));
+				      	d3.select(this).transition().duration(500).style("fill", 'red');
 					
 					// Should be using Ids instead of values
 				      	d3.selectAll("text").filter(function(e, j) {
@@ -368,26 +379,24 @@ var svgAxeY = d3.select(div)
 				      
 				    	});
 
+//svg.transition().attrTween("d", someFunction) // apply transition here if you want some animation for data change
+
+// for `exit` selection, they shouldn't be on the svg canvas since there is no corresponding data, you can then remove them
+
 //append text
 		svg.selectAll("text")
 			   	.data(dataset)
 			   	.enter()
 				.append("text")
-				.text(function(d){return d.label;})
-				.attr("x",function(d, i){return i*(widthSVG/dataset.length ) + widthBar/2;}) 
-				.attr("y", function(d){
-					if((heightBar - d.count*3) < (heightBar - 12)){
-						return heightBar - heightScale(d.count) + 12;
-						
-					}
-					else{
-						return heightBar - heightScale(d.count) - 2 ;
-					}})
+				.text(function(d){return d;})
+				.attr("x",function(d, i){return i*(widthSVG/data.length);})
+				.attr("y", function(d){return heightBar - d*3;})
 				.attr("font-family", "sans-serif")
 				.attr("font-size", "11px")
 				.attr("fill", "black")
 				.attr("text-anchor", "middle");	
 
+svg.exit().remove()
 }
 
 
