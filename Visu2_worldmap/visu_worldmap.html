@@ -41,6 +41,7 @@
 document.getElementById("default").click();
 var chart = ['pess_percent', 'inc_percent', 'friend_percent']
 var radios = d3.select('.panel.left').selectAll('input[name="button"]').data(chart);
+var barChartLabel = null;
 d3.selectAll("label")
     .data(chart)
     .append("text")
@@ -318,7 +319,8 @@ function updateBarChart(div, dataset, pess_min, pess_max, pessimistic) {
     svg.selectAll("rect").data(bar).transition()
         .attr("y", function(d){return heightBar - d*3;});
 
-    svg.selectAll("text").data(bar).transition()
+    barChartLabel.data(bar)
+        .transition()
         .text(function(d){return d;})
         .attr("x",function(d, i){return i*(widthSVG/bar.length);})
         .attr("y", function(d){return heightBar - d*3;})
@@ -397,6 +399,7 @@ function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
 
                 // Using Ids instead of values
                     d3.selectAll("text").filter(function(e, j) {
+                        console.log("coucou");
                   return i === j;
                 })
                 .style("font-size", 24);
@@ -419,7 +422,7 @@ function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
 // for `exit` selection, they shouldn't be on the svg canvas since there is no corresponding data, you can then remove them
 
 //append text
-    svg.selectAll("text")
+    barChartLabel = svg.selectAll("text")
             .data(bar)
             .enter()
             .append("text")
