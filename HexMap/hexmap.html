@@ -63,9 +63,10 @@
     .domain([0, 20])
     .interpolate(d3.interpolateLab);
 
+  var hexRadius = 3;
   var hexbin = d3.hexbin()
       .size([width, height])
-      .radius(3);
+      .radius(hexRadius);
 
   var states = svg.append('g')
     .attr('class', 'states');
@@ -80,13 +81,21 @@
     var color = d3.scaleLinear().domain([0,666666666])
                     .range([d3.rgb("#80d491"), d3.rgb('#00b730')]);;
     
-    var color2 = d3.scaleLinear().domain([0,111111])
-                    .range([d3.rgb("#d49881"), d3.rgb('#b70021')]);;
+    var color2 = d3.scaleLinear().domain([0,1,15,50])
+                    .range([
+                      d3.rgb("#ffffff"),
+                      d3.rgb("#169900"),
+                      d3.rgb("#e2ae12"), 
+                      d3.rgb('#b70021')
+                    ])
+    								.interpolate(d3.interpolateHcl);
     
     states.selectAll('path')
     .data(geometry.features)
     .enter().append('path')
     .attr('d', path)
+    .attr('fill-opacity', 1)
+    .attr('stroke-opacity', 1)
     .attr('id',function(d) {
       return d.properties.name;
     })
@@ -119,8 +128,8 @@
     });
     
     var coord = [[]]
-    for(x=0;x<width+5;x+=3){
-      for(y=0;y<height+10;y+=3){
+    for(x=0;x<width+5;x+=hexRadius){
+      for(y=0;y<height+10;y+=hexRadius){
         var element = document.elementFromPoint(x, y);
 				if(element['id']!=""){
         	coord=coord.concat([[x-5,y-10,element['id']]])
@@ -144,45 +153,59 @@
         return d[0][2];
       })
       .attr('fill-opacity', 0)
+      .attr('stroke-opacity', 0)
       .attr('d', hexbin.hexagon())
       .transition()
         .attr('d', hexbin.hexagon(hexbin.radius()))
       /*.transition()
        .attr('transform', d => { return 'translate(' + (d.x) + ',' + (-d.y+900) + ')'; })
-    	  .duration(10000);*/
+    	  .duration(100000);*/
           
       var migrValue = 0
-      
-      
-			d3.selectAll(".hexagons")
-        .selectAll("path").each(function(d, i) {
-            //console.log("hey",this, d);
-       			hexcountries.forEach(function(e){
-              if(e.coordinates.includes(d[0]))
-                {
-                  migrValue=e.migration;
-                  //console.log(true,migrValue,e.name,color2(migrValue))
-                }
-            });
-        	this.setAttribute("fill-opacity",0.5)
-        	this.setAttribute("fill",color2(migrValue))
-          migrValue=0
-        })
+
        
-    states.selectAll('path')
-    .style("Display","None");
-  }
+		d3.selectAll(".hexagons")
+			.selectAll("path").each(function(d, i) {
+				//console.log("hey",this.id, d);
+      	var nom = this.id;
+				data.forEach(function(e){
+					if(e.name==nom)
+					{
+						migrValue=e.pessimistic;
+					}
+				});
+				this.setAttribute("fill",color2(migrValue))
+      	migrValue=0
+			})
+      .transition()
+       .attr('fill-opacity', 1)
+       .attr('stroke-opacity', 1)
+    	 .delay(10000)
+       .duration(1000);
+    ;
+
+    
+		states.selectAll('path')
+			.transition()
+        .attr('fill-opacity', 0)
+        .attr('stroke-opacity', 0)
+    	  .delay(10500)
+       	.duration(1000);
+	}
+    
+    
 
     
   d3.queue()
     .defer(d3.json, 'world.geojson')
-  	.defer(d3.csv, 'world_population.tsv')
+  	.defer(d3.tsv, 'world_population.tsv')
   	.defer(d3.tsv, 'hexcountries.tsv')
     .awaitAll((err, results) => {
       if (err) { return console.error(err); }
       render(results[0], results[1], results[2]);
     });
     
+    /*
 		document.addEventListener('click', printMousePos, true);
     var country = []
     function printMousePos(event) {
@@ -191,7 +214,7 @@
       else
       	country.push([event.clientX-7,event.clientY-7]);
       console.log(country)
-    }
+    }*/
 
   </script>
   </body>
