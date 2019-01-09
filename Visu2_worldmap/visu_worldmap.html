@@ -102,6 +102,16 @@
       border-top: none;
   }
 
+  .tabcontent {
+      animation: fadeEffect 1s; /* Fading effect takes 1 second */
+  }
+
+  /* Go from zero to full opacity */
+  @keyframes fadeEffect {
+      from {opacity: 0;}
+      to {opacity: 1;}
+  }
+
   /*    
   text{
     pointer-events:none;
@@ -118,7 +128,7 @@
       <!-- Tab links -->
       <div class="tab">
           <button class="tablinks" onclick="updateMap(event, 'Pessimiste')">Pessimiste</button>
-          <button class="tablinks" onclick="updateMap(event, 'Inclusif')">Inclusif</button>
+          <button class="tablinks" onclick="updateMap(event, 'Inclusif')" id="default">Inclusif</button>
           <button class="tablinks" onclick="updateMap(event, 'Ecologique')">Ecologique</button>
       </div>
 
@@ -145,6 +155,7 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js'></script>
 <script lang='babel' type='text/babel'>
 // configuration
+document.getElementById("default").click();
 var colorVariable = 'inclusive';
 const geoIDVariable = 'id';
 const format = d3.format(',');
