@@ -385,7 +385,7 @@ function barChart(div, dataset, pess_min, pess_max, pessimistic) {
 
 //append text
 		svg.selectAll("text")
-			   	.data(dataset)
+			   	.data(data)
 			   	.enter()
 				.append("text")
 				.text(function(d){return d;})
