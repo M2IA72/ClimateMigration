@@ -77,10 +77,22 @@
   }
 </style>
 <body>
-  <div class="slidecontainer">
-      <h4>Date : <span id="week">All</span> </h4>
-      <input id="slider" type="range" min="1" max="6" value="2" class="slider" id="myRange">
-    </div>
+<label>
+  <input type="radio" name="button" value="pessimistic" checked="true"/> 
+</label>
+<label>
+  <input type="radio" name="button" value="inclusive" /> 
+</label>
+<label>
+  <input type="radio" name="button" value="friendly" /> 
+</label><label>
+  <input type="radio" name="button" value="pess_percent" /> 
+</label><label>
+  <input type="radio" name="button" value="inc_percent" /> 
+</label><label>
+  <input type="radio" name="button" value="friend_percent" /> 
+</label>
+
   
 <script src="http://d3js.org/d3.v4.min.js"></script>
 <script src="http://d3js.org/queue.v1.min.js"></script>
@@ -90,6 +102,15 @@
 <script src='https://unpkg.com/simple-statistics@2.0.0/dist/simple-statistics.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js'></script>
 <script lang='babel' type='text/babel'>
+
+var chart = ['pessimistic', 'inclusive', 'friendly', 'pess_percent', 'inc_percent', 'friend_percent']
+var radios = d3.select('.panel.left').selectAll('input[name="button"]').data(chart);
+d3.selectAll("label")
+    .data(chart)
+    .append("text")
+    .text(function(d) { return d; })
+  	.style("font-family", "Calibri")
+    .style("font-size", 18); 
 // configuration
 var colorVariable = 'inclusive';
 const geoIDVariable = 'id';
@@ -309,28 +330,26 @@ function ready(error, geography, data) {
     updateMap(scenario);
       
   });
+
+d3.select("body").selectAll("input").on("change", function() {
+console.log(this.value);
+    var scenario=this.value;
+    updateMap(scenario);
+      
+  });
   
       function updateMap(scenario) {
-      //console.log("update start " + start + " value " + nbWeek);
-      
-        if (scenario == 1)
-	    		colorVariable = 'pessimistic';
-        if (scenario == 2)
-	    		colorVariable = 'inclusive';
-        if (scenario == 3)
-	    		colorVariable = 'friendly';
-	if (scenario == 4)
-	    		colorVariable = 'pess_percent';
-        if (scenario == 5)
-	    		colorVariable = 'inc_percent';
-        if (scenario == 6)
-	    		colorVariable = 'friend_percent';
+	    		colorVariable = scenario;
+       
     		queue()
   .defer(d3.json, 'world_countries.json')
   .defer(d3.tsv, 'world_population.tsv')
   .await(ready);
       }
 }
+
+
+
 </script>
 </body>
 </html>
