@@ -51,7 +51,7 @@
   var svg = d3.select('body')
     .append('svg')
     .attr('width', width)
-    .attr('height', height);
+    .attr('height', height+100);
 
   var projection = d3.geoMercator();
     
@@ -63,7 +63,7 @@
     .domain([0, 20])
     .interpolate(d3.interpolateLab);
 
-  var hexRadius = 3;
+  var hexRadius = 5;
   var hexbin = d3.hexbin()
       .size([width, height])
       .radius(hexRadius);
@@ -157,9 +157,6 @@
       .attr('d', hexbin.hexagon())
       .transition()
         .attr('d', hexbin.hexagon(hexbin.radius()))
-      /*.transition()
-       .attr('transform', d => { return 'translate(' + (d.x) + ',' + (-d.y+900) + ')'; })
-    	  .duration(100000);*/
           
       var migrValue = 0
 
@@ -180,7 +177,7 @@
       .transition()
        .attr('fill-opacity', 1)
        .attr('stroke-opacity', 1)
-    	 .delay(10000)
+    	 .delay(5000)
        .duration(1000);
     ;
 
@@ -189,13 +186,68 @@
 			.transition()
         .attr('fill-opacity', 0)
         .attr('stroke-opacity', 0)
-    	  .delay(10500)
+    	  .delay(5000)
        	.duration(1000);
-	}
+    
+    var migCoords =[];
+    var iMig=1;
+    var jMig=1;
+    /*for(i=0;i<d3.selectAll(".hexagons")
+			.selectAll("path").size();i++){
+      rayon=jMig*hexRadius
+      theta=iMig*360/(6*jMig)
+      xMig=500+2*rayon*Math.cos(theta)
+      yMig=450+2*rayon*Math.sin(theta)
+      migCoords=migCoords.concat([[xMig,yMig]])
+      console.log(rayon,theta,iMig,jMig,xMig,yMig)
+      iMig++;
+      if(iMig==6*jMig){
+        iMig=1;
+        jMig++;
+      }
+    }*/
+    
+    xCenter = 150;
+    yCenter = 350;
+    var migCoords =[[xCenter,yCenter]];
+    for(k=1;k<40;k++){
+      for(i=0;i<6;i++){
+        for(j=0;j<k;j++){
+          rayon=2*k*hexRadius
+          theta=(6*(j-1)+i)*2*Math.PI/(k*6)
+          xMig=xCenter+rayon*Math.cos(theta)
+          yMig=yCenter+rayon*Math.sin(theta)
+          migCoords=migCoords.concat([[xMig,yMig]])
+        }
+      }
+    }
     
     
+    console.log(migCoords)
+      var migId=0
 
+    data.forEach(function(e){
+      var cBug=["Cote d'Ivoire","Falkland Islands (Islas Malvinas)","Holy See (Vatican City)","Cocos (Keeling) Islands"]
+      if(!cBug.includes(e.name)){
+			var cName="#"+e.name
+      var nbHex = hexagon.selectAll(cName).size();
+        hexagon.selectAll(cName)
+          .each(function(d,i){
+          if(e.pessimistic>0){
+            if(i<Math.max(1,nbHex*e.pessimistic/100)){
+              d3.select(this).transition()
+                .attr('transform', d => { return 'translate(' + migCoords[migId][0] + ',' + migCoords[migId][1] + ')'; })
+                .delay(6000)
+                .duration(10000);
+            	migId++;
+            }
+          }
+        })
+      }
+	});
+  }
     
+        
   d3.queue()
     .defer(d3.json, 'world.geojson')
   	.defer(d3.tsv, 'world_population.tsv')
