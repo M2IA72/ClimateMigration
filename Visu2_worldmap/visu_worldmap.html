@@ -1,131 +1,11 @@
 <!DOCTYPE html>
+<head>
 <meta charset="utf-8">
-<style>
-    .names {
-        fill: none;
-        stroke: #fff;
-        stroke-linejoin: round;
-    }
 
-    /* Tooltip CSS */
-    .d3-tip {
-        line-height: 1.5;
-        font-weight: 400;
-        font-family: "avenir next", Arial, sans-serif;
-        padding: 6px;
-        background: rgba(0, 0, 0, 0.6);
-        color: #FFA500;
-        border-radius: 1px;
-        pointer-events: none;
-    }
+<link rel="stylesheet" href="worldmap.css" type="text/css" media="screen" />
 
-    /* Creates a small triangle extender for the tooltip */
-    .d3-tip:after {
-        box-sizing: border-box;
-        display: inline;
-        font-size: 8px;
-        width: 100%;
-        line-height: 1.5;
-        color: rgba(0, 0, 0, 0.6);
-        position: absolute;
-        pointer-events: none;
 
-    }
-
-    /* Northward tooltips */
-    .d3-tip.n:after {
-        content: "\25BC";
-        margin: -1px 0 0 0;
-        top: 100%;
-        left: 0;
-        text-align: center;
-    }
-
-    /* Eastward tooltips */
-    .d3-tip.e:after {
-        content: "\25C0";
-        margin: -4px 0 0 0;
-        top: 50%;
-        left: -8px;
-    }
-
-    /* Southward tooltips */
-    .d3-tip.s:after {
-        content: "\25B2";
-        margin: 0 0 1px 0;
-        top: -8px;
-        left: 0;
-        text-align: center;
-    }
-
-    /* Westward tooltips */
-    .d3-tip.w:after {
-        content: "\25B6";
-        margin: -4px 0 0 -1px;
-        top: 50%;
-        left: 100%;
-    }
-
-    /* Style the tab */
-    .tab {
-        overflow: hidden;
-        border: 1px solid #ccc;
-        background-color: #f1f1f1;
-    }
-
-    /* Style the buttons that are used to open the tab content */
-    .tab button {
-        background-color: inherit;
-        float: left;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 14px 16px;
-        transition: 0.3s;
-    }
-
-    /* Change background color of buttons on hover */
-    .tab button:hover {
-        background-color: #ddd;
-    }
-
-    /* Create an active/current tablink class */
-    .tab button.active {
-        background-color: #ccc;
-    }
-
-    /* Style the tab content */
-    .tabcontent {
-        display: none;
-        padding: 6px 12px;
-        border: 1px solid #ccc;
-        border-top: none;
-    }
-
-    .tabcontent {
-        animation: fadeEffect 1s; /* Fading effect takes 1 second */
-    }
-
-    /* Go from zero to full opacity */
-    @keyframes fadeEffect {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-
-    /*
-    text{
-      pointer-events:none;
-    }
-    */
-
-    .details {
-        color: white;
-    }
-</style>
+</head>
 <body>
 <!-- Tab links -->
 <div class="tab">
@@ -146,6 +26,8 @@
 <div id="Ecologique" class="tabcontent">
     <p>Limitation des émissions de gaz à effet de serre - Forte hausse de la population</p>
 </div>
+
+<div id="chart" ></div>
 
 <script src="http://d3js.org/d3.v4.min.js"></script>
 <script src="http://d3js.org/queue.v1.min.js"></script>
@@ -327,8 +209,12 @@ function ready(error, geography, data) {
         .style('stroke-width', 1)
         .style('stroke-opacity', 0.5)
         // tooltips
+	.on('mouseclick', function (d) {
+            //barchart('chart', dmin, dmax, davg);
+        })
         .on('mouseover', function (d) {
             tip.show(d);
+	    console.log(this)
             d3.select(this)
                 .style('fill-opacity', 1)
                 .style('stroke-opacity', 1)
@@ -396,9 +282,114 @@ function updateMap(evt, scenario) {
         .await(ready);
 }
 
-d3.tsv("./world_min_max.tsv", function (data) {
-    console.log(data[0].name);
-});
+function barChart(div, dmin, dmax, davg) {
+
+	var widthSVG = 400;
+	var heightSVG = 100; 
+	var widthAxeX = widthSVG;
+	var heightAxeX = 20;  
+	var widthAxeY = 30;
+	var heightAxeY = heightSVG; 
+	var barPadding = 2;	 
+	var widthBar = widthSVG - barPadding;
+	var heightBar = heightSVG; 
+
+//AXIS
+var svgAxeY = d3.select(div)
+		.append("svg")
+		.attr("width", widthAxeY)
+		.attr("height", heightAxeY);
+
+		var yScale = d3.scaleLinear()
+				     .domain([0, d3.max(dataset, function(d) { return d.count; })])
+				     .range([ heightSVG,0]);
+
+		var yAxis = d3.axisRight()
+				  .scale(yScale)
+				  .ticks(5);
+
+		var yAxisGroup = svgAxeY.append("g")
+				    .attr("class", "axis")
+				    .attr("transform", "translate(" +  barPadding + ")",0)
+				    .call(yAxis);
+
+
+// CHART
+		var svg = d3.select(div)
+			.append("svg")
+			.attr("width", widthSVG)
+			.attr("height", heightSVG);
+
+		var heightScale = d3.scaleLinear()
+                     .domain([0, d3.max(dataset, function(d) { return d.count; })])
+                     .range([0, heightSVG]);
+
+		var color = d3.scaleLinear().domain([1,dataset.length])
+		      .interpolate(d3.interpolateHcl)
+		      .range([d3.rgb("#007AFF"), d3.rgb('#FFF500')]);
+
+
+		var graph = svg.selectAll("rect")
+			    .data(dataset)
+			    .enter()
+			    .append("rect")
+				.attr("x",function(d, i){return i*(widthSVG/dataset.length);})
+			       	//.attr("y", function(d){return heightBar - d*3;})
+				.attr("y", function(d){return heightBar - heightScale(d.count);})
+				.attr("width", widthBar)
+   				.attr("height", heightBar)
+				.attr('stroke-width',	function(d){ 
+					if(d.count == d3.max(dataset, function(d) { return d.count; }))
+						return 10;})
+  				.attr('stroke',function(d){ 
+					if(d.count == d3.max(dataset, function(d) { return d.count; }))
+						return "gold";})	
+				.attr('fill', function(d) {
+  					return color(d.id);})
+				.on("mouseover", function(d, i) {
+				      	d3.select(this).style("fill", "yellow");
+
+					// Using Ids instead of values
+				      	d3.selectAll("text").filter(function(e, j) {
+					  return i === j;
+					})
+					.style("font-size", 24);
+				      
+				    	})
+				    	.on("mouseout", function(d, i) {
+				      	d3.select(this).transition().duration(500).style("fill", color(d.id));
+					
+					// Should be using Ids instead of values
+				      	d3.selectAll("text").filter(function(e, j) {
+					  return i === j;
+					})
+					.transition().duration(500)
+					.style("font-size", 12);
+				      
+				    	});
+
+//append text
+		svg.selectAll("text")
+			   	.data(dataset)
+			   	.enter()
+				.append("text")
+				.text(function(d){return d.label;})
+				.attr("x",function(d, i){return i*(widthSVG/dataset.length ) + widthBar/2;}) 
+				.attr("y", function(d){
+					if((heightBar - d.count*3) < (heightBar - 12)){
+						return heightBar - heightScale(d.count) + 12;
+						
+					}
+					else{
+						return heightBar - heightScale(d.count) - 2 ;
+					}})
+				.attr("font-family", "sans-serif")
+				.attr("font-size", "11px")
+				.attr("fill", "black")
+				.attr("text-anchor", "middle");	
+
+}
+
 
 </script>
 </body>
