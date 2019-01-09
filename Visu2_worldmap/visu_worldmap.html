@@ -78,15 +78,7 @@
 </style>
 <body>
 <label>
-  <input type="radio" name="button" value="pessimistic" checked="true"/> 
-</label>
-<label>
-  <input type="radio" name="button" value="inclusive" /> 
-</label>
-<label>
-  <input type="radio" name="button" value="friendly" /> 
-</label><label>
-  <input type="radio" name="button" value="pess_percent" /> 
+  <input type="radio" name="button" value="pess_percent" checked="true"/> 
 </label><label>
   <input type="radio" name="button" value="inc_percent" /> 
 </label><label>
@@ -103,7 +95,7 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js'></script>
 <script lang='babel' type='text/babel'>
 
-var chart = ['pessimistic', 'inclusive', 'friendly', 'pess_percent', 'inc_percent', 'friend_percent']
+var chart = ['pess_percent', 'inc_percent', 'friend_percent']
 var radios = d3.select('.panel.left').selectAll('input[name="button"]').data(chart);
 d3.selectAll("label")
     .data(chart)
@@ -112,7 +104,7 @@ d3.selectAll("label")
   	.style("font-family", "Calibri")
     .style("font-size", 18); 
 // configuration
-var colorVariable = 'inclusive';
+var colorVariable = 'pess_percent';
 const geoIDVariable = 'id';
 const format = d3.format(',');
 
@@ -120,7 +112,7 @@ const format = d3.format(',');
 var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
-  .html(d => `<strong>Country: </strong><span class='details'>${d.properties.name}<br></span><strong>Population: </strong><span class='details'>${format(d[colorVariable])}</span>`);
+  .html(d => `<strong>Country: </strong><span class='details'>${d.properties.name}<br></span><strong>Migrant: </strong><span class='details'>${format(d[colorVariable])}</span>`);
   
   
 
@@ -194,20 +186,9 @@ const margin = {top: 0, right: 0, bottom: 0, left: 0};
 const width = 960 - margin.left - margin.right;
 const height = 500 - margin.top - margin.bottom;
 
-const color = d3.scaleQuantile()
-  .range([
-    'rgb(247,251,255)',
-    'rgb(222,235,247)', 
-    'rgb(198,219,239)', 
-    'rgb(158,202,225)',
-    'rgb(107,174,214)',
-    'rgb(66,146,198)',
-    'rgb(33,113,181)',
-    'rgb(8,81,156)',
-    'rgb(8,48,107)',
-    'rgb(3,19,43)'
-  ]);
-
+var color = d3.scaleLinear()
+		      .interpolate(d3.interpolateHcl)
+		      .range([d3.rgb("#FDD49E"), d3.rgb('#D7301F')]);
 
 const svg = d3.select('body')
   .append('svg')
@@ -255,25 +236,7 @@ function ready(error, geography, data) {
   console.log('ckmeansBreaks', ckmeansBreaks);
 
   // set the domain of the color scale based on our data
-  color
-    .domain(ckmeansBreaks);
-  //
-  // .domain(jenksNaturalBreaks)
-  //
-  // .domain(d3.extent(data, d => d[colorVariable]));
-  //
-  // .domain([
-  //   10000,
-  //   100000,
-  //   500000,
-  //   1000000,
-  //   5000000,
-  //   10000000,
-  //   50000000,
-  //   100000000,
-  //   500000000,
-  //   1500000000
-  // ]);
+
 
   svg.append('g')
     .attr('class', 'countries')
@@ -282,14 +245,17 @@ function ready(error, geography, data) {
     .enter().append('path')
       .attr('d', path)
       .style('fill', d => {
+	if (format(d[colorVariable]) == 0){	
+        	return 'white'
+	}
         if (typeof colorVariableValueByID[d.id] !== 'undefined') {
           return color(colorVariableValueByID[d.id])
-        } 
-        return 'white'
+        }
+ 
       })
       .style('fill-opacity',0.8)
       .style('stroke', d => {
-          if (d[colorVariable] !== 0) {
+          if (d[colorVariable] !== 0 ) {
           return 'white';
         } 
         return 'lightgray';
@@ -303,7 +269,7 @@ function ready(error, geography, data) {
           .style('fill-opacity', 1)
           .style('stroke-opacity', 1)
           .style('stroke-width', 2)
-	  .style('fill', "yellow")
+	  .style('fill', "orange")
       })
       .on('mouseout', function(d){
         tip.hide(d);
@@ -312,6 +278,9 @@ function ready(error, geography, data) {
           .style('stroke-opacity', 0.5)
           .style('stroke-width', 1)
 	  .style('fill', d => {
+	if (format(d[colorVariable]) == 0){	
+        	return 'white'
+	}
         if (typeof colorVariableValueByID[d.id] !== 'undefined') {
           return color(colorVariableValueByID[d.id])
         } 
