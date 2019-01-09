@@ -131,9 +131,6 @@ const margin = {top: 0, right: 0, bottom: 0, left: 0};
 const width = 960 - margin.left - margin.right;
 const height = 500 - margin.top - margin.bottom;
 
-var color = d3.scaleLinear()
-    .interpolate(d3.interpolateHcl)
-    .range([d3.rgb("#FDD49E"), d3.rgb('#D7301F')]);
 
 const svg = d3.select('body')
     .append('svg')
@@ -158,6 +155,16 @@ queue()
 
 
 function ready(error, geography, data) {
+
+    let m = d3.max(data, function(d) {return Math.max(d.pess_percent, d.inc_percent, d.friend_percent);});
+
+    const color = d3.scaleLinear()
+        .domain([0, m/2, m])
+        .range([d3.rgb("#fff25f"),
+            d3.rgb("#fd7d1c"),
+            d3.rgb('#b30000')]);
+
+
     data.forEach(d => {
         d[colorVariable] = Number(d[colorVariable].replace(',', ''));
     })
@@ -214,7 +221,6 @@ function ready(error, geography, data) {
         })
         .on('mouseover', function (d) {
             tip.show(d);
-	    console.log(this)
             d3.select(this)
                 .style('fill-opacity', 1)
                 .style('stroke-opacity', 1)
