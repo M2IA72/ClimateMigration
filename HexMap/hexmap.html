@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <script src="http://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-queue.v3.min.js"></script>
+    <script src="http://d3js.org/d3.hexbin.v0.min.js"></script>
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
+    
+    <style>
+      .states path {
+        fill: #ddd;
+        stroke: #000;
+        stroke-width: 1px;
+      }
+      .hex-mesh path{
+        stroke: white;
+        stroke-opacity: 0;
+        stroke-width: 0.8;
+        fill-opacity: 0;
+      }
+      .hexagons path{
+        stroke-width: 0.2;
+        stroke: black;
+      }
+      
+      div.tooltip {
+        color: #222;
+        background-color: #fff;
+        padding: .5em;
+        text-shadow: #f5f5f5 0 1px 0;
+        border-radius: 20%;
+      	border:1px solid;
+        opacity: 0.9;
+        position: absolute;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    </style>
+  </head>
+
+  <body>
+
+  <script>
+  var width = 950,
+      height = 500;
+
+  var svg = d3.select('body')
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height);
+
+  var projection = d3.geoMercator();
+    
+  var path = d3.geoPath()
+    .projection(projection);
+
+  var color = d3.scaleLinear()
+    .range(['#fff ', '#e31a1c'])
+    .domain([0, 20])
+    .interpolate(d3.interpolateLab);
+
+  var hexbin = d3.hexbin()
+      .size([width, height])
+      .radius(3);
+
+  var states = svg.append('g')
+    .attr('class', 'states');
+
+
+
+    var tooltip = d3.select('body').append('div')
+            .attr('class', 'hidden tooltip');	
+    
+  function render (geometry, data, hexcountries) {
+    
+    var color = d3.scaleLinear().domain([0,666666666])
+                    .range([d3.rgb("#80d491"), d3.rgb('#00b730')]);;
+    
+    var color2 = d3.scaleLinear().domain([0,111111])
+                    .range([d3.rgb("#d49881"), d3.rgb('#b70021')]);;
+    
+    states.selectAll('path')
+    .data(geometry.features)
+    .enter().append('path')
+    .attr('d', path)
+    .attr('id',function(d) {
+      return d.properties.name;
+    })
+    .style("fill", function(d) {
+      var value = d.properties.pop_est;
+      if (value) {
+        return color(value);
+      } else { 
+        // si pas de valeur alors en gris
+        return "#ccc";
+      }
+    })
+    .on('mousemove', function(d) {
+      var mouse = d3.mouse(svg.node()).map(function(d) {
+        return parseInt(d);
+      });
+      tooltip.classed('hidden', false)
+        .attr('style', 'left:' + (mouse[0] + 25) +
+              'px; top:' + (mouse[1]) + 'px')
+        .html(d.properties.name);
+    })
+    .on('mouseout', function() {
+      tooltip.classed('hidden', true);
+    });
+    ;
+    
+    var coord =[]
+    hexcountries.forEach(function(e){
+      coord=coord.concat(JSON.parse(e.coordinates));
+    });
+    
+    var coord = [[]]
+    for(x=0;x<width+5;x+=3){
+      for(y=0;y<height+10;y+=3){
+        var element = document.elementFromPoint(x, y);
+				if(element['id']!=""){
+        	coord=coord.concat([[x-5,y-10,element['id']]])
+        }
+      } 
+    }
+    
+  var hexagon = svg.append('g')
+    .attr('class', 'hexagons');
+
+  var mesh = svg.append('g')
+    .attr('class', 'hex-mesh')
+    .append('path')
+      .attr('d', hexbin.mesh());
+        
+      hexagon.selectAll('path')
+      .data(hexbin(coord))
+    	.enter().append('path')
+      .attr('transform', d => { return 'translate(' + d.x + ',' + d.y + ')'; })
+      .attr('id',function(d) {
+        return d[0][2];
+      })
+      .attr('fill-opacity', 0)
+      .attr('d', hexbin.hexagon())
+      .transition()
+        .attr('d', hexbin.hexagon(hexbin.radius()))
+      /*.transition()
+       .attr('transform', d => { return 'translate(' + (d.x) + ',' + (-d.y+900) + ')'; })
+    	  .duration(10000);*/
+          
+      var migrValue = 0
+      
+      
+			d3.selectAll(".hexagons")
+        .selectAll("path").each(function(d, i) {
+            //console.log("hey",this, d);
+       			hexcountries.forEach(function(e){
+              if(e.coordinates.includes(d[0]))
+                {
+                  migrValue=e.migration;
+                  //console.log(true,migrValue,e.name,color2(migrValue))
+                }
+            });
+        	this.setAttribute("fill-opacity",0.5)
+        	this.setAttribute("fill",color2(migrValue))
+          migrValue=0
+        })
+       
+    states.selectAll('path')
+    .style("Display","None");
+  }
+
+    
+  d3.queue()
+    .defer(d3.json, 'world.geojson')
+  	.defer(d3.csv, 'world_population.tsv')
+  	.defer(d3.tsv, 'hexcountries.tsv')
+    .awaitAll((err, results) => {
+      if (err) { return console.error(err); }
+      render(results[0], results[1], results[2]);
+    });
+    
+		document.addEventListener('click', printMousePos, true);
+    var country = []
+    function printMousePos(event) {
+      if(event.clientY>500) 
+        country=[];
+      else
+      	country.push([event.clientX-7,event.clientY-7]);
+      console.log(country)
+    }
+
+  </script>
+  </body>
+</html>
