@@ -317,7 +317,9 @@ console.log(this.value);
       }
 }
 
-
+d3.tsv("./world_min_max.tsv", function(data) {
+  console.log(data[0].name);
+});
 
 </script>
 </body>
