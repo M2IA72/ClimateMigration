@@ -66,52 +66,6 @@
     left: 100%;
   }
 
-  /* Style the tab */
-  .tab {
-      overflow: hidden;
-      border: 1px solid #ccc;
-      background-color: #f1f1f1;
-  }
-
-  /* Style the buttons that are used to open the tab content */
-  .tab button {
-      background-color: inherit;
-      float: left;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      padding: 14px 16px;
-      transition: 0.3s;
-  }
-
-  /* Change background color of buttons on hover */
-  .tab button:hover {
-      background-color: #ddd;
-  }
-
-  /* Create an active/current tablink class */
-  .tab button.active {
-      background-color: #ccc;
-  }
-
-  /* Style the tab content */
-  .tabcontent {
-      display: none;
-      padding: 6px 12px;
-      border: 1px solid #ccc;
-      border-top: none;
-  }
-
-  .tabcontent {
-      animation: fadeEffect 1s; /* Fading effect takes 1 second */
-  }
-
-  /* Go from zero to full opacity */
-  @keyframes fadeEffect {
-      from {opacity: 0;}
-      to {opacity: 1;}
-  }
-
   /*    
   text{
     pointer-events:none;
@@ -123,28 +77,14 @@
   }
 </style>
 <body>
-  <div>
-      <h4>Date : <span id="week">All</span> </h4>
-      <!-- Tab links -->
-      <div class="tab">
-          <button class="tablinks" onclick="updateMap(event, 'Pessimiste')">Pessimiste</button>
-          <button class="tablinks" onclick="updateMap(event, 'Inclusif')" id="default">Inclusif</button>
-          <button class="tablinks" onclick="updateMap(event, 'Ecologique')">Ecologique</button>
-      </div>
+<label>
+  <input type="radio" name="button" value="pess_percent" checked="true"/> 
+</label><label>
+  <input type="radio" name="button" value="inc_percent" /> 
+</label><label>
+  <input type="radio" name="button" value="friend_percent" /> 
+</label>
 
-      <!-- Tab content -->
-      <div id="Pessimiste" class="tabcontent">
-          <p>Pas d'effort sur les émissions de gaz à effet de serre - Forte hausse de la population</p>
-      </div>
-
-      <div id="Inclusif" class="tabcontent">
-          <p>Pas d'effort sur les émissions de gaz à effet de serre - Hausse limitée de la population</p>
-      </div>
-
-      <div id="Ecologique" class="tabcontent">
-          <p>Limitation des émissions de gaz à effet de serre - Forte hausse de la population</p>
-      </div>
-    </div>
   
 <script src="http://d3js.org/d3.v4.min.js"></script>
 <script src="http://d3js.org/queue.v1.min.js"></script>
@@ -154,9 +94,17 @@
 <script src='https://unpkg.com/simple-statistics@2.0.0/dist/simple-statistics.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js'></script>
 <script lang='babel' type='text/babel'>
+
+var chart = ['pess_percent', 'inc_percent', 'friend_percent']
+var radios = d3.select('.panel.left').selectAll('input[name="button"]').data(chart);
+d3.selectAll("label")
+    .data(chart)
+    .append("text")
+    .text(function(d) { return d; })
+  	.style("font-family", "Calibri")
+    .style("font-size", 18); 
 // configuration
-document.getElementById("default").click();
-var colorVariable = 'inclusive';
+var colorVariable = 'pess_percent';
 const geoIDVariable = 'id';
 const format = d3.format(',');
 
@@ -164,7 +112,7 @@ const format = d3.format(',');
 var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
-  .html(d => `<strong>Country: </strong><span class='details'>${d.properties.name}<br></span><strong>Population: </strong><span class='details'>${format(d[colorVariable])}</span>`);
+  .html(d => `<strong>Country: </strong><span class='details'>${d.properties.name}<br></span><strong>Migrant: </strong><span class='details'>${format(d[colorVariable])}</span>`);
   
   
 
@@ -238,20 +186,9 @@ const margin = {top: 0, right: 0, bottom: 0, left: 0};
 const width = 960 - margin.left - margin.right;
 const height = 500 - margin.top - margin.bottom;
 
-const color = d3.scaleQuantile()
-  .range([
-    'rgb(247,251,255)',
-    'rgb(222,235,247)', 
-    'rgb(198,219,239)', 
-    'rgb(158,202,225)',
-    'rgb(107,174,214)',
-    'rgb(66,146,198)',
-    'rgb(33,113,181)',
-    'rgb(8,81,156)',
-    'rgb(8,48,107)',
-    'rgb(3,19,43)'
-  ]);
-
+var color = d3.scaleLinear()
+		      .interpolate(d3.interpolateHcl)
+		      .range([d3.rgb("#FDD49E"), d3.rgb('#D7301F')]);
 
 const svg = d3.select('body')
   .append('svg')
@@ -299,25 +236,7 @@ function ready(error, geography, data) {
   console.log('ckmeansBreaks', ckmeansBreaks);
 
   // set the domain of the color scale based on our data
-  color
-    .domain(ckmeansBreaks);
-  //
-  // .domain(jenksNaturalBreaks)
-  //
-  // .domain(d3.extent(data, d => d[colorVariable]));
-  //
-  // .domain([
-  //   10000,
-  //   100000,
-  //   500000,
-  //   1000000,
-  //   5000000,
-  //   10000000,
-  //   50000000,
-  //   100000000,
-  //   500000000,
-  //   1500000000
-  // ]);
+
 
   svg.append('g')
     .attr('class', 'countries')
@@ -326,14 +245,17 @@ function ready(error, geography, data) {
     .enter().append('path')
       .attr('d', path)
       .style('fill', d => {
+	if (format(d[colorVariable]) == 0){	
+        	return 'white'
+	}
         if (typeof colorVariableValueByID[d.id] !== 'undefined') {
           return color(colorVariableValueByID[d.id])
-        } 
-        return 'white'
+        }
+ 
       })
       .style('fill-opacity',0.8)
       .style('stroke', d => {
-          if (d[colorVariable] !== 0) {
+          if (d[colorVariable] !== 0 ) {
           return 'white';
         } 
         return 'lightgray';
@@ -347,6 +269,7 @@ function ready(error, geography, data) {
           .style('fill-opacity', 1)
           .style('stroke-opacity', 1)
           .style('stroke-width', 2)
+	  .style('fill', "orange")
       })
       .on('mouseout', function(d){
         tip.hide(d);
@@ -354,6 +277,15 @@ function ready(error, geography, data) {
           .style('fill-opacity', 0.8)
           .style('stroke-opacity', 0.5)
           .style('stroke-width', 1)
+	  .style('fill', d => {
+	if (format(d[colorVariable]) == 0){	
+        	return 'white'
+	}
+        if (typeof colorVariableValueByID[d.id] !== 'undefined') {
+          return color(colorVariableValueByID[d.id])
+        } 
+        return 'white'
+      })
       });
 
   svg.append('path')
@@ -361,52 +293,34 @@ function ready(error, geography, data) {
     .attr('class', 'names')
     .attr('d', path);
   
-  // d3.select("#slider").on("input", function(){
-    //   console.log(this.value);
-    //   var scenario=this.value;
-    //   updateMap(scenario);
-    //
-    // });
+  d3.select("#slider").on("input", function(){
+    console.log(this.value);
+    var scenario=this.value;
+    updateMap(scenario);
+      
+  });
 
+d3.select("body").selectAll("input").on("change", function() {
+console.log(this.value);
+    var scenario=this.value;
+    updateMap(scenario);
+      
+  });
+  
+      function updateMap(scenario) {
+	    		colorVariable = scenario;
+       
+    		queue()
+  .defer(d3.json, 'world_countries.json')
+  .defer(d3.tsv, 'world_population.tsv')
+  .await(ready);
+      }
 }
 
-function updateMap(evt, scenario) {
-    //console.log("update start " + start + " value " + nbWeek);
+d3.tsv("./world_min_max.tsv", function(data) {
+  console.log(data[0].name);
+});
 
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(scenario).style.display = "block";
-    evt.currentTarget.className += " active";
-
-    if (scenario === "Pessimiste") {
-        colorVariable = 'pessimistic';
-    }
-    if (scenario === "Inclusif") {
-        colorVariable = 'inclusive';
-        // document.getElementById("description").innerHTML = "Pas d'effort sur les émissions de gaz à effet de serre - Hausse limitée de la population";
-    }
-    if (scenario === "Ecologique") {
-        colorVariable = 'friendly';
-        // document.getElementById("description").innerHTML = "Limitation des émissions de gaz à effet de serre - Forte hausse de la population";
-    }
-    queue().defer(d3.json, 'world_countries.json')
-        .defer(d3.tsv, 'world_population.tsv')
-        .await(ready);
-}
 </script>
 </body>
 </html>
