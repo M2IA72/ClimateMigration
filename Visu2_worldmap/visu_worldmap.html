@@ -26,6 +26,15 @@
             </div>
         </header>
 
+	<div id="all" class="row">
+		<h2 class="col-lg-12">Prédiction du nombre de migrant en 2050 (en Millions)</h2>
+		<div id="worldmap" class="col-lg-10"> </div>
+		<div id="chart" class="col-lg-1" >
+	</div>
+			<h4 class="col-lg-12"  style="text-align:right;">Min.&nbsp;&nbsp; Max.&nbsp;&nbsp; Moy.</h4>
+
+</div>
+	
         <!-- Tab links -->
     <div class="tab">
         <button class="tablinks" onclick="updateMap(event, 'Pessimiste')" id="default">Pessimiste</button>
@@ -68,14 +77,12 @@
             <li>Un bas niveau d'éducation</li>
         </ul>
     </div>
+	
+	
+	<a href="../HexMap/hexmap.html"><h1 class="display-5">Go To HexMap</h1></a>
 </div>
 
-<div id="all">
-<div id="worldmap"> </div>
-<div id="title" >Prédiction du nombre de migrant<br> en 2050 (en Millions)</div>
-<div id="chart" ></div>
-<div id="legend" >Minimum&nbsp;&nbsp;&nbsp;&nbsp;Maximum&nbsp;&nbsp;&nbsp;Moyen</div>
-</div>
+
 <script src="http://d3js.org/d3.v4.min.js"></script>
 <script src="http://d3js.org/queue.v1.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
@@ -177,8 +184,9 @@ tip.offset(function (d) { // [top, left]
     return [-10, 0];
 })
 
+/*TODO si écran nul 
 d3.select('body')
-    .style('overflow', 'hidden');
+    .style('overflow', 'hidden');*/
 
 const parentWidth = d3.select('body').node().getBoundingClientRect().width;
 const margin = {top: 0, right: 0, bottom: 0, left: 0};
@@ -412,19 +420,19 @@ function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
     let bar = [pess_min, pess_max, pessimistic];
 	var margin = {top: 20, right: 30, bottom: 30, left: 40}
 	var widthSVG = 300 - margin.left - margin.right;
-	var heightSVG = 300 - margin.top - margin.bottom;
+	var heightSVG = 300 - margin.top - margin.bottom+40;
 	var widthAxeX = widthSVG;
 	var heightAxeX = 20;  
 	var widthAxeY = 30;
-	var heightAxeY = heightSVG; 
-	var barPadding = 2;	 
+	var heightAxeY = heightSVG/2; 
+	var barPadding = 1;	 
 	var widthBar = widthSVG - barPadding;
-	var heightBar = heightSVG;
+	var heightBar = heightSVG/2;
 
 
 //AXIS
 
-    svgAxeY = d3.select(div)
+    svgAxeY = d3.select("#chart")
     .append("svg")
     .attr("width", widthAxeY)
     .attr("height", heightAxeY);
@@ -448,7 +456,7 @@ function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
 
 // CHART
 
-    var svg = d3.select(div)
+    var svg = d3.select("#chart")
         .append("svg")
         .attr("width", widthSVG)
         .attr("height", heightSVG);
