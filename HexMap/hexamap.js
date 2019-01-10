@@ -23,7 +23,7 @@ var svg = d3.select("div.hexamap").append("svg")
     .domain([0, 20])
     .interpolate(d3.interpolateLab);
 
-  var hexRadius = 5;
+  var hexRadius = 3;
   var hexbin = d3.hexbin()
       .size([width, height])
       .radius(hexRadius);
@@ -119,14 +119,15 @@ var svg = d3.select("div.hexamap").append("svg")
 
         var migrValue = 0
 
-
+	var scenario = "pessimistic" //inclusive friendly pessimistic
+	
       d3.selectAll(".hexagons")
         .selectAll("path").each(function(d, i) {
           var nom = this.id;
           data.forEach(function(e){
             if(e.name==nom)
             {
-              migrValue=e.pessimistic;
+              migrValue=e[scenario];
             }
           });
           this.setAttribute("fill",color2(migrValue))
@@ -197,8 +198,8 @@ var svg = d3.select("div.hexamap").append("svg")
 			  var nbHex = hexagon.selectAll(cName).size();
 				hexagon.selectAll(cName)
 				  .each(function(d,i){
-				  if(e.pessimistic>0){
-					if(i<Math.max(1,nbHex*e.pessimistic/100)){
+				  if(e[scenario]>0){
+					if(i<Math.max(1,nbHex*e[scenario]/100)){
 					  d3.select(this).transition()
 						.attr('transform', d => { return 'translate(' + migCoords[migId][0] + ',' + migCoords[migId][1] + ')'; })
 						.delay(2000)
@@ -213,8 +214,8 @@ var svg = d3.select("div.hexamap").append("svg")
 			data.forEach(function(e){
 				hexagon.selectAll("path")
 				.each(function(d,i){
-					if(e.pessimistic>0){
-						if(i<Math.max(1,nbHex*e.pessimistic/100)){
+					if(e[scenario]>0){
+						if(i<Math.max(1,nbHex*e[scenario]/100)){
 							d3.select(this).transition()
 							.attr('transform', d => { return 'translate(' + d.x + ',' + d.y + ')'; })
 							.delay(2000)
