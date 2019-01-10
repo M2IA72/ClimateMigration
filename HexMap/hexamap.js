@@ -36,7 +36,7 @@ var svg = d3.select("div.hexamap").append("svg")
     var tooltip = d3.select('body').append('div')
             .attr('class', 'hidden tooltip');	
     
-  function render (geometry, data, hexcountries) {
+  function render (geometry, data) {
     
     var color = d3.scaleLinear().domain([0,666666666])
                     .range([d3.rgb("#80d491"), d3.rgb('#00b730')]);;
@@ -82,10 +82,6 @@ var svg = d3.select("div.hexamap").append("svg")
     });
     ;
     
-    var coord =[]
-    hexcountries.forEach(function(e){
-      coord=coord.concat(JSON.parse(e.coordinates));
-    });
     
     var coord = [[]]
 	var DepartX=420;
@@ -235,10 +231,9 @@ var svg = d3.select("div.hexamap").append("svg")
   d3.queue()
     .defer(d3.json, 'world.geojson')
   	.defer(d3.tsv, 'world_population.tsv')
-  	.defer(d3.tsv, 'hexcountries.tsv')
     .awaitAll((err, results) => {
       if (err) { return console.error(err); }
-      render(results[0], results[1], results[2]);
+      render(results[0], results[1]);
     });
     
     /*
