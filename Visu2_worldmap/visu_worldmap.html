@@ -64,7 +64,7 @@ const format = d3.format(',');
 var tip = d3.tip()
     .attr('class', 'd3-tip')
     .offset([-10, 0])
-    .html(d => `<strong>Country: </strong><span class='details'>${d.properties.name}<br></span><strong>Migrant: </strong><span class='details'>${format(d[colorVariable])}</span>`);
+    .html(d => `<strong>Country: </strong><span class='details'>${d.properties.name}<br></span><strong>Migrant: </strong><span class='details'>${format(d[colorVariable])} % des migrants mondiaux</span>`);
 
 
 tip.direction(function (d) {
