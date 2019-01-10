@@ -84,8 +84,8 @@ var svg = d3.select("div.hexamap").append("svg")
     
     
     var coord = [[]]
-	var DepartX=420;
-	var DepartY=385;
+	var DepartX=220;
+	var DepartY=285;
     for(x=DepartX-50;x<width+DepartX;x+=hexRadius){
       for(y=DepartY-50;y<height+DepartY;y+=hexRadius){
         var element = document.elementFromPoint(x, y);
