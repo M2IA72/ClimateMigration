@@ -139,10 +139,6 @@ const height = 500 - margin.top - margin.bottom;
 
 let firstBarChartDrawn = false;
 
-var color = d3.scaleLinear()
-    .interpolate(d3.interpolateHcl)
-    .range([d3.rgb("#FDD49E"), d3.rgb('#D7301F')]);
-
 const svg = d3.select('body')
     .append('svg')
     .attr('width', width)
@@ -166,6 +162,16 @@ queue()
 
 
 function ready(error, geography, data) {
+
+    let m = d3.max(data, function(d) {return Math.max(d.pess_percent, d.inc_percent, d.friend_percent);});
+
+    const color = d3.scaleLinear()
+        .domain([0, m/2, m])
+        .range([d3.rgb("#fff25f"),
+            d3.rgb("#fd7d1c"),
+            d3.rgb('#b30000')]);
+
+
     data.forEach(d => {
         d[colorVariable] = Number(d[colorVariable].replace(',', ''));
     })
@@ -233,8 +239,8 @@ function ready(error, geography, data) {
                 }
 
 		}
-		  	
-            
+
+
         })})
         .on('mouseover', function (d) {
             tip.show(d);
@@ -352,11 +358,11 @@ function updateBarChart(div, dataset, pess_min, pess_max, pessimistic) {
 }
 //
 function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
-	
+
     let bar = [pess_min, pess_max, pessimistic];
 	var margin = {top: 20, right: 30, bottom: 30, left: 40}
 	var widthSVG = 200 - margin.left - margin.right;
-	var heightSVG = 200 - margin.top - margin.bottom; 
+	var heightSVG = 200 - margin.top - margin.bottom;
 	var widthAxeX = widthSVG;
 	var heightAxeX = 20;  
 	var widthAxeY = 30;
