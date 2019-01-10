@@ -1,4 +1,4 @@
-var ele = document.getElementById("bc"),
+var ele = document.getElementById("hm"),
     eleStyle = window.getComputedStyle(ele),
     eleWidth = parseInt(eleStyle.width),
     eleHeight= parseInt(eleStyle.height);
@@ -89,7 +89,7 @@ var svg = d3.select("div.hexamap").append("svg")
     
     var coord = [[]]
 	var DepartX=420;
-	var DepartY=285;
+	var DepartY=400;
     for(x=DepartX-50;x<width+DepartX;x+=hexRadius){
       for(y=DepartY-50;y<height+DepartY;y+=hexRadius){
         var element = document.elementFromPoint(x, y);
