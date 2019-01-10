@@ -23,7 +23,7 @@ var svg = d3.select("div.hexamap").append("svg")
     .domain([0, 20])
     .interpolate(d3.interpolateLab);
 
-  var hexRadius = 3;
+  var hexRadius = 5;
   var hexbin = d3.hexbin()
       .size([width, height])
       .radius(hexRadius);
