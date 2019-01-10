@@ -308,6 +308,7 @@ function updateMap(evt, scenario) {
 
 function updateBarChart(div, dataset, pess_min, pess_max, pessimistic) {
     let bar = [pess_min, pess_max, pessimistic];
+
     var margin = {top: 20, right: 30, bottom: 30, left: 40}
     var widthSVG = 200 - margin.left - margin.right;
     var heightSVG = 200 - margin.top - margin.bottom;
@@ -324,7 +325,7 @@ function updateBarChart(div, dataset, pess_min, pess_max, pessimistic) {
     let svg = d3.select(div);
 
     yScale = d3.scaleLinear()
-        .domain([0, d3.max(bar, function(d) { return parseInt(d); }) * 1.1])
+        .domain([0, d3.max(bar, function(d) {return parseFloat(d); }) * 1.1])
         .range([ heightSVG,0]);
 
     yAxis = d3.axisRight()
@@ -345,7 +346,7 @@ function updateBarChart(div, dataset, pess_min, pess_max, pessimistic) {
         .transition()
         .text(function(d){return d;})
         .attr("x",function(d, i){return i*(widthSVG/bar.length)+10;})
-        .attr("y", function(d){return yScale(d);});
+        .attr("y", function(d){return yScale(d) - 3;});
 
 
 }
@@ -376,7 +377,7 @@ function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
 
 
     yScale = d3.scaleLinear()
-                 .domain([0, d3.max(bar, function(d) { return d; })])
+                 .domain([0, d3.max(bar, function(d) { return parseFloat(d); }) * 1.1])
                  .range([ heightSVG,0]);
 
     yAxis = d3.axisRight()
@@ -410,8 +411,8 @@ function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
             .attr("width", 20)
         .attr("height", heightBar - margin.top + margin.bottom)
             .attr("x",function(d, i){return i*(widthSVG/bar.length);})
-        .attr("y", function(d){return heightBar - d*3;})
-        //.attr("y", function(d){return heightBar - heightScale(d);})
+        .attr("y", function(d) { return yScale(d); })
+        .attr("height", function(d) { return height - yScale(d); })
         .attr('fill', function(d) {
                 return 'red';})
         .on("mouseover", function(d, i) {
@@ -447,7 +448,7 @@ function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
             .append("text")
             .text(function(d){return d;})
             .attr("x",function(d, i){return i*(widthSVG/bar.length)+10;})
-            .attr("y", function(d){return heightBar - d*3;})
+            .attr("y", function(d){return yScale(d) - 3;})
             .attr("font-family", "sans-serif")
             .attr("font-size", "11px")
             .attr("fill", "black")
