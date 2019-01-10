@@ -122,3 +122,27 @@
     .details {
         color: white;
     }
+
+
+
+#worldmap, #chart {
+padding:1px 0;
+}
+
+
+#worldmap  {
+float:left;
+}
+#chart {
+float:right;
+margin-right: 50px;
+margin-bottom: 5px
+}
+#legend {
+float:right;
+margin-right: 60px;
+}
+#title {
+float:right;
+margin-right: 60px;
+}
