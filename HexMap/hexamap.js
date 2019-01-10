@@ -153,6 +153,8 @@ var svg = d3.select("div.hexamap").append("svg")
           moveHexa()
         }
     }); 
+	
+	
     
 	var checkAnim=false;
     d3.select("input.switchAnim").on("click", function() {
@@ -214,19 +216,7 @@ var svg = d3.select("div.hexamap").append("svg")
 			  }
 		  });
 		} else {
-			data.forEach(function(e){
-				hexagon.selectAll("path")
-				.each(function(d,i){
-					if(e.pessimistic>0){
-						if(i<Math.max(1,nbHex*e.pessimistic/100)){
-							d3.select(this).transition()
-							.attr('transform', d => { return 'translate(' + d.x + ',' + d.y + ')'; })
-							.delay(2000)
-							.duration(8000);
-						}
-					}
-				});
-			});
+
 		}
     }
 }

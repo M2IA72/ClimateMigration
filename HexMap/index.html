@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -52,18 +51,19 @@
       </header>
 	  <ul class="nav nav-pills nav-fill">
 		  <li class="nav-item">
-			<a class="nav-link active" href="#">Home</a>
+			<a class="nav-link active" onclick="changeClass(this.id)" id="menu1" href="#">Home</a>
 		  </li>
 		  <li class="nav-item">
-			<a class="nav-link" href="hexmap.html">HexMap</a>
+			<a class="nav-link" onclick="changeClass(this.id)" id="menu2" href="#">HexMap</a>
 		  </li>
 		  <li class="nav-item">
-			<a class="nav-link" href="barchart.html">BarChart</a>
+			<a class="nav-link" onclick="changeClass(this.id)" id="menu3" href="#">BarChart</a>
 		  </li>
 		</ul>
-	   <div id="bc" class="hexamap row">
-       </div>
-	   <div class="row">
+	   <div id="hm" class="chart row">
+		<div class="hexamap">
+		</div>
+		<div class="row">
 			  <div class="controller col-lg-4">
 			  <h4> 
 				WorldMap 
@@ -92,6 +92,10 @@
 			  </div>
 			  
 		</div>
+       </div>
+	   <div id="bc" class="chart barchart row">
+       </div>
+	   
 		<div class="row">
 			<section class="col-lg-12">
 				<h1>Présentation des Scénarios</h1>
@@ -138,6 +142,8 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
 	
     <script type="text/javascript" src="hexamap.js" ></script>
+    <script type="text/javascript" src="barchart.js" ></script>
+    <script type="text/javascript" src="menu.js" ></script>
 
   </body>
 </html>
