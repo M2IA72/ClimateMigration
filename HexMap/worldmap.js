@@ -1,0 +1,394 @@
+
+
+document.getElementById("default").click();
+var chart = ['pess_percent', 'inc_percent', 'friend_percent']
+var radios = d3.select('.panel.left').selectAll('input[name="button"]').data(chart);
+d3.selectAll("label")
+    .data(chart)
+    .append("text")
+    .text(function (d) {
+        return d;
+    })
+    .style("font-family", "Calibri")
+    .style("font-size", 18);
+// configuration
+var colorVariable = 'pess_percent';
+const geoIDVariable = 'id';
+const format = d3.format(',');
+
+// Set tooltips
+var tip = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([-10, 0])
+    .html(d => `<strong>Country: </strong><span class='details'>${d.properties.name}<br></span><strong>Migrant: </strong><span class='details'>${format(d[colorVariable])}</span>`);
+
+
+tip.direction(function (d) {
+    if (d.properties.name === 'Antarctica') return 'n';
+    // Americas
+    if (d.properties.name === 'Greenland') return 's';
+    if (d.properties.name === 'Canada') return 'e';
+    if (d.properties.name === 'USA') return 'e';
+    if (d.properties.name === 'Mexico') return 'e';
+    // Europe
+    if (d.properties.name === 'Iceland') return 's';
+    if (d.properties.name === 'Norway') return 's';
+    if (d.properties.name === 'Sweden') return 's';
+    if (d.properties.name === 'Finland') return 's';
+    if (d.properties.name === 'Russia') return 'w';
+    // Asia
+    if (d.properties.name === 'China') return 'w';
+    if (d.properties.name === 'Japan') return 's';
+    // Oceania
+    if (d.properties.name === 'Indonesia') return 'w';
+    if (d.properties.name === 'Papua New Guinea') return 'w';
+    if (d.properties.name === 'Australia') return 'w';
+    if (d.properties.name === 'New Zealand') return 'w';
+    // otherwise if not specified
+    return 'n';
+})
+
+tip.offset(function (d) { // [top, left]
+    if (d.properties.name === 'Antarctica') return [0, 0];
+    // Americas
+    if (d.properties.name === 'Greenland') return [10, -10];
+    if (d.properties.name === 'Canada') return [24, -28];
+    if (d.properties.name === 'USA') return [-5, 8];
+    if (d.properties.name === 'Mexico') return [12, 10];
+    if (d.properties.name === 'Chile') return [0, -15];
+    // Europe
+    if (d.properties.name === 'Iceland') return [15, 0];
+    if (d.properties.name === 'Norway') return [10, -28];
+    if (d.properties.name === 'Sweden') return [10, -8];
+    if (d.properties.name === 'Finland') return [10, 0];
+    if (d.properties.name === 'France') return [-9, 66];
+    if (d.properties.name === 'Italy') return [-8, -6];
+    if (d.properties.name === 'Russia') return [5, 385];
+    // Africa
+    if (d.properties.name === 'Madagascar') return [-10, 10];
+    // Asia
+    if (d.properties.name === 'China') return [-16, -8];
+    if (d.properties.name === 'Mongolia') return [-5, 0];
+    if (d.properties.name === 'Pakistan') return [-10, 13];
+    if (d.properties.name === 'India') return [-11, -18];
+    if (d.properties.name === 'Nepal') return [-8, 1];
+    if (d.properties.name === 'Myanmar') return [-12, 0];
+    if (d.properties.name === 'Laos') return [-12, -8];
+    if (d.properties.name === 'Vietnam') return [-12, -4];
+    if (d.properties.name === 'Japan') return [5, 5];
+    // Oceania
+    if (d.properties.name === 'Indonesia') return [0, -5];
+    if (d.properties.name === 'Papua New Guinea') return [-5, -10];
+    if (d.properties.name === 'Australia') return [-15, 0];
+    if (d.properties.name === 'New Zealand') return [-15, 0];
+    // otherwise if not specified
+    return [-10, 0];
+})
+
+
+const parentWidth = d3.select('body').node().getBoundingClientRect().width;
+const margin = {top: 0, right: 0, bottom: 0, left: 0};
+const width = 960 - margin.left - margin.right;
+const height = 500 - margin.top - margin.bottom;
+
+let firstBarChartDrawn = false;
+
+var color = d3.scaleLinear()
+    .interpolate(d3.interpolateHcl)
+    .range([d3.rgb("#FDD49E"), d3.rgb('#D7301F')]);
+
+const svg3 = d3.select("div.worldmap")
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height)
+    .append('g')
+    .attr('class', 'map');
+
+const projection = d3.geoRobinson()
+    .scale(148)
+    .rotate([352, 0, 0])
+    .translate([width / 2, height / 2]);
+
+const path = d3.geoPath().projection(projection);
+
+svg3.call(tip);
+
+queue()
+    .defer(d3.json, 'world_countries.json')
+    .defer(d3.tsv, 'world_population.tsv')
+    .await(ready);
+
+
+function ready(error, geography, data) {
+    data.forEach(d => {
+        d[colorVariable] = Number(d[colorVariable].replace(',', ''));
+    })
+
+    const colorVariableValueByID = {};
+
+    data.forEach(d => {
+        colorVariableValueByID[d[geoIDVariable]] = d[colorVariable];
+    });
+    geography.features.forEach(d => {
+        d[colorVariable] = colorVariableValueByID[d.id]
+    });
+
+    // calculate ckmeans clusters
+    // then use the max value of each cluster
+    // as a break
+    const numberOfClasses = color.range().length - 1;
+    const ckmeansClusters = ss.ckmeans(data.map(d => d[colorVariable]), numberOfClasses);
+    const ckmeansBreaks = ckmeansClusters.map(d => d3.min(d));
+    console.log('numberOfClasses', numberOfClasses);
+    console.log('ckmeansClusters', ckmeansClusters);
+    console.log('ckmeansBreaks', ckmeansBreaks);
+
+    // set the domain of the color scale based on our data
+
+
+    svg3.append('g')
+        .attr('class', 'countries')
+        .selectAll('path')
+        .data(geography.features)
+        .enter().append('path')
+        .attr('d', path)
+        .style('fill', d => {
+            if (format(d[colorVariable]) == 0) {
+                return 'white'
+            }
+            if (typeof colorVariableValueByID[d.id] !== 'undefined') {
+                return color(colorVariableValueByID[d.id])
+            }
+
+        })
+        .style('fill-opacity', 0.8)
+        .style('stroke', d => {
+            if (d[colorVariable] !== 0) {
+                return 'white';
+            }
+            return 'lightgray';
+        })
+        .style('stroke-width', 1)
+        .style('stroke-opacity', 0.5)
+        // tooltips
+	.on("click", function (d) {
+	      data.forEach(function(e) {
+              if (e.id == d.id){
+
+			    var pess_min = e.pess_min
+			    var pess_max = e.pess_max
+			    var pessimistic = e.pessimistic
+
+			    if (!firstBarChartDrawn) {
+                    firstBarChartDrawn = true;
+                    drawBarChart("#chart", d, pess_min, pess_max, pessimistic);
+                } else {
+                    updateBarChart("#chart", d, pess_min, pess_max, pessimistic);
+                }
+
+		}
+
+
+        })})
+        .on('mouseover', function (d) {
+            tip.show(d);
+            d3.select(this)
+                .style('fill-opacity', 1)
+                .style('stroke-opacity', 1)
+                .style('stroke-width', 2)
+                .style('fill', "orange")
+        })
+        .on('mouseout', function (d) {
+            tip.hide(d);
+            d3.select(this)
+                .style('fill-opacity', 0.8)
+                .style('stroke-opacity', 0.5)
+                .style('stroke-width', 1)
+                .style('fill', d => {
+                    if (format(d[colorVariable]) == 0) {
+                        return 'white'
+                    }
+                    if (typeof colorVariableValueByID[d.id] !== 'undefined') {
+                        return color(colorVariableValueByID[d.id])
+                    }
+                    return 'white'
+                })
+        });
+
+    svg3.append('path')
+        .datum(topojson.mesh(geography.features, (a, b) => a.id !== b.id))
+        .attr('class', 'names')
+        .attr('d', path);
+
+    d3.select("#slider").on("input", function () {
+        console.log(this.value);
+        var scenario = this.value;
+        updateMap(scenario);
+
+    });
+}
+
+function updateMap(evt, scenario) {
+    //console.log("update start " + start + " value " + nbWeek);
+    // Declare all variables
+    var i, tabcontent, tablinks;
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(scenario).style.display = "block";
+    evt.currentTarget.className += " active";
+    if (scenario === "Pessimiste") {
+        colorVariable = 'pess_percent';
+    }
+    if (scenario === "Inclusif") {
+        colorVariable = 'inc_percent';
+    }
+    if (scenario === "Ecologique") {
+        colorVariable = 'friend_percent';
+    }
+    queue().defer(d3.json, 'world_countries.json')
+        .defer(d3.tsv, 'world_population.tsv')
+        .await(ready);
+}
+
+
+function updateBarChart(div, dataset, pess_min, pess_max, pessimistic) {
+    let bar = [pess_min, pess_max, pessimistic];
+    var margin = {top: 20, right: 30, bottom: 30, left: 40}
+    var widthSVG = 200 - margin.left - margin.right;
+    var heightSVG = 200 - margin.top - margin.bottom;
+    var widthAxeX = widthSVG;
+    var heightAxeX = 20;
+    var widthAxeY = 30;
+    var heightAxeY = heightSVG;
+    var barPadding = 2;
+    var widthBar = widthSVG - barPadding;
+    var heightBar = heightSVG;
+
+    var svg3 = d3.select(div);
+
+    svg3.selectAll("rect").data(bar).transition()
+        .attr("y", function(d){return heightBar - d*3;});
+
+    svg3.selectAll("text").data(bar).transition()
+        .text(function(d){return d;})
+        .attr("x",function(d, i){return i*(widthSVG/bar.length);})
+        .attr("y", function(d){return heightBar - d*3;})
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "11px")
+        .attr("fill", "black")
+        .attr("text-anchor", "middle");
+}
+//
+function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
+
+    let bar = [pess_min, pess_max, pessimistic];
+	var margin = {top: 20, right: 30, bottom: 30, left: 40}
+	var widthSVG = 200 - margin.left - margin.right;
+	var heightSVG = 200 - margin.top - margin.bottom;
+	var widthAxeX = widthSVG;
+	var heightAxeX = 20;
+	var widthAxeY = 30;
+	var heightAxeY = heightSVG;
+	var barPadding = 2;
+	var widthBar = widthSVG - barPadding;
+	var heightBar = heightSVG;
+
+
+//AXIS
+
+    var svgAxeY = d3.select(div)
+    .append("svg")
+    .attr("width", widthAxeY)
+    .attr("height", heightAxeY);
+    //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+
+    var yScale = d3.scaleLinear()
+                 .domain([0, d3.max(bar, function(d) { return d; })])
+                 .range([ heightSVG,0]);
+
+    var yAxis = d3.axisRight()
+              .scale(yScale)
+              .ticks(5);
+
+    var yAxisGroup = svgAxeY.append("g")
+                .attr("class", "axis")
+                .attr("transform", "translate(" +  barPadding + ")",0)
+                .call(yAxis);
+
+
+// CHART
+
+    var svg3 = d3.select(div)
+        .append("svg")
+        .attr("width", widthSVG)
+        .attr("height", heightSVG);
+
+    var heightScale = d3.scaleLinear()
+                 .domain([0, d3.max(bar)])
+                 .range([0, heightSVG]);
+
+    var color = d3.scaleLinear().domain([1,3])
+          .interpolate(d3.interpolateHcl)
+          .range([d3.rgb("#007AFF"), d3.rgb('#FFF500')]);
+
+
+    svg3.selectAll("rect").data(bar).enter()
+            .append("rect")
+            .attr("width", 20)
+        .attr("height", heightBar - margin.top + margin.bottom)
+            .attr("x",function(d, i){return i*(widthSVG/bar.length);})
+        .attr("y", function(d){return heightBar - d*3;})
+        //.attr("y", function(d){return heightBar - heightScale(d);})
+        .attr('fill', function(d) {
+                return 'red';})
+        .on("mouseover", function(d, i) {
+                    d3.select(this).style("fill", "yellow");
+
+                // Using Ids instead of values
+                    d3.selectAll("text").filter(function(e, j) {
+                  return i === j;
+                })
+                .style("font-size", 24);
+
+                    })
+                    .on("mouseout", function(d, i) {
+                    d3.select(this).transition().duration(500).style("fill", 'red');
+
+                // Should be using Ids instead of values
+                    d3.selectAll("text").filter(function(e, j) {
+                  return i === j;
+                })
+                .transition().duration(500)
+                .style("font-size", 12);
+
+                    });
+
+//svg.transition().attrTween("d", someFunction) // apply transition here if you want some animation for data change
+
+// for `exit` selection, they shouldn't be on the svg canvas since there is no corresponding data, you can then remove them
+
+//append text
+    svg3.selectAll("text")
+            .data(bar)
+            .enter()
+            .append("text")
+            .text(function(d){return d;})
+            .attr("x",function(d, i){return i*(widthSVG/bar.length);})
+            .attr("y", function(d){return heightBar - d*3;})
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "11px")
+            .attr("fill", "black")
+            .attr("text-anchor", "middle");
+
+}
