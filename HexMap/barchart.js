@@ -6,13 +6,7 @@ var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = eleWidth - margin.left - margin.right,
     height = eleHeight - margin.top - margin.bottom;
 
-    console.log(eleStyle.width);
-    console.log(eleStyle.height);
-    console.log(margin);
-    console.log(margin.left);
-    console.log(margin.top);
-    console.log(width);
-    console.log(height);
+    
 
 var svg = d3.select("div.barchart").append("svg")
   .attr("width", width + margin.left + margin.right)

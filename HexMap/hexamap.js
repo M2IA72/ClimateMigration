@@ -1,22 +1,37 @@
+var elmnt = document.getElementById("main");
+
 var ele = document.getElementById("hm"),
-    eleStyle = window.getComputedStyle(ele),
-    eleWidth = parseInt(eleStyle.width),
-    eleHeight= parseInt(eleStyle.height);
+  eleStyle = window.getComputedStyle(ele),
+  eleWidth = parseInt(eleStyle.width),
+  eleHeight= parseInt(eleStyle.height),
+  eleLeft = ele.offsetLeft;
+  eleTop = ele.offsetTop;
+
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = eleWidth - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    height = eleWidth/2 - margin.top - margin.bottom;
 
+
+
+console.log(eleStyle.width);
+console.log(eleStyle.height);
+console.log(margin);
+console.log(margin.left);
+console.log(margin.top);
+console.log(width);
+console.log(height);
+console.log(eleLeft);
+console.log(eleTop);
 
 var svg = d3.select("div.hexamap").append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
-	.append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   var projection = d3.geoMercator();
-    
+
   var path = d3.geoPath()
     .projection(projection);
+
 
   var color = d3.scaleLinear()
     .range(['#fff ', '#e31a1c'])
@@ -31,25 +46,23 @@ var svg = d3.select("div.hexamap").append("svg")
   var states = svg.append('g')
     .attr('class', 'states');
 
+  var tooltip = d3.select('body').append('div')
+          .attr('class', 'hidden tooltip');
 
-
-    var tooltip = d3.select('body').append('div')
-            .attr('class', 'hidden tooltip');	
-    
   function render (geometry, data, hexcountries) {
-    
+
     var color = d3.scaleLinear().domain([0,666666666])
                     .range([d3.rgb("#80d491"), d3.rgb('#00b730')]);;
-    
+
     var color2 = d3.scaleLinear().domain([0,1,15,50])
                     .range([
                       d3.rgb("#ffffff"),
                       d3.rgb("#169900"),
-                      d3.rgb("#e2ae12"), 
+                      d3.rgb("#e2ae12"),
                       d3.rgb('#b70021')
                     ])
     								.interpolate(d3.interpolateHcl);
-    
+
     states.selectAll('path')
     .data(geometry.features)
     .enter().append('path')
@@ -63,7 +76,7 @@ var svg = d3.select("div.hexamap").append("svg")
       var value = d.properties.pop_est;
       if (value) {
         return color(value);
-      } else { 
+      } else {
         // si pas de valeur alors en gris
         return "#ccc";
       }
@@ -81,25 +94,28 @@ var svg = d3.select("div.hexamap").append("svg")
       tooltip.classed('hidden', true);
     });
     ;
-    
-    var coord =[]
-    hexcountries.forEach(function(e){
-      coord=coord.concat(JSON.parse(e.coordinates));
-    });
-    
-    var coord = [[]]
-	var DepartX=420;
-	var DepartY=400;
-    for(x=DepartX-50;x<width+DepartX;x+=hexRadius){
-      for(y=DepartY-50;y<height+DepartY;y+=hexRadius){
+
+
+
+
+  var ele = document.getElementById("hm"),
+    eleStyle = window.getComputedStyle(ele),
+    eleWidth = parseInt(eleStyle.width),
+    eleHeight= parseInt(eleStyle.height),
+    eleLeft = ele.offsetLeft;
+    eleTop = ele.offsetTop;
+  var coord = [[]]
+	var DepartX=eleLeft;
+	var DepartY=eleTop;
+    for(x=DepartX+1;x<eleWidth+DepartX;x+=hexRadius){
+      for(y=DepartY+1;y<eleHeight+DepartY;y+=hexRadius){
         var element = document.elementFromPoint(x, y);
-				if(element['id']!=""){
+				if(element != null && element['id']!=""){
         	coord=coord.concat([[x-DepartX,y-DepartY,element['id']]])
         }
-      } 
+      }
     }
-    
-    
+
     var hexagon = svg.append('g')
       .attr('class', 'hexagons');
 
@@ -138,7 +154,7 @@ var svg = d3.select("div.hexamap").append("svg")
         })
       ;
 
-    
+
     // update the elements
     var check=false;
     d3.select("input.switch").on("click", function() {
@@ -152,10 +168,10 @@ var svg = d3.select("div.hexamap").append("svg")
           displayMap(hexagon,0)
           moveHexa()
         }
-    }); 
-	
-	
-    
+    });
+
+
+
 	var checkAnim=false;
     d3.select("input.switchAnim").on("click", function() {
         if (this.checked){
@@ -165,8 +181,8 @@ var svg = d3.select("div.hexamap").append("svg")
           checkAnim = false;
           moveHexa(checkAnim)
         }
-    }); 
-	
+    });
+
     function displayMap(name,fillOpa){
       name.selectAll('path')
 			.transition()
@@ -174,8 +190,8 @@ var svg = d3.select("div.hexamap").append("svg")
         .attr('stroke-opacity', fillOpa)
        	.duration(1000);
     }
-		
-    
+
+
     function moveHexa(check){
 		if(check){
 			xCenter = 150;
@@ -220,8 +236,8 @@ var svg = d3.select("div.hexamap").append("svg")
 		}
     }
 }
-    
-        
+
+
   d3.queue()
     .defer(d3.json, 'world.geojson')
   	.defer(d3.tsv, 'world_population.tsv')
@@ -230,12 +246,12 @@ var svg = d3.select("div.hexamap").append("svg")
       if (err) { return console.error(err); }
       render(results[0], results[1], results[2]);
     });
-    
+
     /*
 		document.addEventListener('click', printMousePos, true);
     var country = []
     function printMousePos(event) {
-      if(event.clientY>500) 
+      if(event.clientY>500)
         country=[];
       else
       	country.push([event.clientX-7,event.clientY-7]);

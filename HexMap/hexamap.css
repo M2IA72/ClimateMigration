@@ -13,7 +13,7 @@
         stroke-width: 0.2;
         stroke: black;
       }
-      
+
       div.tooltip {
         color: #222;
         background-color: #fff;
@@ -24,11 +24,11 @@
         opacity: 0.9;
         position: absolute;
     }
-    
+
     .hidden {
         display: none;
     }
-      
+
       .switch {
       position: relative;
       display: inline-block;
@@ -36,7 +36,7 @@
       height: 18px;
     }
 
-    .switch input { 
+    .switch input {
       opacity: 0;
       width: 0;
       height: 0;
@@ -87,4 +87,3 @@
     .slider2.round:before {
       border-radius: 50%;
     }
-      
