@@ -3,44 +3,105 @@
 <meta charset="utf-8">
 
 <link rel="stylesheet" href="worldmap.css" type="text/css" media="screen" />
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+<!-- Custom styles for this template -->
+<link href="starter-template.css" rel="stylesheet">
 
 </head>
 <body>
-<!-- Tab links -->
-<div class="tab">
-    <button class="tablinks" onclick="updateMap(event, 'Pessimiste')" id="default">Pessimiste</button>
-    <button class="tablinks" onclick="updateMap(event, 'Inclusif')">Inclusif</button>
-    <button class="tablinks" onclick="updateMap(event, 'Ecologique')">Ecologique</button>
+    <div class="container">
+        <header class="row">
+            <div class="col-lg-12">
+                <h1> Projet Data Visualisation - Les Flux Migratoire </h1>
+                <h2>Evolution des migrations en fonction de différents scénario</h2>
+                <p>
+                    Le réchauffement climatique aura de lourdes conséquences sur les flux migratoires internationaux, de par son impact géographique (montée des eaux, catastrophes), et celui
+                    sur des secteurs comme l'agriculture et l'accès à l'eau.
+
+                    Cette visualisation nous informe sur la provenance, le nombre et la destination de ces futurs migrants suivant 3 scénarios prévisionnels :
+                    un scénario pessimiste de référence, un scénario écologiquement optimiste, ainsi qu'un scénario sociétalement optimiste. Sont scrutées les 3 régions principalement concernées : L'amérique latine, l'asie du sud-est
+                    et l'Afrique.
+                </p>
+            </div>
+        </header>
+
+	<div id="all" class="row">
+		<h2 class="col-lg-12">Prédiction du nombre de migrant en 2050 (en Millions)</h2>
+		<div id="worldmap" class="col-lg-10"> </div>
+		<div id="chart" class="col-lg-1" >
+	</div>
+			<h4 class="col-lg-12"  style="text-align:right;">Min.&nbsp;&nbsp; Max.&nbsp;&nbsp; Moy.</h4>
+
+</div>
+	
+        <!-- Tab links -->
+    <div class="tab">
+        <button class="tablinks" onclick="updateMap(event, 'Pessimiste')" id="default">Pessimiste</button>
+        <button class="tablinks" onclick="updateMap(event, 'Inclusif')">Inclusif</button>
+        <button class="tablinks" onclick="updateMap(event, 'Ecologique')">Ecologique</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="Pessimiste" class="tabcontent">
+        <p>Dans ce scénario, les émissions polluantes de méthane et dioxyde de carbone continuent leur tendance actuelle.
+            De plus, les régions observées continuent de présenter: </p>
+        <ul>
+            <li>Une haute croissance démographique</li>
+            <li>Un grand taux d'urbanisation</li>
+            <li>Une augmentation minime du PIB</li>
+            <li>Un bas niveau d'éducation</li>
+        </ul>
+
+    </div>
+
+    <div id="Inclusif" class="tabcontent">
+        <p>Dans ce scénario, les émissions polluantes de méthane et dioxyde de carbone continuent leur tendance actuelle.
+            Cependant les régions observées présentent: </p>
+        <ul>
+            <li>Des inégalités réduites entre les différentes régions du monde</li>
+            <li>Un taux d'urbanisation plus modéré</li>
+            <li>Une meilleure éducation</li>
+            <li>Des revenus plus élevés</li>
+            <li>Croissance démographique à la baisse dans les pays les plus pauvres</li>
+        </ul>
+    </div>
+
+    <div id="Ecologique" class="tabcontent">
+        <p>Dans ce scénario, les émissions polluantes de méthane et dioxyde de carbone ont été considérablement réduites.
+            Cependant, les régions observées continuent de présenter : </p>
+        <ul>
+            <li>Une haute croissance démographique</li>
+            <li>Un grand taux d'urbanisation</li>
+            <li>Une augmentation minime du PIB</li>
+            <li>Un bas niveau d'éducation</li>
+        </ul>
+    </div>
+	
+	
+	<a href="../HexMap/hexmap.html"><h1 class="display-5">Go To HexMap</h1></a>
 </div>
 
-<!-- Tab content -->
-<div id="Pessimiste" class="tabcontent">
-    <p>Pas d'effort sur les émissions de gaz à effet de serre - Forte hausse de la population</p>
-</div>
 
-<div id="Inclusif" class="tabcontent">
-    <p>Pas d'effort sur les émissions de gaz à effet de serre - Hausse limitée de la population</p>
-</div>
-
-<div id="Ecologique" class="tabcontent">
-    <p>Limitation des émissions de gaz à effet de serre - Forte hausse de la population</p>
-</div>
-
-<div id="chart" ></div>
-
-<script src="http://d3js.org/d3.v4.min.js"></script>
-<script src="http://d3js.org/queue.v1.min.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/queue.v1.min.js"></script>
+<script src="https://d3js.org/topojson.v1.min.js"></script>
 <script src="https://d3js.org/d3-geo-projection.v1.min.js"></script>
 <script src="d3-tip.js"></script>
 <script src='https://unpkg.com/simple-statistics@2.0.0/dist/simple-statistics.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js'></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
 <script lang='babel' type='text/babel'>
 
 document.getElementById("default").click();
 var chart = ['pess_percent', 'inc_percent', 'friend_percent']
 var radios = d3.select('.panel.left').selectAll('input[name="button"]').data(chart);
+var barChartLabel = null;
+var svgAxeY = null;
+var yAxis = null;
+var yScale = null;
+var yAxis = null;
+var yAxisGroup = null;
 d3.selectAll("label")
     .data(chart)
     .append("text")
@@ -58,7 +119,7 @@ const format = d3.format(',');
 var tip = d3.tip()
     .attr('class', 'd3-tip')
     .offset([-10, 0])
-    .html(d => `<strong>Country: </strong><span class='details'>${d.properties.name}<br></span><strong>Migrant: </strong><span class='details'>${format(d[colorVariable])}</span>`);
+    .html(d => `<strong>Pays: </strong><span class='details'>${d.properties.name}<br></span><strong>Migrant: </strong><span class='details'>${format(d[colorVariable])} % des migrants mondiaux</span>`);
 
 
 tip.direction(function (d) {
@@ -123,8 +184,9 @@ tip.offset(function (d) { // [top, left]
     return [-10, 0];
 })
 
+/*TODO si écran nul 
 d3.select('body')
-    .style('overflow', 'hidden');
+    .style('overflow', 'hidden');*/
 
 const parentWidth = d3.select('body').node().getBoundingClientRect().width;
 const margin = {top: 0, right: 0, bottom: 0, left: 0};
@@ -133,11 +195,7 @@ const height = 500 - margin.top - margin.bottom;
 
 let firstBarChartDrawn = false;
 
-var color = d3.scaleLinear()
-    .interpolate(d3.interpolateHcl)
-    .range([d3.rgb("#FDD49E"), d3.rgb('#D7301F')]);
-
-const svg = d3.select('body')
+const svg = d3.select("#worldmap")
     .append('svg')
     .attr('width', width)
     .attr('height', height)
@@ -160,6 +218,16 @@ queue()
 
 
 function ready(error, geography, data) {
+
+    let m = d3.max(data, function(d) {return Math.max(d.pess_percent, d.inc_percent, d.friend_percent);});
+
+    const color = d3.scaleLinear()
+        .domain([0, m/2, m])
+        .range([d3.rgb("#fff25f"),
+            d3.rgb("#fd7d1c"),
+            d3.rgb('#b30000')]);
+
+
     data.forEach(d => {
         d[colorVariable] = Number(d[colorVariable].replace(',', ''));
     })
@@ -227,20 +295,22 @@ function ready(error, geography, data) {
                 }
 
 		}
-		  	
-            
+
+
         })})
         .on('mouseover', function (d) {
             tip.show(d);
             d3.select(this)
+		.transition().duration(400)
                 .style('fill-opacity', 1)
                 .style('stroke-opacity', 1)
                 .style('stroke-width', 2)
-                .style('fill', "orange")
+                .style('fill', "#191970")
         })
         .on('mouseout', function (d) {
             tip.hide(d);
             d3.select(this)
+		.transition().duration(1000)
                 .style('fill-opacity', 0.8)
                 .style('stroke-opacity', 0.5)
                 .style('stroke-width', 1)
@@ -302,9 +372,10 @@ function updateMap(evt, scenario) {
 
 function updateBarChart(div, dataset, pess_min, pess_max, pessimistic) {
     let bar = [pess_min, pess_max, pessimistic];
+
     var margin = {top: 20, right: 30, bottom: 30, left: 40}
-    var widthSVG = 200 - margin.left - margin.right;
-    var heightSVG = 200 - margin.top - margin.bottom;
+    var widthSVG = 300 - margin.left - margin.right;
+    var heightSVG = 300 - margin.top - margin.bottom;
     var widthAxeX = widthSVG;
     var heightAxeX = 20;
     var widthAxeY = 30;
@@ -313,39 +384,55 @@ function updateBarChart(div, dataset, pess_min, pess_max, pessimistic) {
     var widthBar = widthSVG - barPadding;
     var heightBar = heightSVG;
 
-    var svg = d3.select(div);
+
+
+    let svg = d3.select(div);
+
+    yScale = d3.scaleLinear()
+        .domain([0, d3.max(bar, function(d) {return parseFloat(d); }) * 1.1])
+        .range([ heightSVG-5,0]);
+
+    yAxis = d3.axisRight()
+        .scale(yScale)
+        .ticks(5);
+
+    yAxisGroup = svgAxeY.transition()
+        .attr("class", "axis")
+        .attr("transform", "translate(" +  barPadding + ")",0)
+        .call(yAxis);
+
 
     svg.selectAll("rect").data(bar).transition()
-        .attr("y", function(d){return heightBar - d*3;});
+        .attr("y", function(d) { return yScale(d); })
+        .attr("height", function(d) { return height - yScale(d); });
 
-    svg.selectAll("text").data(bar).transition()
+    barChartLabel.data(bar)
+        .transition()
         .text(function(d){return d;})
-        .attr("x",function(d, i){return i*(widthSVG/bar.length);})
-        .attr("y", function(d){return heightBar - d*3;})
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "11px")
-        .attr("fill", "black")
-        .attr("text-anchor", "middle");
+        .attr("x",function(d, i){return i*(widthSVG/bar.length)+10;})
+        .attr("y", function(d){return yScale(d) - 3;});
+
+
 }
 //
 function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
-	
+
     let bar = [pess_min, pess_max, pessimistic];
 	var margin = {top: 20, right: 30, bottom: 30, left: 40}
-	var widthSVG = 200 - margin.left - margin.right;
-	var heightSVG = 200 - margin.top - margin.bottom; 
+	var widthSVG = 300 - margin.left - margin.right;
+	var heightSVG = 300 - margin.top - margin.bottom+40;
 	var widthAxeX = widthSVG;
 	var heightAxeX = 20;  
 	var widthAxeY = 30;
-	var heightAxeY = heightSVG; 
-	var barPadding = 2;	 
+	var heightAxeY = heightSVG/2; 
+	var barPadding = 1;	 
 	var widthBar = widthSVG - barPadding;
-	var heightBar = heightSVG;
+	var heightBar = heightSVG/2;
 
 
 //AXIS
 
-    var svgAxeY = d3.select(div)
+    svgAxeY = d3.select("#chart")
     .append("svg")
     .attr("width", widthAxeY)
     .attr("height", heightAxeY);
@@ -353,15 +440,15 @@ function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
 
 
 
-    var yScale = d3.scaleLinear()
-                 .domain([0, d3.max(bar, function(d) { return d; })])
-                 .range([ heightSVG,0]);
+    yScale = d3.scaleLinear()
+                 .domain([0, d3.max(bar, function(d) { return parseFloat(d); }) * 1.1])
+                 .range([ heightSVG-5,0]);
 
-    var yAxis = d3.axisRight()
+    yAxis = d3.axisRight()
               .scale(yScale)
               .ticks(5);
 
-    var yAxisGroup = svgAxeY.append("g")
+    yAxisGroup = svgAxeY.append("g")
                 .attr("class", "axis")
                 .attr("transform", "translate(" +  barPadding + ")",0)
                 .call(yAxis);
@@ -369,7 +456,7 @@ function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
 
 // CHART
 
-    var svg = d3.select(div)
+    var svg = d3.select("#chart")
         .append("svg")
         .attr("width", widthSVG)
         .attr("height", heightSVG);
@@ -388,12 +475,12 @@ function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
             .attr("width", 20)
         .attr("height", heightBar - margin.top + margin.bottom)
             .attr("x",function(d, i){return i*(widthSVG/bar.length);})
-        .attr("y", function(d){return heightBar - d*3;})
-        //.attr("y", function(d){return heightBar - heightScale(d);})
+        .attr("y", function(d) { return yScale(d); })
+        .attr("height", function(d) { return height - yScale(d); })
         .attr('fill', function(d) {
-                return 'red';})
+                return '#191970';})
         .on("mouseover", function(d, i) {
-                    d3.select(this).style("fill", "yellow");
+                    d3.select(this).style("fill", "orange");
 
                 // Using Ids instead of values
                     d3.selectAll("text").filter(function(e, j) {
@@ -403,13 +490,13 @@ function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
 
                     })
                     .on("mouseout", function(d, i) {
-                    d3.select(this).transition().duration(500).style("fill", 'red');
+                    d3.select(this).transition().duration(500).style("fill", '#191970');
 
                 // Should be using Ids instead of values
                     d3.selectAll("text").filter(function(e, j) {
                   return i === j;
                 })
-                .transition().duration(500)
+                .transition().duration(1000)
                 .style("font-size", 12);
 
                     });
@@ -419,17 +506,32 @@ function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
 // for `exit` selection, they shouldn't be on the svg canvas since there is no corresponding data, you can then remove them
 
 //append text
-    svg.selectAll("text")
+    barChartLabel = svg.selectAll("text")
             .data(bar)
             .enter()
             .append("text")
             .text(function(d){return d;})
-            .attr("x",function(d, i){return i*(widthSVG/bar.length);})
-            .attr("y", function(d){return heightBar - d*3;})
+            .attr("x",function(d, i){return i*(widthSVG/bar.length)+10;})
+            .attr("y", function(d){return yScale(d) - 3;})
             .attr("font-family", "sans-serif")
             .attr("font-size", "11px")
             .attr("fill", "black")
             .attr("text-anchor", "middle");
+
+
+var xScale = d3.scaleLinear()
+	.domain([0, bar.length])
+	.range([0, widthSVG-1]);
+
+var xAxis = d3.axisBottom()
+		.scale(xScale);
+
+svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+
 
 }
 

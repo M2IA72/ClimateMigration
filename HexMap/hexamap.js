@@ -12,17 +12,6 @@ var margin = {top: 20, right: 20, bottom: 30, left: 40},
     height = eleWidth/2 - margin.top - margin.bottom;
 
 
-
-console.log(eleStyle.width);
-console.log(eleStyle.height);
-console.log(margin);
-console.log(margin.left);
-console.log(margin.top);
-console.log(width);
-console.log(height);
-console.log(eleLeft);
-console.log(eleTop);
-
 var svg = d3.select("div.hexamap").append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
@@ -49,7 +38,7 @@ var svg = d3.select("div.hexamap").append("svg")
   var tooltip = d3.select('body').append('div')
           .attr('class', 'hidden tooltip');
 
-  function render (geometry, data, hexcountries) {
+  function render (geometry, data) {
 
     var color = d3.scaleLinear().domain([0,666666666])
                     .range([d3.rgb("#80d491"), d3.rgb('#00b730')]);;
@@ -139,6 +128,7 @@ var svg = d3.select("div.hexamap").append("svg")
 
         var migrValue = 0
 
+	var scenario = "pessimistic" //inclusive friendly pessimistic
 
       d3.selectAll(".hexagons")
         .selectAll("path").each(function(d, i) {
@@ -146,7 +136,7 @@ var svg = d3.select("div.hexamap").append("svg")
           data.forEach(function(e){
             if(e.name==nom)
             {
-              migrValue=e.pessimistic;
+              migrValue=e[scenario];
             }
           });
           this.setAttribute("fill",color2(migrValue))
@@ -219,8 +209,8 @@ var svg = d3.select("div.hexamap").append("svg")
 			  var nbHex = hexagon.selectAll(cName).size();
 				hexagon.selectAll(cName)
 				  .each(function(d,i){
-				  if(e.pessimistic>0){
-					if(i<Math.max(1,nbHex*e.pessimistic/100)){
+				  if(e[scenario]>0){
+					if(i<Math.max(1,nbHex*e[scenario]/100)){
 					  d3.select(this).transition()
 						.attr('transform', d => { return 'translate(' + migCoords[migId][0] + ',' + migCoords[migId][1] + ')'; })
 						.delay(2000)
@@ -241,10 +231,9 @@ var svg = d3.select("div.hexamap").append("svg")
   d3.queue()
     .defer(d3.json, 'world.geojson')
   	.defer(d3.tsv, 'world_population.tsv')
-  	.defer(d3.tsv, 'hexcountries.tsv')
     .awaitAll((err, results) => {
       if (err) { return console.error(err); }
-      render(results[0], results[1], results[2]);
+      render(results[0], results[1]);
     });
 
     /*

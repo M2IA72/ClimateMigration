@@ -28,3 +28,4 @@ var element = document.getElementById(clicked_id);
 		break;
   }
 }
+changeClass("menu2")

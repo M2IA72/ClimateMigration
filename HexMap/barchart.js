@@ -7,15 +7,7 @@ function MakeBarChart(){
       width = eleWidth - margin.left - margin.right,
       height = 500 - margin.top - margin.bottom;
 
-      console.log(eleStyle.width);
-      console.log(eleStyle.height);
-      console.log(margin);
-      console.log(margin.left);
-      console.log(margin.top);
-      console.log(width);
-      console.log(height);
-      console.log(eleLeft);
-      console.log(eleTop);
+
 
   var svg2 = d3.select("div.barchart").append("svg")
     .attr("width", width + margin.left + margin.right)

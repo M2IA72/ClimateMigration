@@ -24,6 +24,7 @@
     <![endif]-->
 
 	<link rel="stylesheet" href="hexamap.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="worldmap.css" type="text/css" media="screen" />
 
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://d3js.org/d3-queue.v3.min.js"></script>
@@ -62,7 +63,7 @@
 		</ul>
 
     <!-- Block HexaMap -->
-    <div id="hm" class="hexamap chart row" >
+    <div id="hm" class="hexamap chart row"  >
 
     </div>
     <div id="hmc" class="row">
@@ -92,13 +93,64 @@
         </div>
     </div>
     <!-- Block BarChart -->
-    <div id="bc" class="barchart chart row" >
+    <div id="bc" class="barchart chart row">
 
     </div>
 
        <!-- Block WorldMap -->
-	   <div id="wm" class="chart worldmap row" style="display:none">
-       </div>
+<div id="wm" class="chart worldmap row" w3-include-html="visu_worldmap.html">
+  <div id="all" class="row">
+		<h2 class="col-lg-12">Prédiction du nombre de migrant en 2050 (en Millions)</h2>
+		<div id="worldmap" class="col-lg-10"> </div>
+		<div id="chart" class="col-lg-1" >
+	</div>
+			<h4 class="col-lg-12"  style="text-align:right;">Min.&nbsp;&nbsp; Max.&nbsp;&nbsp; Moy.</h4>
+
+</div>
+
+        <!-- Tab links -->
+    <div class="tab">
+        <button class="tablinks" onclick="updateMap(event, 'Pessimiste')" id="default">Pessimiste</button>
+        <button class="tablinks" onclick="updateMap(event, 'Inclusif')">Inclusif</button>
+        <button class="tablinks" onclick="updateMap(event, 'Ecologique')">Ecologique</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="Pessimiste" class="tabcontent">
+        <p>Dans ce scénario, les émissions polluantes de méthane et dioxyde de carbone continuent leur tendance actuelle.
+            De plus, les régions observées continuent de présenter: </p>
+        <ul>
+            <li>Une haute croissance démographique</li>
+            <li>Un grand taux d'urbanisation</li>
+            <li>Une augmentation minime du PIB</li>
+            <li>Un bas niveau d'éducation</li>
+        </ul>
+
+    </div>
+
+    <div id="Inclusif" class="tabcontent">
+        <p>Dans ce scénario, les émissions polluantes de méthane et dioxyde de carbone continuent leur tendance actuelle.
+            Cependant les régions observées présentent: </p>
+        <ul>
+            <li>Des inégalités réduites entre les différentes régions du monde</li>
+            <li>Un taux d'urbanisation plus modéré</li>
+            <li>Une meilleure éducation</li>
+            <li>Des revenus plus élevés</li>
+            <li>Croissance démographique à la baisse dans les pays les plus pauvres</li>
+        </ul>
+    </div>
+
+    <div id="Ecologique" class="tabcontent">
+        <p>Dans ce scénario, les émissions polluantes de méthane et dioxyde de carbone ont été considérablement réduites.
+            Cependant, les régions observées continuent de présenter : </p>
+        <ul>
+            <li>Une haute croissance démographique</li>
+            <li>Un grand taux d'urbanisation</li>
+            <li>Une augmentation minime du PIB</li>
+            <li>Un bas niveau d'éducation</li>
+        </ul>
+    </div>
+</div>
 
 		<div class="row">
 			<section class="col-lg-12">
@@ -144,7 +196,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/queue.v1.min.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v1.min.js"></script>
+    <script src="d3-tip.js"></script>
+    <script src='https://unpkg.com/simple-statistics@2.0.0/dist/simple-statistics.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js'></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="hexamap.js" ></script>
     <script type="text/javascript" src="worldmap.js" ></script>
     <script type="text/javascript" src="barchart.js" ></script>

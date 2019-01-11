@@ -21,3 +21,4 @@ Nous partons notamment de cet article : [143 millions de "migrants climatiques" 
 
 ## Visualisation
 - [V1.0.0](https://m2ia72.github.io/Visu1/visu)
+- [V2.0.0](https://m2ia72.github.io/Visu2_worldmap/visu_worldmap)
