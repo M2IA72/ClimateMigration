@@ -40,17 +40,10 @@ var svg = d3.select("div.hexamap").append("svg")
 
   function render (geometry, data) {
 
-    var color = d3.scaleLinear().domain([0,666666666])
-                    .range([d3.rgb("#80d491"), d3.rgb('#00b730')]);;
+    var color = d3.scaleLinear().domain([0,3,4,8,9,12,13,17,18,20])
+                    .range([d3.rgb("#a93226"),d3.rgb(" #cd6155 "),d3.rgb(" #76448a "),d3.rgb(" #af7ac5 "),d3.rgb(" #1f618d "),d3.rgb(" #5dade2 "),d3.rgb(" #1e8449 "),d3.rgb("#58d68d"), d3.rgb(' #d68910 '), d3.rgb('#f1c40f')]);;
 
-    var color2 = d3.scaleLinear().domain([0,1,15,50])
-                    .range([
-                      d3.rgb("#ffffff"),
-                      d3.rgb("#169900"),
-                      d3.rgb("#e2ae12"),
-                      d3.rgb('#b70021')
-                    ])
-    								.interpolate(d3.interpolateHcl);
+    var regions = ["Caribbean","Central America","Northern America","South America","Southern Asia","Western Asia","Eastern Asia","South-Eastern Asia","Central Asia","Western Europe","Southern Europe","Eastern Europe","Northern Europe","Middle Africa","Eastern Africa","Western Africa","Southern Africa","Northern Africa","Australia and New Zealand","Melanesia"]
 
     states.selectAll('path')
     .data(geometry.features)
@@ -61,8 +54,13 @@ var svg = d3.select("div.hexamap").append("svg")
     .attr('id',function(d) {
       return d.properties.name;
     })
+    .attr('class',function(d) {
+      return d.properties.subregion;
+    })
     .style("fill", function(d) {
-      var value = d.properties.pop_est;
+      var value = regions.indexOf(d.properties.subregion);
+      /*if(!region.includes(d.properties.subregion))
+        region.push(d.properties.subregion);*/
       if (value) {
         return color(value);
       } else {
@@ -100,7 +98,7 @@ var svg = d3.select("div.hexamap").append("svg")
       for(y=DepartY+1;y<eleHeight+DepartY;y+=hexRadius){
         var element = document.elementFromPoint(x, y);
 				if(element != null && element['id']!=""){
-        	coord=coord.concat([[x-DepartX,y-DepartY,element['id']]])
+        	coord=coord.concat([[x-DepartX,y-DepartY,element['id'],element.classList.value]])
         }
       }
     }
@@ -120,14 +118,16 @@ var svg = d3.select("div.hexamap").append("svg")
         .attr('id',function(d) {
           return d[0][2];
         })
+        .attr('class',function(d) {
+          return d[0][3];
+        })
         .attr('fill-opacity', 0)
         .attr('stroke-opacity', 0)
         .attr('d', hexbin.hexagon())
         .transition()
           .attr('d', hexbin.hexagon(hexbin.radius()))
 
-        var migrValue = 0
-
+  var migrValue = 0
 	var scenario = "pessimistic" //inclusive friendly pessimistic
 
       d3.selectAll(".hexagons")
@@ -139,7 +139,8 @@ var svg = d3.select("div.hexamap").append("svg")
               migrValue=e[scenario];
             }
           });
-          this.setAttribute("fill",color2(migrValue))
+          //console.log(this.class)
+          this.setAttribute("fill",color(regions.indexOf(this.classList.value)))
           migrValue=0
         })
       ;
