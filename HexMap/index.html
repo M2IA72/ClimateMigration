@@ -63,11 +63,9 @@
 		</ul>
 
     <!-- Block HexaMap -->
-    <div id="hm" class="hexamap chart row"  >
 
-    </div>
     <div id="hmc" class="row">
-        <div class="controller col-lg-4">
+      <div class="controller col-lg-6" style="text-align:center;">
             <h4>
             WorldMap
             <label class="switch">
@@ -76,14 +74,8 @@
             </label>
             HexaMap</h4>
         </div>
-        <div class="controller col-lg-4">
-            <h4>
-            <label class="radio-inline"><input type="radio" name="optradio" checked>Pessim.</label>
-            <label class="radio-inline"><input type="radio" name="optradio">Amel.Soc.</label>
-            <label class="radio-inline"><input type="radio" name="optradio">Amél.Eco.</label>
-            </h4>
-        </div>
-        <div class="controller col-lg-4">
+
+        <div class="controller col-lg-6" style="text-align:center;">
             <h4> Reset
             <label class="switch">
             <input class="switchAnim" type="checkbox" name="mode">
@@ -92,27 +84,33 @@
             Play</h4>
         </div>
     </div>
+    <div id="hm" class="hexamap chart row"  >
+
+    </div>
     <!-- Block BarChart -->
     <div id="bc" class="barchart chart row">
 
     </div>
 
-       <!-- Block WorldMap -->
-<div id="wm" class="chart worldmap row" w3-include-html="visu_worldmap.html">
-  <div id="all" class="row">
-		<h2 class="col-lg-12">Prédiction du nombre de migrant en 2050 (en Millions)</h2>
-		<div id="worldmap" class="col-lg-10"> </div>
-		<div id="chart" class="col-lg-1" >
-	</div>
-			<h4 class="col-lg-12"  style="text-align:right;">Min.&nbsp;&nbsp; Max.&nbsp;&nbsp; Moy.</h4>
-
-</div>
+    <!-- Block WorldMap -->
+    <div id="wm" class="chart worldmap row" w3-include-html="visu_worldmap.html">
+      <div id="all" class="row">
+        <h2 class="col-lg-12">Prédiction du nombre de migrant en 2050 (en Millions)</h2>
+        <div id="chart" class="col-lg-2">
+        </div>
+        <div id="worldmap" class="col-lg-10">
+        </div>
+      </div>
+    </div>
 
         <!-- Tab links -->
-    <div class="tab">
-        <button class="tablinks" onclick="updateMap(event, 'Pessimiste')" id="default">Pessimiste</button>
-        <button class="tablinks" onclick="updateMap(event, 'Inclusif')">Inclusif</button>
-        <button class="tablinks" onclick="updateMap(event, 'Ecologique')">Ecologique</button>
+    <section class="col-lg-12">
+			<h1>Scénarios</h1>
+		</section>
+    <div class="tab row">
+        <button class="tablinks col-lg-4" onclick="updateMap(event, 'Pessimiste')" id="default"><h4>Pessimiste</h4></button>
+        <button class="tablinks col-lg-4" onclick="updateMap(event, 'Inclusif')"><h4>Inclusif</h4></button>
+        <button class="tablinks col-lg-4" onclick="updateMap(event, 'Ecologique')"><h4>Ecologique</h4></button>
     </div>
 
     <!-- Tab content -->
@@ -150,45 +148,23 @@
             <li>Un bas niveau d'éducation</li>
         </ul>
     </div>
-</div>
 
-		<div class="row">
-			<section class="col-lg-12">
-				<h1>Présentation des Scénarios</h1>
-			</section>
-		</div>
-      <div class="row">
+    <!-- Footer -->
+    <footer class="page-footer font-small blue">
 
-        <section class="col-lg-4">
-          <h2> Pessimiste </h2>
-          <p>
-            Dans ce scénario, les émissions polluantes de méthane et dioxyde de carbone continuent leur tendance actuelle à la hausse.
-			De plus, les régions observées continuent de présenter:
-			-Une haute croissance démographique
-			-Un grand taux d'urbanisation
-			-Une augmentation minime du PIB
-			-Un bas niveau d'éducation.
-			</p>
-
-        </section>
-		<section class="col-lg-4">
-          <h2> Amélioration Sociétale </h2>
-          <p>
-          Dans ce scénario, les émissions restent égales au scénario pessimiste, mais des améliorations ont eu lieu dans ces pays pauvres concernant l'urbanisation, l'éducation et les revenus.
-			La croissance démographique a diminué dans les pays pauvres et augmenté dans les pays à PIB moyen.
-			</p>
-
-        </section>
-		<section class="col-lg-4">
-          <h2> Amélioration Ecologique </h2>
-          <p>
-          Dans ce scénario, le développement des régions pauvres étudiées reste le même que pour le scénario pessimiste, mais les émissions néfastes à l'environnement ont été considérablement réduites.
-		  </p>
-
-        </section>
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">© 2019 Copyright:
+        <p>M2IA72 : G.Ambrosino, T.Fort, G.Gaugy & S.Vallet </p>
       </div>
+      <!-- Copyright -->
 
-    </div>
+    </footer>
+    <!-- Footer -->
+
+    <footer class="page-footer font-small blue pt-4">
+    </footer>
+  </div>
+</div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -204,6 +180,7 @@
     <script src='https://unpkg.com/simple-statistics@2.0.0/dist/simple-statistics.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js'></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+
     <script type="text/javascript" src="hexamap.js" ></script>
     <script type="text/javascript" src="worldmap.js" ></script>
     <script type="text/javascript" src="barchart.js" ></script>

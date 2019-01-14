@@ -9,7 +9,7 @@ var ele = document.getElementById("hm"),
 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = eleWidth - margin.left - margin.right,
-    height = eleWidth/2 - margin.top - margin.bottom;
+    height = eleWidth/2.5 - margin.top - margin.bottom;
 
 
 var svg = d3.select("div.hexamap").append("svg")
@@ -156,7 +156,6 @@ var svg = d3.select("div.hexamap").append("svg")
           check = false;
           displayMap(states,1)
           displayMap(hexagon,0)
-          moveHexa()
         }
     });
 
@@ -222,9 +221,10 @@ var svg = d3.select("div.hexamap").append("svg")
 			  }
 		  });
 		} else {
-
+      displayMap(states,1)
+      displayMap(hexagon,0)
 		}
-    }
+  }
 }
 
 

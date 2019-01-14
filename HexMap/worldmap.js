@@ -7,14 +7,8 @@ var yAxis = null;
 var yScale = null;
 var yAxis = null;
 var yAxisGroup = null;
-d3.selectAll("label")
-    .data(chart)
-    .append("text")
-    .text(function (d) {
-        return d;
-    })
-    .style("font-family", "Calibri")
-    .style("font-size", 18);
+
+
 // configuration
 var colorVariable = 'pess_percent';
 const geoIDVariable = 'id';
@@ -322,7 +316,7 @@ function updateBarChart(div, dataset, pess_min, pess_max, pessimistic) {
 //
 function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
 
-    let bar = [pess_min, pess_max, pessimistic];
+  let bar = [pess_min, pess_max, pessimistic];
 	var marginWm = {top: 20, right: 30, bottom: 30, left: 40}
 	var widthSVG = 300 - marginWm.left - marginWm.right;
 	var heightSVG = 300 - marginWm.top - marginWm.bottom+40;
@@ -337,26 +331,24 @@ function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
 
 //AXIS
 
-    svgAxeY = d3.select("#chart")
-    .append("svg")
-    .attr("width", widthAxeY)
-    .attr("height", heightAxeY);
-    //.attr("transform", "translate(" + marginWm.left + "," + marginWm.top + ")");
+svgAxeY = d3.select("#chart")
+.append("svg")
+.attr("width", widthAxeY)
+.attr("height", heightAxeY);
 
 
+yScale = d3.scaleLinear()
+             .domain([0, d3.max(bar, function(d) { return parseFloat(d); }) * 1.1])
+             .range([ heightSVG-5,0]);
 
-    yScale = d3.scaleLinear()
-                 .domain([0, d3.max(bar, function(d) { return parseFloat(d); }) * 1.1])
-                 .range([ heightSVG-5,0]);
+yAxis = d3.axisRight()
+          .scale(yScale)
+          .ticks(5);
 
-    yAxis = d3.axisRight()
-              .scale(yScale)
-              .ticks(5);
-
-    yAxisGroup = svgAxeY.append("g")
-                .attr("class", "axis")
-                .attr("transform", "translate(" +  barPadding + ")",0)
-                .call(yAxis);
+yAxisGroup = svgAxeY.append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(" +  barPadding + ")",0)
+            .call(yAxis);
 
 
 // CHART
@@ -439,5 +431,3 @@ svgWm.append("g")
 
 
 }
-
-console.log("Chargement ok ! ")
