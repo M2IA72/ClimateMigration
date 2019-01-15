@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="src/favicon.png">
+
+    <title>Climate Migration - HexaMap</title>
+
+    <!-- Custom styles for this template -->
+    
+    <link rel="stylesheet" href="hexamap.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="worldmap.css" type="text/css" media="screen" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+  </head>
+
+  <body>
+
+    <header class="header">
+
+      <nav class="header-nav">
+        <a class="nav-link" onclick="changeClass(this.id)" id="menu1" href="#">Home</a>
+        <a class="nav-link active" onclick="changeClass(this.id)" id="menu2" href="#">A propos</a>
+        <a class="nav-link" onclick="changeClass(this.id)" id="menu3" href="#">Contact</a>
+      </nav>
+
+      <div class="col-lg-12">
+          <h1 class="header-title"> M2IA72 </h1>
+        </div>
+
+    </header>
+
+  <div class="main">
+    <p>
+    Le réchauffement climatique aura de lourdes conséquences sur les flux migratoires internationaux, de par son impact géographique (montée des eaux, catastrophes), et celui
+    sur des secteurs comme l'agriculture et l'accès à l'eau.
+    Cette visualisation nous informe sur la provenance, le nombre et la destination de ces futurs migrants suivant 3 scénarios prévisionnels :
+    un scénario pessimiste de référence, un scénario écologiquement optimiste, ainsi qu'un scénario sociétalement optimiste. Sont scrutées les 3 régions principalement concernées : L'amérique latine, l'asie du sud-est
+    et l'Afrique.
+    </p>
+
+    <hr>
+
+    <!-- Block HexaMap -->
+    <div id="hmc" class="row">
+      <div class="controller col-lg-6" style="text-align:center;">
+        <h4>
+          WorldMap
+          <label class="switch">
+            <input class="switch" type="checkbox" name="map">
+            <span class="slider2 round"></span>
+          </label>
+          HexaMap
+        </h4>
+      </div>
+
+      <div class="controller col-lg-6" style="text-align:center;">
+        <h4>
+          Reset
+          <label class="switch">
+            <input class="switchAnim" type="checkbox" name="mode">
+            <span class="slider2 round"></span>
+          </label>
+          Play
+        </h4>
+      </div>
+    </div>
+
+    <div id="hm" class="hexamap chart row"  >
+
+    </div>
+
+
+    <!-- Block BarChart -->
+    <div id="bc" class="barchart chart row">
+
+    </div>
+
+    <!-- Block WorldMap -->
+    <div id="wm" class="chart worldmap row" w3-include-html="visu_worldmap.html">
+      <div id="all" class="row">
+        <h2 class="col-lg-12">Prédiction du nombre de migrant en 2050 (en Millions)</h2>
+        <div id="chart" class="col-lg-2">
+        </div>
+        <div id="worldmap" class="col-lg-10">
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab links -->
+    <section class="col-lg-12">
+      <h1>Scénarios</h1>
+    </section>
+    <div class="tab row">
+      <button class="tablinks col-lg-4" onclick="updateMap(event, 'Pessimiste')" id="default"><h4>Pessimiste</h4></button>
+      <button class="tablinks col-lg-4" onclick="updateMap(event, 'Inclusif')"><h4>Inclusif</h4></button>
+      <button class="tablinks col-lg-4" onclick="updateMap(event, 'Ecologique')"><h4>Ecologique</h4></button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="Pessimiste" class="tabcontent">
+      <p>Dans ce scénario, les émissions polluantes de méthane et dioxyde de carbone continuent leur tendance actuelle.
+      De plus, les régions observées continuent de présenter: </p>
+      <ul>
+        <li>Une haute croissance démographique</li>
+        <li>Un grand taux d'urbanisation</li>
+        <li>Une augmentation minime du PIB</li>
+        <li>Un bas niveau d'éducation</li>
+      </ul>
+    </div>
+
+    <div id="Inclusif" class="tabcontent">
+      <p>Dans ce scénario, les émissions polluantes de méthane et dioxyde de carbone continuent leur tendance actuelle.
+      Cependant les régions observées présentent: </p>
+      <ul>
+        <li>Des inégalités réduites entre les différentes régions du monde</li>
+        <li>Un taux d'urbanisation plus modéré</li>
+        <li>Une meilleure éducation</li>
+        <li>Des revenus plus élevés</li>
+        <li>Croissance démographique à la baisse dans les pays les plus pauvres</li>
+      </ul>
+    </div>
+
+    <div id="Ecologique" class="tabcontent">
+      <p>Dans ce scénario, les émissions polluantes de méthane et dioxyde de carbone ont été considérablement réduites.
+      Cependant, les régions observées continuent de présenter : </p>
+      <ul>
+        <li>Une haute croissance démographique</li>
+        <li>Un grand taux d'urbanisation</li>
+        <li>Une augmentation minime du PIB</li>
+        <li>Un bas niveau d'éducation</li>
+      </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer font-small blue">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+    <p>M2IA72 : G.Ambrosino, T.Fort, G.Gaugy & S.Vallet </p>
+    </div>
+    <!-- Copyright -->
+
+    </footer>
+    </div>
+  </div>
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://d3js.org/queue.v1.min.js"></script>
+  <script src="https://d3js.org/topojson.v1.min.js"></script>
+  <script src="https://d3js.org/d3-geo-projection.v1.min.js"></script>
+  <script src="d3-tip.js"></script>
+  <script src='https://unpkg.com/simple-statistics@2.0.0/dist/simple-statistics.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js'></script>
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://d3js.org/d3-queue.v3.min.js"></script>
+  <script src="https://d3js.org/d3.hexbin.v0.min.js"></script>
+  <script src="https://d3js.org/topojson.v2.min.js"></script>
+  <script type="text/javascript" src="hexamap.js" ></script>
+  <script type="text/javascript" src="worldmap.js" ></script>
+  <script type="text/javascript" src="barchart.js" ></script>
+
+  </body>
+</html>

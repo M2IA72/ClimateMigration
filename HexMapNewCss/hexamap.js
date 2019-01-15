@@ -9,7 +9,7 @@ var ele = document.getElementById("hm"),
 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = eleWidth - margin.left - margin.right,
-    height = eleWidth/2.5 - margin.top - margin.bottom;
+    height = eleWidth/2 - margin.top - margin.bottom;
 
 
 var svg = d3.select("div.hexamap").append("svg")
@@ -18,6 +18,7 @@ var svg = d3.select("div.hexamap").append("svg")
 
   var projection = d3.geoMercator().scale(width / 2 / Math.PI)
   .translate([width / 2, height / 2]);
+
   var path = d3.geoPath()
     .projection(projection);
 
@@ -94,10 +95,10 @@ var svg = d3.select("div.hexamap").append("svg")
   var coord = [[]]
 	var DepartX=eleLeft;
 	var DepartY=eleTop;
-    for(x=DepartX+1;x<eleWidth+DepartX;x+=hexRadius){
-      for(y=DepartY+1;y<eleHeight+DepartY;y+=hexRadius){
+    for(x=DepartX+1;x<eleWidth+DepartX-1;x+=hexRadius){
+      for(y=DepartY+1;y<eleHeight+DepartY-1;y+=hexRadius){
         var element = document.elementFromPoint(x, y);
-				if(element != null && element['id']!=""){
+				if(element != null && element['id']!="" && element['id']!="hm"){
         	coord=coord.concat([[x-DepartX,y-DepartY,element['id'],element.classList.value]])
         }
       }
@@ -184,8 +185,8 @@ var svg = d3.select("div.hexamap").append("svg")
 
     function moveHexa(check){
 		if(check){
-			xCenter = 150;
-			yCenter = 350;
+			xCenter = width/6;
+			yCenter = height*2/3;
 			var migCoords =[[xCenter,yCenter]];
 			for(k=1;k<40;k++){
 			  for(i=0;i<6;i++){
