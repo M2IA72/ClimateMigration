@@ -85,24 +85,28 @@ var svg = d3.select("div.hexamap").append("svg")
 
 
 
+    var eleIDHM = document.getElementById("slideTitleHM"),
+    eleStyleIDHM = window.getComputedStyle(eleIDHM),
+    eleHeightIDHM= parseInt(eleStyleIDHM.height);
 
-  var ele = document.getElementById("hm"),
+    var ele = document.getElementById("slides"),
     eleStyle = window.getComputedStyle(ele),
     eleWidth = parseInt(eleStyle.width),
     eleHeight= parseInt(eleStyle.height),
     eleLeft = ele.offsetLeft;
     eleTop = ele.offsetTop;
-  var coord = [[]]
-	var DepartX=eleLeft;
-	var DepartY=eleTop;
-    for(x=DepartX+1;x<eleWidth+DepartX-1;x+=hexRadius){
-      for(y=DepartY+1;y<eleHeight+DepartY-1;y+=hexRadius){
-        var element = document.elementFromPoint(x, y);
-				if(element != null && element['id']!="" && element['id']!="hm"){
-        	coord=coord.concat([[x-DepartX,y-DepartY,element['id'],element.classList.value]])
+    var coord = [[]]
+    var DepartX=eleLeft;
+    var DepartY=eleTop;
+    console.log(DepartX,DepartY,eleWidth,eleHeight)
+      for(x=DepartX+hexRadius;x<eleWidth+DepartX-1;x+=hexRadius){
+        for(y=DepartY+hexRadius;y<eleHeight+DepartY-1;y+=hexRadius){
+          var element = document.elementFromPoint(x, y);
+          if(element != null && element['id']!="" && element['id']!="hm" && element['id']!="slideTitleHM"){
+            coord=coord.concat([[x-DepartX,y-DepartY-eleHeightIDHM-2*hexRadius,element['id'],element.classList.value]])
+          }
         }
       }
-    }
 
     var hexagon = svg.append('g')
       .attr('class', 'hexagons');

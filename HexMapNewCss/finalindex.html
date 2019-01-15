@@ -84,12 +84,15 @@
                 </button>
             </div>
 
-            <div class="w3-display-container content">
-                <div class="mySlides">
+            <div id="slides" class="w3-display-container content">
+                <div class="mySlides" style="display: flex;">
+                    <div id="slideTitleHM" class="slideTitle">
+                        Carte du monde si les Migrants formaient un nouveau pays 
+                    </div>
                     <div id="hm" class="hexamap chart"  >
 
                     </div>
-                    <div id="hmc" class="">
+                    <div class="slideFooter">
                         <div class="controller">
                             <h4>
                             WorldMap
@@ -113,19 +116,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="mySlides">
-                    <div id="bc" class="barchart chart row">
-
+                <div class="mySlides" style="display: flex;">
+                    <div class="slideTitle">
+                            Prédiction du pourcentage de migrants en 2050 (en Millions)
                     </div>
-                </div>
-                <div class="mySlides">
-                    <div id="wm" class="chart worldmap row" w3-include-html="visu_worldmap.html">
-                        <div id="worldmap" class="col-lg-10">
-                            </div>
-                        <h2 class="col-lg-12">Prédiction du nombre de migrant en 2050 (en Millions)</h2>
-                        <div id="chart" class="col-lg-2">
-                        </div>
-                    </div>                          
+                    <div class="slideContent">
+                        <div id="wm" class="chart worldmap " w3-include-html="visu_worldmap.html">
+                            <div id="worldmap"></div>
+                        </div>   
+                    </div>
+                    <div class="slideFooter">
+                        <div id="chart" ></div> 
+                    </div>
                 </div>
                 <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
                 <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
@@ -155,7 +157,6 @@
         <script src="https://d3js.org/topojson.v2.min.js"></script>
         <script type="text/javascript" src="hexamap.js" ></script>
         <script type="text/javascript" src="worldmap.js" ></script>
-        <script type="text/javascript" src="barchart.js" ></script>
 
         <script>
             var slideIndex = 1;
