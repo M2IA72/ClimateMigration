@@ -100,21 +100,25 @@ body{
 .panel {
   padding: 0;
   background-color:lightsteelblue;
-  max-height: 0;
+  display:none;
   overflow: hidden;
-  transition: max-height 0.2s ease-out;
+  transition: display 5s ease-out;
   border-radius: 0 0 20px 20px;
   margin-bottom: 0;
+  font-size: 1em;
+  text-align: justify;
 } 
 
 .intro{
   text-align: center;
   height: 25%;
+  overflow: hidden;
 }
 
 .boutons{
   text-align: center;
   height: 75%;
+  overflow: hidden;
 }
 
 .content{

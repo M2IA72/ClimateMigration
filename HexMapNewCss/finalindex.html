@@ -40,55 +40,64 @@
 
             <div class="sidebar">
                 <div class="side-item intro">
-                    Le réchauffement climatique aura de lourdes conséquences sur les flux migratoires internationaux, de par son impact géographique (montée des eaux, catastrophes), et celui
-                    sur des secteurs comme l'agriculture et l'accès à l'eau.
-                    Cette visualisation nous informe sur la provenance, le nombre et la destination de ces futurs migrants suivant 3 scénarios prévisionnels :
-                    un scénario pessimiste de référence, un scénario écologiquement optimiste, ainsi qu'un scénario sociétalement optimiste. Sont scrutées les 3 régions principalement concernées : L'amérique latine, l'asie du sud-est
-                    et l'Afrique.
+                    Ces dernières années ont vu beaucoup d'attention se porter sur les migrants internationaux, et l'impact
+                    futur du réchauffement climatique sur leur nombre, mais qu'en est-il des migrants internes?
+                    Catastrophes naturelles, agriculture moins rentable, manque d'accès à l'eau seront des obstacles majeurs
+                    pour les région les moins développées. Ces nouvelles difficultés forceront le déplacement de millions
+                    de gens à travers frontière,mais surtout au sein même de leur pays, qui ne présentent pas l'infrastructure
+                    nécessaire pour soulever ce défi.
+                    Les migrants internes sont déjà nombreux, estimés à 743 millions en 2016. C'est là que viendront
+                    ces nouveaux millions, victimes des changements climatiques à venir. 
+                    Les migrants climatiques internes, combien seront-ils? D'où viennent-ils ?
+                    Qu'en serait-il s'ils émigraient tous ensemble, dans leur propre pays ..
                 </div>
                 <div class="boutons">
                     <button class="accordion pessimiste" onclick="updateMap(event, 'Pessimiste')" id="default">
-                        Pessimiste
+                        Scénario - Status Quo
                     </button>
                     <div class="panel">
-                        <p>Dans ce scénario, les émissions polluantes de méthane et dioxyde de carbone continuent leur tendance actuelle.
-                            De plus, les régions observées continuent de présenter: </p>
-                        <ul>
-                            <li>Une haute croissance démographique</li>
-                            <li>Un grand taux d'urbanisation</li>
-                            <li>Une augmentation minime du PIB</li>
-                            <li>Un bas niveau d'éducation</li>
-                        </ul>
+                        Nous sommes en 2050. Dans notre histoire, l'humanité à continué sur sa tendance, de 2019 à nos jours.
+                        Les émissions de dioxyde de carbone et de méthane ont continué d'augmenter. Les régions les plus pauvres
+                        n'ont pas été en capacité de se préparer au défi : Les taux d'urbanisation ont accéléré, la croissance démographique
+                        a augmenté. L'autre croissance aussi, mais pas assez. Enfin, le taux d'éducation a stagné.
+                        Dans ce monde, notre nouveau pays héberge 117.5 millions d'habitants.  Presque 2 fois l'Italie,
+                        ou un nouveau Japon. Les habitants viennent de nombreux pays, mais très principalement de l'Amérique Latine,
+                        d'Afrique et d'Asie du sud.
+                        Ensemble, ces gens forment le 12ème pays le plus peuplé du monde ! Mais il est possible d'agir..
                     </div>
                     <button class="accordion inclusive" onclick="updateMap(event, 'Inclusif')">
-                        Inclusif
+                        Scénario -Développement Inclusif:
                     </button>
                             
                     <div class="panel">
-                        <p>Dans ce scénario, les émissions polluantes de méthane et dioxyde de carbone continuent leur tendance actuelle.
-                            Cependant les régions observées présentent: </p>
-                        <ul>
-                            <li>Des inégalités réduites entre les différentes régions du monde</li>
-                            <li>Un taux d'urbanisation plus modéré</li>
-                            <li>Une meilleure éducation</li>
-                            <li>Des revenus plus élevés</li>
-                            <li>Croissance démographique à la baisse dans les pays les plus pauvres</li>
-                        </ul>
+                        Toujours 2050, mais un monde différent. Ici, l'écologie n'a toujours pas eu sa place méritée,
+                        les émissions de gaz à effet de serre n'ont pas changé du monde d'avant.
+                            Des efforts importants ont cependant été fait dans les pays les plus touchés. Les inégalités économiques
+                        entre les régions (nationales et internationales) ont été réduites. L'urbanisation a continué, mais 
+                        de façon plus modérée. La croissance démographique a cette fois diminué, en bonne partie grâce à une meilleure
+                        éducation ainsi que des revenus plus élevés. Les pays principalement touchés par le réchauffement climatique ont
+                        été en mesure de se préparer aux changements du climat.
+                            Dans ce monde, notre nouveau pays habrite cette fois 85.1 millions d'habitants. L'équivalent de la République
+                        Démocratique du COngo, 20 millions de plus que la France. Les habitants n'ont pas beaucoup changé, les africains
+                        étant proportionnellement un peu plus important, mais rien de très significatif.
+                            Cette fois ci, ces gens forment le 17ème pays le plus peuplé du mondé, toujours plus peuplé que tout les
+                            pays européens. Mais il y a encore une autre possibilité à explorer..
                     </div>
                     
                 
                     <button class="accordion friendly" onclick="updateMap(event, 'Ecologique')">
-                        Ecologique             
+                        Scénario - Politique écologique             
                     </button>
                     <div class="panel">
-                        <p>Dans ce scénario, les émissions polluantes de méthane et dioxyde de carbone ont été considérablement réduites.
-                            Cependant, les régions observées continuent de présenter : </p>
-                        <ul>
-                            <li>Une haute croissance démographique</li>
-                            <li>Un grand taux d'urbanisation</li>
-                            <li>Une augmentation minime du PIB</li>
-                            <li>Un bas niveau d'éducation</li>
-                        </ul>
+                        2050, les régions les plus pauvres ont cette fois ci le meme développement que dans notre cas pessimiste:
+                        Grand croissance démographique, grand taux d'urbanisation, augmentaiton minime du PIB, et toujours un bas niveau
+                        d'éducation. Cependant, beaucoup a changé. En 2019, les différents pays se sont mis d'accord, et ont agi pour
+                        protéger l'environnnement, très rapidement. Principalement, les émissions de gaz à effet de serre ont été
+                        drastiquement diminuées.
+                            Dans ce monde, notre nouveau pays héberge encore 51.1 million d'habitants. L'équivalent de la Corée du Sud,
+                        moins que 3 pays européens.
+                            Ensemble, ils forment le 29ème pays le plus peuplé du monde, considérablement moins, et toujours 
+                        beaucoup.
                     </div>
                 </div>
             </div>
@@ -96,7 +105,7 @@
             <div id="slides" class="w3-display-container content">
                 <div class="mySlides">
                     <div id="slideTitleHM" class="slideTitle">
-                        Carte du monde si les Migrants formaient un nouveau pays 
+                        "A quoi ressemblerait un pays composé de tous les migrants du monde ?"
                     </div>
                     <div id="hm" class="slideContent hexamap chart"  >
 
