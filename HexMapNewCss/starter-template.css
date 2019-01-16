@@ -108,16 +108,19 @@ body{
   margin-bottom: 0;
   font-size: 1em;
   text-align: justify;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif
 } 
 
+.panel h5{
+  text-align: center;
+}
 .intro{
   text-align: justify;
   height: 30%;
   color: white;
   font-weight: 900;
   overflow: auto;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif
 }
 
 .boutons{
