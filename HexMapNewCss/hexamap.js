@@ -208,28 +208,40 @@ var svg = d3.select("div.hexamap").append("svg")
 			var migId=0
 
 			data.forEach(function(e){
-			  var cBug=["Cote d'Ivoire","Falkland Islands (Islas Malvinas)","Holy See (Vatican City)","Cocos (Keeling) Islands"]
-			  if(!cBug.includes(e.name)){
-			  var cName="#"+e.name
-			  var nbHex = hexagon.selectAll(cName).size();
-				hexagon.selectAll(cName)
-				  .each(function(d,i){
-				  if(e[scenario]>0){
-					if(i<Math.max(1,nbHex*e[scenario]/100)){ // TODO random
-					  d3.select(this).transition()
-						.attr('transform', d => { return 'translate(' + migCoords[migId][0] + ',' + migCoords[migId][1] + ')'; })
-						.delay(2000)
-						.duration(8000);
-					  migId++;
-					}
-				  }
-				})
-			  }
-		  });
-		} else {
-      displayMap(states,1)
-      displayMap(hexagon,0)
-		}
+                var cBug = ["Cote d'Ivoire", "Falkland Islands (Islas Malvinas)", "Holy See (Vatican City)", "Cocos (Keeling) Islands"]
+                if (!cBug.includes(e.name)) {
+                    var cName = "#" + e.name;
+                    var nbHex = hexagon.selectAll(cName).size();
+                    var nbRandom = Math.max(1, nbHex * e[scenario] / 100);
+                    var hexToMove = [];
+                    for (var i = 0; i < nbRandom; i++) {
+                        var r;
+                        do {
+                            r = Math.floor(Math.random() * nbHex);
+                        } while (hexToMove.includes(r));
+                        hexToMove.push(r);
+                    }
+
+                    hexagon.selectAll(cName)
+                        .each(function (d, i) {
+                            if (e[scenario] > 0) {
+                                if (hexToMove.includes(i)) {
+                                    d3.select(this).transition()
+                                        .attr('transform', d => {
+                                            return 'translate(' + migCoords[migId][0] + ',' + migCoords[migId][1] + ')';
+                                        })
+                                        .delay(2000)
+                                        .duration(8000);
+                                    migId++;
+                                }
+                            }
+                        })
+                }
+            });
+        } else {
+            displayMap(states, 1)
+            displayMap(hexagon, 0)
+        }
   }
 }
 
