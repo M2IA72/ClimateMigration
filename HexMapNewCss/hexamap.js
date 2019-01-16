@@ -16,28 +16,30 @@ var svg = d3.select("div.hexamap").append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
 
-  var projection = d3.geoMercator().scale(width / 2 / Math.PI)
-  .translate([width / 2, height / 2]);
+var projection = d3.geoMercator().scale(width / 2 / Math.PI)
+.translate([width / 2, height / 2]);
 
-  var path = d3.geoPath()
-    .projection(projection);
+var path = d3.geoPath()
+  .projection(projection);
 
 
-  var color = d3.scaleLinear()
-    .range(['#fff ', '#e31a1c'])
-    .domain([0, 20])
-    .interpolate(d3.interpolateLab);
+var color = d3.scaleLinear()
+  .range(['#fff ', '#e31a1c'])
+  .domain([0, 20])
+  .interpolate(d3.interpolateLab);
 
-  var hexRadius = 5;
-  var hexbin = d3.hexbin()
-      .size([width, height])
-      .radius(hexRadius);
+var hexRadius = 5;
+var hexbin = d3.hexbin()
+    .size([width, height])
+    .radius(hexRadius);
 
-  var states = svg.append('g')
-    .attr('class', 'states');
+var states = svg.append('g')
+  .attr('class', 'states');
 
-  var tooltip = d3.select('body').append('div')
-          .attr('class', 'hidden tooltip');
+var tooltip = d3.select('body').append('div')
+        .attr('class', 'hidden tooltip');
+
+var scenario = "pessimistic" //inclusive friendly pessimistic
 
   function render (geometry, data) {
 
@@ -108,32 +110,54 @@ var svg = d3.select("div.hexamap").append("svg")
         }
       }
 
+    var hexagonBack = svg.append('g')
+      .attr('class', 'hexagonBack');
+
     var hexagon = svg.append('g')
       .attr('class', 'hexagons');
+
+
 
     var mesh = svg.append('g')
       .attr('class', 'hex-mesh')
       .append('path')
         .attr('d', hexbin.mesh());
 
-        hexagon.selectAll('path')
-        .data(hexbin(coord))
-        .enter().append('path')
-        .attr('transform', d => { return 'translate(' + d.x + ',' + d.y + ')'; })
-        .attr('id',function(d) {
-          return d[0][2];
-        })
-        .attr('class',function(d) {
-          return d[0][3];
-        })
-        .attr('fill-opacity', 0)
-        .attr('stroke-opacity', 0)
-        .attr('d', hexbin.hexagon())
-        .transition()
-          .attr('d', hexbin.hexagon(hexbin.radius()))
+      hexagonBack.selectAll('path')
+      .data(hexbin(coord))
+      .enter().append('path')
+      .attr('transform', d => { return 'translate(' + d.x + ',' + d.y + ')'; })
+      .attr('id',function(d) {
+        return d[0][2];
+      })
+      .attr('class',function(d) {
+        return d[0][3];
+      })
+      .attr('fill-opacity', 0)
+      .attr('stroke-opacity', 0)
+      .attr('d', hexbin.hexagon())
+      .transition()
+        .attr('d', hexbin.hexagon(hexbin.radius()))
+
+      hexagon.selectAll('path')
+      .data(hexbin(coord))
+      .enter().append('path')
+      .attr('transform', d => { return 'translate(' + d.x + ',' + d.y + ')'; })
+      .attr('id',function(d) {
+        return d[0][2];
+      })
+      .attr('class',function(d) {
+        return d[0][3];
+      })
+      .attr('fill-opacity', 0)
+      .attr('stroke-opacity', 0)
+      .attr('d', hexbin.hexagon())
+      .transition()
+        .attr('d', hexbin.hexagon(hexbin.radius()))
+
+
 
   var migrValue = 0
-	var scenario = "pessimistic" //inclusive friendly pessimistic
 
       d3.selectAll(".hexagons")
         .selectAll("path").each(function(d, i) {
@@ -157,10 +181,12 @@ var svg = d3.select("div.hexamap").append("svg")
         if (this.checked){
           check = true;
           displayMap(states,0)
+          displayMap(hexagonBack,1)
           displayMap(hexagon,1)
         } else {
           check = false;
           displayMap(states,1)
+          displayMap(hexagonBack,0)
           displayMap(hexagon,0)
         }
     });
@@ -179,11 +205,11 @@ var svg = d3.select("div.hexamap").append("svg")
     });
 
     function displayMap(name,fillOpa){
-      name.selectAll('path')
-			.transition()
-        .attr('fill-opacity', fillOpa)
-        .attr('stroke-opacity', fillOpa)
-       	.duration(1000);
+        name.selectAll('path')
+        .transition()
+          .attr('fill-opacity', fillOpa)
+          .attr('stroke-opacity', fillOpa)
+          .duration(1000);
     }
 
 
@@ -240,9 +266,43 @@ var svg = d3.select("div.hexamap").append("svg")
                 }
             });
         } else {
-            displayMap(states, 1)
-            displayMap(hexagon, 0)
-        }
+          hexagon.remove();
+          
+          hexagon = svg.append('g')
+          .attr('class', 'hexagons');
+
+          hexagon.selectAll('path')
+          .data(hexbin(coord))
+          .enter().append('path')
+          .attr('transform', d => { return 'translate(' + d.x + ',' + d.y + ')'; })
+          .attr('id',function(d) {
+          return d[0][2];
+          })
+          .attr('class',function(d) {
+          return d[0][3];
+          })
+          .attr('fill-opacity', 0)
+          .attr('stroke-opacity', 0)
+          .attr('d', hexbin.hexagon())
+          .transition()
+          .attr('d', hexbin.hexagon(hexbin.radius()))
+
+          d3.selectAll(".hexagons")
+            .selectAll("path").each(function(d, i) {
+              var nom = this.id;
+              data.forEach(function(e){
+                if(e.name==nom)
+                {
+                  migrValue=e[scenario];
+                }
+              });
+              //console.log(this.class)
+              this.setAttribute("fill",color(regions.indexOf(this.classList.value)))
+              migrValue=0
+            })
+          ;
+          displayMap(hexagon, 1)
+    }
   }
 }
 
@@ -269,7 +329,6 @@ var svg = d3.select("div.hexamap").append("svg")
 var acc = document.getElementsByClassName("accordion");
 var nwc = document.getElementsByClassName("newCountry");
 
-console.log(nwc)
 
 acc[0].classList.toggle("active");
 var panel = acc[0].nextElementSibling;
@@ -297,10 +356,13 @@ for (j = 0; j < acc.length; j++) {
 
     if(this.classList.contains("pessimiste")){
       nwc[0].style.display = "block";
+      scenario="pessimistic";
     } else if (this.classList.contains("inclusive")) {
       nwc[1].style.display = "block";
+      scenario="inclusive";
     } else {
       nwc[2].style.display = "block";
+      scenario="friendly";
     }
   });
 }
