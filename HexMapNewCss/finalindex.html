@@ -46,22 +46,27 @@
                     un scénario pessimiste de référence, un scénario écologiquement optimiste, ainsi qu'un scénario sociétalement optimiste. Sont scrutées les 3 régions principalement concernées : L'amérique latine, l'asie du sud-est
                     et l'Afrique.
                 </div>
-
-                <button class="side-item pessimiste" onclick="updateMap(event, 'Pessimiste')" id="default">
-                        <h4>Pessimiste</h4>
+                <div class="boutons">
+                    <button class="accordion pessimiste" onclick="updateMap(event, 'Pessimiste')" id="default">
+                        Pessimiste
+                    </button>
+                    <div class="panel">
                         <p>Dans ce scénario, les émissions polluantes de méthane et dioxyde de carbone continuent leur tendance actuelle.
-                    De plus, les régions observées continuent de présenter: </p>
+                            De plus, les régions observées continuent de présenter: </p>
                         <ul>
                             <li>Une haute croissance démographique</li>
                             <li>Un grand taux d'urbanisation</li>
                             <li>Une augmentation minime du PIB</li>
                             <li>Un bas niveau d'éducation</li>
                         </ul>
-                </button>
-                <button class="side-item inclusive" onclick="updateMap(event, 'Inclusif')">
-                        <h4>Inclusif</h4>
+                    </div>
+                    <button class="accordion inclusive" onclick="updateMap(event, 'Inclusif')">
+                        Inclusif
+                    </button>
+                            
+                    <div class="panel">
                         <p>Dans ce scénario, les émissions polluantes de méthane et dioxyde de carbone continuent leur tendance actuelle.
-                    Cependant les régions observées présentent: </p>
+                            Cependant les régions observées présentent: </p>
                         <ul>
                             <li>Des inégalités réduites entre les différentes régions du monde</li>
                             <li>Un taux d'urbanisation plus modéré</li>
@@ -69,27 +74,31 @@
                             <li>Des revenus plus élevés</li>
                             <li>Croissance démographique à la baisse dans les pays les plus pauvres</li>
                         </ul>
-                </button>
-            
-                <button class="side-item friendly" onclick="updateMap(event, 'Ecologique')">
-                        <h4>Ecologique</h4>
+                    </div>
+                    
+                
+                    <button class="accordion friendly" onclick="updateMap(event, 'Ecologique')">
+                        Ecologique             
+                    </button>
+                    <div class="panel">
                         <p>Dans ce scénario, les émissions polluantes de méthane et dioxyde de carbone ont été considérablement réduites.
-                    Cependant, les régions observées continuent de présenter : </p>
+                            Cependant, les régions observées continuent de présenter : </p>
                         <ul>
                             <li>Une haute croissance démographique</li>
                             <li>Un grand taux d'urbanisation</li>
                             <li>Une augmentation minime du PIB</li>
                             <li>Un bas niveau d'éducation</li>
                         </ul>
-                </button>
+                    </div>
+                </div>
             </div>
 
             <div id="slides" class="w3-display-container content">
-                <div class="mySlides" style="display: flex;">
+                <div class="mySlides">
                     <div id="slideTitleHM" class="slideTitle">
                         Carte du monde si les Migrants formaient un nouveau pays 
                     </div>
-                    <div id="hm" class="hexamap chart"  >
+                    <div id="hm" class="slideContent hexamap chart"  >
 
                     </div>
                     <div class="slideFooter">
@@ -116,7 +125,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mySlides" style="display: flex;">
+                <div class="mySlides">
                     <div class="slideTitle">
                             Prédiction du pourcentage de migrants en 2050 (en Millions)
                     </div>
@@ -174,7 +183,7 @@
                 for (i = 0; i < x.length; i++) {
                 x[i].style.display = "none";  
                 }
-                x[slideIndex-1].style.display = "block";  
+                x[slideIndex-1].style.display = "flex";  
             }
         </script>
   </body>

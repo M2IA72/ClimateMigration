@@ -252,3 +252,30 @@ var svg = d3.select("div.hexamap").append("svg")
       	country.push([event.clientX-7,event.clientY-7]);
       console.log(country)
     }*/
+
+var acc = document.getElementsByClassName("accordion");
+
+acc[0].classList.toggle("active");
+var panel = acc[0].nextElementSibling;
+panel.style.maxHeight = panel.scrollHeight + "px";
+panel.style.margin = "0 0 10px 0";
+panel.style.padding = "10px";
+
+for (j = 0; j < acc.length; j++) {
+  acc[j].addEventListener("click", function() {
+    for (i = 0; i < acc.length; i++) {
+      acc[i].classList.remove("active");
+      var panel = acc[i].nextElementSibling;
+      if (panel.style.maxHeight){
+        panel.style.maxHeight = null;
+        panel.style.margin = null;
+        panel.style.padding = null;
+      }
+    }
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    panel.style.maxHeight = panel.scrollHeight + "px";
+    panel.style.margin = "0 0 10px 0";
+    panel.style.padding = "10px";
+  });
+}

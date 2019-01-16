@@ -25,7 +25,6 @@ body{
 }
 
 .title h1{
-  padding-top:10px;
   padding-left: 10px;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
@@ -62,27 +61,60 @@ body{
   height: 90%;
   display:flex;
   flex-direction: column;
-  justify-content: space-between;
   background-color: #aaaaaa;
 }
 
 .side-item{
   padding:10px;
   margin:5px;
-  height: 25%;
-  overflow-y: scroll; /*TODO accordeon*/
 }
+
+ /* Style the buttons that are used to open and close the accordion panel */
+ .accordion {
+  background-color: lightslategrey;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.2em;
+}
+
+.accordion:hover{
+  transition: 0.2s;
+  font-size: 1.5em;
+}
+
+.accordion:hover, .active{
+  background-color: orange;
+  color:black
+
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0;
+  background-color:lightsteelblue;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  border-radius: 0 0 20px 20px;
+  margin-bottom: 0;
+} 
 
 .intro{
   text-align: center;
-}
-.pessimiste,.inclusive,.friendly{
-  background-color: lightslategrey;
+  height: 25%;
 }
 
-.pessimiste:hover,.inclusive:hover,.friendly:hover{
-  color: white;
-  border: 1px solid black
+.boutons{
+  text-align: center;
+  height: 75%;
 }
 
 .content{
@@ -91,7 +123,21 @@ body{
   background-color: lightseagreen;
 }
 
-.w3-button{border:none;display:inline-block;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
+.w3-button{
+  border:none;
+  display:inline-block;
+  padding:8px 16px;
+  vertical-align:middle;
+  overflow:hidden;
+  text-decoration:none;
+  color:inherit;
+  background-color:inherit;
+  text-align:center;
+  cursor:pointer;
+  white-space:nowrap;
+  z-index: 11;
+
+}
 
 .w3-black,.w3-hover-black:hover{color:#fff!important;background-color:#000!important}
 
@@ -99,13 +145,14 @@ body{
 .w3-display-right{position:absolute;top:50%;right:0%;transform:translate(0%,-50%);-ms-transform:translate(0%,-50%)}
 
 .w3-display-container{
-  position:relative;
+  position: relative; 
 }
 
 .mySlides{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
 }
 
 .slideTitle{
@@ -116,12 +163,26 @@ body{
   text-align: center;
   margin:0;
   padding: 10px 0 0;
+  flex-grow: 1;
 }
 
 .slideFooter{
   color:white;
-  background-color: rgba(0,0,0,0.5);
   justify-content: flex-end;
+  flex-grow: 1;
+  display: flex;
+}
+
+.slideFooterHM{
+  background-color: rgba(255,255,255,0.5);
+}
+.slideFooterWM{
+  position: absolute;
+}
+.slideContent{
+  flex-grow: 8;
+  overflow: hidden;
+  z-index: 10;
 }
 
 .footer{
