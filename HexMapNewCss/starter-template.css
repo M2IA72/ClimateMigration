@@ -81,8 +81,8 @@ body{
   outline: none;
   transition: 0.4s;
   text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1.2em;
+  font-variant: small-caps;
 }
 
 .accordion:hover{
@@ -101,18 +101,23 @@ body{
   padding: 0;
   background-color:lightsteelblue;
   display:none;
-  overflow: hidden;
+  height: 40%;
+  overflow: auto;
   transition: display 5s ease-out;
   border-radius: 0 0 20px 20px;
   margin-bottom: 0;
   font-size: 1em;
   text-align: justify;
+  font-family: 'Courier New', Courier, monospace;
 } 
 
 .intro{
-  text-align: center;
-  height: 25%;
-  overflow: hidden;
+  text-align: justify;
+  height: 30%;
+  color: white;
+  font-weight: 900;
+  overflow: auto;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .boutons{
@@ -140,7 +145,6 @@ body{
   cursor:pointer;
   white-space:nowrap;
   z-index: 11;
-
 }
 
 .w3-black,.w3-hover-black:hover{color:#fff!important;background-color:#000!important}
@@ -172,7 +176,7 @@ body{
 
 .slideFooter{
   color:white;
-  justify-content: flex-end;
+  justify-content: space-around;
   flex-grow: 1;
   display: flex;
 }
