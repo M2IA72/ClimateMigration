@@ -70,6 +70,7 @@ body{
   padding:10px;
   margin:5px;
   height: 25%;
+  overflow-y: scroll; /*TODO accordeon*/
 }
 
 .intro{

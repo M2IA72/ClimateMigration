@@ -215,7 +215,7 @@ var svg = d3.select("div.hexamap").append("svg")
 				hexagon.selectAll(cName)
 				  .each(function(d,i){
 				  if(e[scenario]>0){
-					if(i<Math.max(1,nbHex*e[scenario]/100)){
+					if(i<Math.max(1,nbHex*e[scenario]/100)){ // TODO random
 					  d3.select(this).transition()
 						.attr('transform', d => { return 'translate(' + migCoords[migId][0] + ',' + migCoords[migId][1] + ')'; })
 						.delay(2000)
