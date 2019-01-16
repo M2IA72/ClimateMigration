@@ -125,11 +125,12 @@ body{
   color: white;
   font-weight: 900;
   overflow: auto;
+  font-size: 90%;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif
 }
 
 .intro::first-letter {
-  font-size: 150%;
+  font-size: 130%;
 }
 
 .boutons{

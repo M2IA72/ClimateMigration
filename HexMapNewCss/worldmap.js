@@ -307,8 +307,8 @@ function updateBarChart(div, dataset, pess_min, pess_max, pessimistic) {
     barChartLabel.data(bar)
         .transition()
         .text(function(d){return d;})
-        .attr("x",function(d, i){return i*(widthSVG/bar.length)+10;})
-        .attr("y", function(d){return yScale(d) - 3;});
+        .attr("x",function(d, i){return i*(widthSVG/bar.length)+50;})
+        .attr("y", function(d){return heightSVG - 10 ;})
 
 
 }
@@ -407,11 +407,11 @@ yAxisGroup = svgAxeY.append("g")
             .enter()
             .append("text")
             .text(function(d){return d;})
-            .attr("x",function(d, i){return i*(widthSVG/bar.length)+10;})
-            .attr("y", function(d){return yScale(d) - 3;})
+            .attr("x",function(d, i){return i*(widthSVG/bar.length)+50;})
+            .attr("y", function(d){return heightSVG - 10 ;})
             .attr("font-family", "sans-serif")
-            .attr("font-size", "11px")
-            .attr("fill", "black")
+            .attr("font-size", "2em")
+            .attr("fill", "white")
             .attr("text-anchor", "middle");
 
 
