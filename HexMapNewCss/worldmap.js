@@ -304,10 +304,16 @@ function updateBarChart(div, dataset, pess_min, pess_max, pessimistic) {
         .attr("y", function(d) { return yScale(d); })
         .attr("height", function(d) { return height - yScale(d); });
 
+    var labels=["Min: ","Max: ","Moy: "]
+    var idLabels = 0;
+
     barChartLabel.data(bar)
         .transition()
-        .text(function(d){return d;})
-        .attr("x",function(d, i){return i*(widthSVG/bar.length)+50;})
+        .text(function(d){
+            var textLab = labels[idLabels]+d;
+            idLabels++;
+            return textLab;
+        })        .attr("x",function(d, i){return i*(widthSVG/bar.length)+100;})
         .attr("y", function(d){return heightSVG - 10 ;})
 
 
@@ -402,17 +408,23 @@ yAxisGroup = svgAxeY.append("g")
 // for `exit` selection, they shouldn't be on the svg canvas since there is no corresponding data, you can then remove them
 
 //append text
-    barChartLabel = svgWm.selectAll("text")
-            .data(bar)
-            .enter()
-            .append("text")
-            .text(function(d){return d;})
-            .attr("x",function(d, i){return i*(widthSVG/bar.length)+50;})
-            .attr("y", function(d){return heightSVG - 10 ;})
-            .attr("font-family", "sans-serif")
-            .attr("font-size", "2em")
-            .attr("fill", "white")
-            .attr("text-anchor", "middle");
+var labels=["Min: ","Max: ","Moy: "]
+var idLabels = 0;
+barChartLabel = svgWm.selectAll("text")
+    .data(bar)
+    .enter()
+    .append("text")
+    .text(function(d){
+        var textLab = labels[idLabels]+d;
+        idLabels++;
+        return textLab;
+    })
+    .attr("x",function(d, i){return i*(widthSVG/bar.length)+100;})
+    .attr("y", function(d){return heightSVG - 10 ;})
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "2em")
+    .attr("fill", "white")
+    .attr("text-anchor", "middle");
 
 
 var xScale = d3.scaleLinear()
