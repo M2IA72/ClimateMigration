@@ -318,11 +318,11 @@ function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
   let bar = [pess_min, pess_max, pessimistic];
 	var marginWm = {top: 20, right: 30, bottom: 30, left: 40}
 	var widthSVG = 300 - marginWm.left - marginWm.right;
-	var heightSVG = 300 - marginWm.top - marginWm.bottom;
+	var heightSVG = 300 - marginWm.top - marginWm.bottom+40;
 	var widthAxeX = widthSVG;
 	var heightAxeX = 20;
 	var widthAxeY = 30;
-	var heightAxeY = heightSVG;
+	var heightAxeY = heightSVG/2;
 	var barPadding = 1;
 	var widthBar = widthSVG - barPadding;
 	var heightBar = heightSVG/2;
