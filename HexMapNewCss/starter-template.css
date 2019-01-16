@@ -96,6 +96,9 @@ body{
 
 }
 
+.newCountry{
+  display: none;
+}
 /* Style the accordion panel. Note: hidden by default */
 .panel {
   padding: 0;
@@ -123,9 +126,13 @@ body{
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif
 }
 
+.intro::first-letter {
+  font-size: 150%;
+}
+
 .boutons{
   text-align: center;
-  height: 75%;
+  height: 70%;
   overflow: hidden;
 }
 

@@ -205,6 +205,7 @@ var svg = d3.select("div.hexamap").append("svg")
 			}
 
 
+
 			var migId=0
 
 			data.forEach(function(e){
@@ -266,6 +267,9 @@ var svg = d3.select("div.hexamap").append("svg")
     }*/
 
 var acc = document.getElementsByClassName("accordion");
+var nwc = document.getElementsByClassName("newCountry");
+
+console.log(nwc)
 
 acc[0].classList.toggle("active");
 var panel = acc[0].nextElementSibling;
@@ -279,6 +283,7 @@ for (j = 0; j < acc.length; j++) {
       acc[i].classList.remove("active");
       var panel = acc[i].nextElementSibling;
       if (panel.style.display){
+        nwc[i].style.display = null;
         panel.style.display = null;
         panel.style.margin = null;
         panel.style.padding = null;
@@ -289,5 +294,13 @@ for (j = 0; j < acc.length; j++) {
     panel.style.display = "block";
     panel.style.margin = "0 0 10px 0";
     panel.style.padding = "10px";
+
+    if(this.classList.contains("pessimiste")){
+      nwc[0].style.display = "block";
+    } else if (this.classList.contains("inclusive")) {
+      nwc[1].style.display = "block";
+    } else {
+      nwc[2].style.display = "block";
+    }
   });
 }
