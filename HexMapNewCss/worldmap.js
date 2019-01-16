@@ -92,7 +92,7 @@ const marginWm = {top: 0, right: 0, bottom: 0, left: 0};
 const widthWm = 960 - marginWm.left - marginWm.right;
 const heightWm = 500 - marginWm.top - marginWm.bottom;
 */
-var eleWm = document.getElementById("hm"),
+var eleWm = document.getElementById("wm"),
   eleStyleWm = window.getComputedStyle(eleWm),
   eleWidthWm = parseInt(eleStyleWm.width),
   eleHeightWm= parseInt(eleStyleWm.height),
@@ -272,8 +272,8 @@ function updateBarChart(div, dataset, pess_min, pess_max, pessimistic) {
     let bar = [pess_min, pess_max, pessimistic];
 
     var marginWm = {top: 20, right: 30, bottom: 30, left: 40}
-    var widthSVG = 300 - marginWm.left - marginWm.right;
-    var heightSVG = 300 - marginWm.top - marginWm.bottom;
+	var widthSVG = eleWidthWm - marginWm.left - marginWm.right;
+	var heightSVG = eleWidthWm/6 - marginWm.top - marginWm.bottom;
     var widthAxeX = widthSVG;
     var heightAxeX = 20;
     var widthAxeY = 30;
@@ -317,8 +317,8 @@ function drawBarChart(div, dataset, pess_min, pess_max, pessimistic) {
 
   let bar = [pess_min, pess_max, pessimistic];
 	var marginWm = {top: 20, right: 30, bottom: 30, left: 40}
-	var widthSVG = 300 - marginWm.left - marginWm.right;
-	var heightSVG = 300 - marginWm.top - marginWm.bottom;
+	var widthSVG = eleWidthWm - marginWm.left - marginWm.right;
+	var heightSVG = eleWidthWm/6 - marginWm.top - marginWm.bottom;
 	var widthAxeX = widthSVG;
 	var heightAxeX = 20;
 	var widthAxeY = 30;
@@ -368,7 +368,7 @@ yAxisGroup = svgAxeY.append("g")
 
     svgWm.selectAll("rect").data(bar).enter()
             .append("rect")
-            .attr("width", 20)
+            .attr("width", eleWidthWm/5)
         .attr("height", heightBar - marginWm.top + marginWm.bottom)
             .attr("x",function(d, i){return i*(widthSVG/bar.length);})
         .attr("y", function(d) { return yScale(d); })

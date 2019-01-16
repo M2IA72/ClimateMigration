@@ -232,76 +232,96 @@ var scenario = "pessimistic" //inclusive friendly pessimistic
 
 
 
-			var migId=0
+      var migId=0
+      
+      var nwc = document.getElementsByClassName("newCountry");
+      for (i = 0; i < acc.length; i++) {
+        nwc[i].style.display = null;
+      }
 
 			data.forEach(function(e){
-                var cBug = ["Cote d'Ivoire", "Falkland Islands (Islas Malvinas)", "Holy See (Vatican City)", "Cocos (Keeling) Islands"]
-                if (!cBug.includes(e.name)) {
-                    var cName = "#" + e.name;
-                    var nbHex = hexagon.selectAll(cName).size();
-                    var nbRandom = Math.max(1, nbHex * e[scenario] / 100);
-                    var hexToMove = [];
-                    for (var i = 0; i < nbRandom; i++) {
-                        var r;
-                        do {
-                            r = Math.floor(Math.random() * nbHex);
-                        } while (hexToMove.includes(r));
-                        hexToMove.push(r);
+        var cBug = ["Cote d'Ivoire", "Falkland Islands (Islas Malvinas)", "Holy See (Vatican City)", "Cocos (Keeling) Islands"]
+        if (!cBug.includes(e.name)) {
+            var cName = "#" + e.name;
+            var nbHex = hexagon.selectAll(cName).size();
+            var nbRandom = Math.max(1, nbHex * e[scenario] / 100);
+            var hexToMove = [];
+            for (var i = 0; i < nbRandom; i++) {
+                var r;
+                do {
+                    r = Math.floor(Math.random() * nbHex);
+                } while (hexToMove.includes(r));
+                hexToMove.push(r);
+            }
+
+            hexagon.selectAll(cName)
+                .each(function (d, i) {
+                    if (e[scenario] > 0) {
+                        if (hexToMove.includes(i)) {
+                            d3.select(this).transition()
+                                .attr('transform', d => {
+                                    return 'translate(' + migCoords[migId][0] + ',' + migCoords[migId][1] + ')';
+                                })
+                                .delay(1000)
+                                .duration(8000)
+                                .on('end',  function(d){
+                                  if(scenario=="pessimistic"){
+                                    nwc[0].style.display = "block";
+                                  } else if (scenario=="inclusive") {
+                                    nwc[1].style.display = "block";
+                                  } else {
+                                    nwc[2].style.display = "block";
+                                  }
+                                });
+                            migId++;
+                        }
                     }
+                })
+        }
+      
+    });
 
-                    hexagon.selectAll(cName)
-                        .each(function (d, i) {
-                            if (e[scenario] > 0) {
-                                if (hexToMove.includes(i)) {
-                                    d3.select(this).transition()
-                                        .attr('transform', d => {
-                                            return 'translate(' + migCoords[migId][0] + ',' + migCoords[migId][1] + ')';
-                                        })
-                                        .delay(2000)
-                                        .duration(8000);
-                                    migId++;
-                                }
-                            }
-                        })
-                }
-            });
-        } else {
-          hexagon.remove();
-          
-          hexagon = svg.append('g')
-          .attr('class', 'hexagons');
+    } else {
+      hexagon.remove();
+      var nwc = document.getElementsByClassName("newCountry");
+      for (i = 0; i < acc.length; i++) {
+        nwc[i].style.display = null;
+      }
 
-          hexagon.selectAll('path')
-          .data(hexbin(coord))
-          .enter().append('path')
-          .attr('transform', d => { return 'translate(' + d.x + ',' + d.y + ')'; })
-          .attr('id',function(d) {
-          return d[0][2];
-          })
-          .attr('class',function(d) {
-          return d[0][3];
-          })
-          .attr('fill-opacity', 0)
-          .attr('stroke-opacity', 0)
-          .attr('d', hexbin.hexagon())
-          .transition()
-          .attr('d', hexbin.hexagon(hexbin.radius()))
+      hexagon = svg.append('g')
+      .attr('class', 'hexagons');
 
-          d3.selectAll(".hexagons")
-            .selectAll("path").each(function(d, i) {
-              var nom = this.id;
-              data.forEach(function(e){
-                if(e.name==nom)
-                {
-                  migrValue=e[scenario];
-                }
-              });
-              //console.log(this.class)
-              this.setAttribute("fill",color(regions.indexOf(this.classList.value)))
-              migrValue=0
-            })
-          ;
-          displayMap(hexagon, 1)
+      hexagon.selectAll('path')
+      .data(hexbin(coord))
+      .enter().append('path')
+      .attr('transform', d => { return 'translate(' + d.x + ',' + d.y + ')'; })
+      .attr('id',function(d) {
+      return d[0][2];
+      })
+      .attr('class',function(d) {
+      return d[0][3];
+      })
+      .attr('fill-opacity', 0)
+      .attr('stroke-opacity', 0)
+      .attr('d', hexbin.hexagon())
+      .transition()
+      .attr('d', hexbin.hexagon(hexbin.radius()))
+
+      d3.selectAll(".hexagons")
+        .selectAll("path").each(function(d, i) {
+          var nom = this.id;
+          data.forEach(function(e){
+            if(e.name==nom)
+            {
+              migrValue=e[scenario];
+            }
+          });
+          //console.log(this.class)
+          this.setAttribute("fill",color(regions.indexOf(this.classList.value)))
+          migrValue=0
+        })
+      ;
+      displayMap(hexagon, 1)
     }
   }
 }
@@ -327,7 +347,7 @@ var scenario = "pessimistic" //inclusive friendly pessimistic
     }*/
 
 var acc = document.getElementsByClassName("accordion");
-var nwc = document.getElementsByClassName("newCountry");
+//var nwc = document.getElementsByClassName("newCountry");
 
 
 acc[0].classList.toggle("active");
@@ -342,7 +362,7 @@ for (j = 0; j < acc.length; j++) {
       acc[i].classList.remove("active");
       var panel = acc[i].nextElementSibling;
       if (panel.style.display){
-        nwc[i].style.display = null;
+        //nwc[i].style.display = null;
         panel.style.display = null;
         panel.style.margin = null;
         panel.style.padding = null;
@@ -355,13 +375,13 @@ for (j = 0; j < acc.length; j++) {
     panel.style.padding = "10px";
 
     if(this.classList.contains("pessimiste")){
-      nwc[0].style.display = "block";
+      //nwc[0].style.display = "block";
       scenario="pessimistic";
     } else if (this.classList.contains("inclusive")) {
-      nwc[1].style.display = "block";
+      //nwc[1].style.display = "block";
       scenario="inclusive";
     } else {
-      nwc[2].style.display = "block";
+      //nwc[2].style.display = "block";
       scenario="friendly";
     }
   });

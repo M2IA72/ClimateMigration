@@ -99,6 +99,7 @@ body{
 .newCountry{
   display: none;
   text-align: center;
+  font-size: 1.2em;
 }
 /* Style the accordion panel. Note: hidden by default */
 .panel {
@@ -188,8 +189,10 @@ body{
 .slideFooter{
   color:white;
   justify-content: space-around;
+  align-content: flex-end;
   flex-grow: 1;
   display: flex;
+  overflow: visible;
 }
 
 .slideFooterHM{
