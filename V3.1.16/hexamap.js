@@ -304,7 +304,9 @@ function render (geometry, data) {
   
   for (j = 0; j < acc.length; j++) {
     acc[j].addEventListener("click", function() {
-      ResetHexamap();
+      if(d3.selectAll('input.switchAnim').property('checked')){
+        ResetHexamap();
+      }
       for (i = 0; i < acc.length; i++) {
         acc[i].classList.remove("active");
         var panel = acc[i].nextElementSibling;
