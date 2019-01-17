@@ -16,13 +16,54 @@ body{
   background-color: #222222;
   display:flex;
   align-content: center;
-  justify-content: space-around;
+  justify-content: space-between;
   border-bottom: 2px solid white
+}
+
+.headButton {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 1.2em;
+  padding: 5px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  vertical-align: middle;
+  max-height: 5%;
+}
+
+.headButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.headButton span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.headButton:hover span {
+  padding-right: 25px;
+}
+
+.headButton:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 .title{
   height: 100%;
-  width: 25%;
 }
 
 .title h1{
@@ -33,7 +74,6 @@ body{
 }
 
 .menu{
-  width: 75%;
   height: 100%;
   display:flex;
   align-items: center;
@@ -65,17 +105,12 @@ body{
   background-color: #aaaaaa;
 }
 
-.side-item{
-  padding:10px;
-  margin:5px;
-}
-
  /* Style the buttons that are used to open and close the accordion panel */
  .accordion {
   background-color: lightslategrey;
   color: #444;
   cursor: pointer;
-  padding: 18px;
+  padding: 5px;
   width: 100%;
   text-align: left;
   border: none;
@@ -84,6 +119,8 @@ body{
   text-align: center;
   font-size: 1.2em;
   font-variant: small-caps;
+  max-height: 5%;
+  vertical-align: top;
 }
 
 .accordion:hover{
@@ -94,7 +131,6 @@ body{
 .accordion:hover, .active{
   background-color: orange;
   color:black
-
 }
 
 .newCountry{
@@ -102,17 +138,18 @@ body{
   text-align: center;
   font-size: 1.0em;
 }
+
 /* Style the accordion panel. Note: hidden by default */
 .panel {
   padding: 0;
   background-color:lightsteelblue;
   display:none;
-  height: 40%;
+  max-height: 40%;
   overflow: auto;
   transition: display 5s ease-out;
   border-radius: 0 0 20px 20px;
   margin-bottom: 0;
-  font-size: 1em;
+  font-size: 80%;
   text-align: justify;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif
 } 
@@ -122,22 +159,17 @@ body{
 }
 .intro{
   text-align: justify;
-  height: 30%;
+  max-height: 40%;
   color: white;
   font-weight: 900;
   overflow: auto;
   font-size: 90%;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  padding:10px;
 }
 
 .intro::first-letter {
   font-size: 130%;
-}
-
-.boutons{
-  text-align: center;
-  height: 70%;
-  overflow: hidden;
 }
 
 .content{
@@ -196,17 +228,25 @@ body{
   text-align: center;
   margin:0;
   padding: 10px 0 0;
-  flex-grow: 1;
+  height: 6%;
+  vertical-align: middle;
+}
+
+.slideTop{
+  height: 100%;
 }
 
 .slideFooter{
   color:white;
   justify-content: space-between;
-  align-content: center;
   flex-grow: 1;
   display: flex;
   overflow: visible;
-  padding:0 10px;
+  position: absolute;
+  min-height: 6%;
+  width: 100%;
+  bottom:0;
+  right:0;
 }
 
 .slideFooterHM{
@@ -224,10 +264,15 @@ body{
   width:40%;
 }
 
+.newCountryName h4{
+  margin:0;
+}
+
 .controller{
   width:60%;
   display:flex;
   justify-content: flex-end;
+  padding-right:20px; 
 }
 
 .footer{
