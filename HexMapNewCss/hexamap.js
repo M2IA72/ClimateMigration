@@ -183,11 +183,17 @@ var scenario = "pessimistic" //inclusive friendly pessimistic
           displayMap(states,0)
           displayMap(hexagonBack,1)
           displayMap(hexagon,1)
+            d3.select("div.controller2")
+                .style("display","block")
+
         } else {
           check = false;
           displayMap(states,1)
           displayMap(hexagonBack,0)
           displayMap(hexagon,0)
+            d3.select("div.controller2")
+                .style("display","none")
+
         }
     });
 
