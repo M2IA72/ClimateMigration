@@ -192,11 +192,10 @@ body{
   color:white;
   justify-content: space-between;
   align-content: center;
-  height:10%;
+  flex-grow: 1;
   display: flex;
   overflow: visible;
   padding:0 10px;
-  margin-bottom: 5px;
 }
 
 .slideFooterHM{
