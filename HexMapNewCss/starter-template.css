@@ -192,10 +192,11 @@ body{
   color:white;
   justify-content: space-between;
   align-content: center;
-  flex-grow: 1;
+  height:10%;
   display: flex;
   overflow: visible;
   padding:0 10px;
+  margin-bottom: 5px;
 }
 
 .slideFooterHM{
@@ -210,11 +211,11 @@ body{
 }
 
 .newCountryName{
-  width:50%;
+  width:40%;
 }
 
 .controller{
-  width:50%;
+  width:60%;
   display:flex;
   justify-content: flex-end;
 }
