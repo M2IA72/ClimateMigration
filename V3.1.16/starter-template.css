@@ -146,6 +146,17 @@ body{
   background-color: lightseagreen;
 }
 
+.content h1, .sidebar h1{
+  padding-left:20px;
+  color: white;
+}
+
+.content p{
+  padding:10px;
+  text-align: justify;
+  color: white;
+}
+
 .w3-button{
   border:none;
   display:inline-block;
