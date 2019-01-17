@@ -20,9 +20,9 @@ Nous partons notamment de cet article : [143 millions de "migrants climatiques" 
 - [Document de Cadrage du projet](https://m2ia72.github.io/docadrage)
 
 ## Visualisation
-- [V1.0](https://m2ia72.github.io/Visu1/visu)
-- [V2.1.9](https://m2ia72.github.io/Visu2_worldmap/visu_worldmap)
-- [V2.1.11](https://m2ia72.github.io/HexMap/index)
-- [V3.1.16](https://m2ia72.github.io/HexMapNewCss/finalindex)
+- [V1.0](https://m2ia72.github.io/V1.0/index)
+- [V2.1.9](https://m2ia72.github.io/V2.1.9/index)
+- [V2.1.11](https://m2ia72.github.io/V2.1.11/index)
+- [V3.1.16](https://m2ia72.github.io/V3.1.16/index)
 
 ![Visualisation Finale](VisuFinale.PNG)
