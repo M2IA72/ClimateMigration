@@ -30,9 +30,9 @@ We talked about this article : [143 millions de "migrants climatiques" potentiel
 - [Document de Cadrage du projet](https://m2ia72.github.io/docadrage)
 
 ## Visualisation
-- [V1.0](https://m2ia72.github.io/V1.0/index)
-- [V2.1.9](https://m2ia72.github.io/V2.1.9/index)
-- [V2.1.11](https://m2ia72.github.io/V2.1.11/index)
-- [V3.1.16](https://m2ia72.github.io/V3.1.16/index)
+- [V1.0](https://m2ia72.github.io/ClimateMigration/V1.0/index)
+- [V2.1.9](https://m2ia72.github.io/ClimateMigration/V2.1.9/index)
+- [V2.1.11](https://m2ia72.github.io/ClimateMigration/V2.1.11/index)
+- [V3.1.16](https://m2ia72.github.io/ClimateMigration/V3.1.16/index)
 
 ![Visualisation Finale](VisuFinale.PNG)
