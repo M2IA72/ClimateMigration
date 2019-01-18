@@ -25,10 +25,10 @@ Nous partons notamment de cet article : [143 millions de "migrants climatiques" 
 We decided to work on migratory flux cause by climate change: rising of the ocean, deforestation, desertification...
 We talked about this article : [143 millions de "migrants climatiques" potentiels d'ici 2050](https://www.europe1.fr/international/143-millions-de-migrants-climatiques-potentiels-dici-2050-3603704).
 
-## Documents
+# Documents
 - [Document de Cadrage du projet](https://m2ia72.github.io/ClimateMigration/docadrage)
 
-## Visualisation
+# Visualisation
 - [V1.0](https://m2ia72.github.io/ClimateMigration/V1.0/index)
 - [V2.1.9](https://m2ia72.github.io/ClimateMigration/V2.1.9/index)
 - [V2.1.11](https://m2ia72.github.io/ClimateMigration/V2.1.11/index)
