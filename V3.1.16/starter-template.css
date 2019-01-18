@@ -177,6 +177,13 @@ body{
   height: 90%;
   background-color: lightseagreen;
   font-size: 1.2em;
+}
+
+.aboutContent{
+  width:75%;
+  height: 90%;
+  background-color: lightseagreen;
+  font-size: 1.2em;
   overflow: auto;
 }
 
@@ -339,7 +346,6 @@ body{
   font-size: 90%;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   padding:20px;
-  overflow: auto;
 }
 
 .contactIntro a{
