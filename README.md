@@ -1,5 +1,4 @@
 # Présentation
-
 Ce projet a été crée dans le cadre de l'UE de Data Visualisation du Master 2 Inteligence Artificielle de l'Université de Lyon 1.
 L'objectif de ce projet est de réaliser une Data Visualisation sur le thème des Données Climatiques.
 
@@ -27,7 +26,7 @@ We decided to work on migratory flux cause by climate change: rising of the ocea
 We talked about this article : [143 millions de "migrants climatiques" potentiels d'ici 2050](https://www.europe1.fr/international/143-millions-de-migrants-climatiques-potentiels-dici-2050-3603704).
 
 ## Documents
-- [Document de Cadrage du projet](https://m2ia72.github.io/docadrage)
+- [Document de Cadrage du projet](https://m2ia72.github.io/ClimateMigration/docadrage)
 
 ## Visualisation
 - [V1.0](https://m2ia72.github.io/ClimateMigration/V1.0/index)
