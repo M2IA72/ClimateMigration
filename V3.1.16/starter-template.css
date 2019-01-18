@@ -232,7 +232,7 @@ body{
   vertical-align: middle;
 }
 
-.slideTop{
+.h2op{
   height: 100%;
 }
 
@@ -258,6 +258,9 @@ body{
 .slideContent{
   flex-grow: 8;
   overflow: hidden;
+}
+.contactSlideContent{
+  height: 94%;
 }
 
 .newCountryName{
@@ -294,4 +297,32 @@ body{
 .controller2{
   margin-right: 50px;
   display:none;
+}
+
+.contactContent{
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  align-content: space-around;
+  flex-wrap: wrap;
+  list-style:none;
+  color: white;
+  height: 80%;
+}
+
+.contactContent li{
+  width: 50%;
+}
+.contactContent li a img{
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 5px;
+  border-color: white
+}
+
+.sidebar a img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
