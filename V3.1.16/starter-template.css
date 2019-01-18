@@ -177,6 +177,7 @@ body{
   height: 90%;
   background-color: lightseagreen;
   font-size: 1.2em;
+  overflow: auto;
 }
 
 .content h1, .sidebar h1{
@@ -338,6 +339,7 @@ body{
   font-size: 90%;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   padding:20px;
+  overflow: auto;
 }
 
 .contactIntro a{
